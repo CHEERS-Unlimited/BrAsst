@@ -13,6 +13,13 @@ class PageController extends Controller
      */
     public function indexAction()
     {
+        $bd = $this->get('browser_detection');
+
+        var_dump(
+            $bd->getBrowser(),
+            $bd->getVersion()
+        );
+
         return $this->render('AppBundle:Meat:index.html.twig');
     }
 }

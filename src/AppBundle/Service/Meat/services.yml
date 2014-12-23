@@ -1,5 +1,4 @@
 # AppBundle/Service/Meat/services.yml
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    browser_detection:
+        class: AppBundle\Service\Meat\BrowserDetection
