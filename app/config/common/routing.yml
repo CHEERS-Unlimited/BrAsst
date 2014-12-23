@@ -1,0 +1,4 @@
+# app/config/common/routing.yml
+app:
+    resource: @AppBundle/Controller/
+    type:     annotation
