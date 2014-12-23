@@ -1,20 +1,32 @@
 {# AppBundle/Resources/views/Meat/index.html.twig #}
 {% extends '::base.html.twig' %}
 
-{% block stylesheets %}{% endblock %}
+{% block stylesheets %}
+    {% stylesheets
+        'bundles/app/css/css_1.css'
+        'bundles/app/css/css_2.css' output='compiled/css/main.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+    {% stylesheets
+        'bundles/app/css/css_3.css' output='compiled/css/additional.css' filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
 
 {% block body %}
-    New Homepage.
+    {% image 'bundles/app/images/Lighthouse.jpg' %}
+        <img src="{{ asset_url }}" alt="Example" />
+    {% endimage %}
 {% endblock %}
 
 {% block javascripts %}
     {% javascripts
         'bundles/app/js/js_1.js'
-        'bundles/app/js/js_2.js' output='js/compiled/main.js' %}
+        'bundles/app/js/js_2.js' output='compiled/js/main.js' %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
     {% javascripts
-        'bundles/app/js/js_3.js' output='js/compiled/additional.js' %}
+        'bundles/app/js/js_3.js' output='compiled/js/additional.js' %}
         <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}
