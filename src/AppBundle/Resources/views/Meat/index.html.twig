@@ -1,6 +1,20 @@
 {# AppBundle/Resources/views/Meat/index.html.twig #}
 {% extends '::base.html.twig' %}
 
+{% block stylesheets %}{% endblock %}
+
 {% block body %}
     New Homepage.
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts
+        'bundles/app/js/js_1.js'
+        'bundles/app/js/js_2.js' output='js/compiled/main.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    {% javascripts
+        'bundles/app/js/js_3.js' output='js/compiled/additional.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}
