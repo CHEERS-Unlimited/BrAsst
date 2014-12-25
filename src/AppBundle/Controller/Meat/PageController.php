@@ -49,8 +49,8 @@ class PageController extends Controller
         }
 
         $client = new Client();
-        $crawler = $client->request('GET', "https://en.wikipedia.org/wiki/Google_Chrome");
-        //$crawler = $client->request('GET', "https://en.wikipedia.org/wiki/Firefox");
+        //$crawler = $client->request('GET', "https://en.wikipedia.org/wiki/Google_Chrome");
+        $crawler = $client->request('GET', "https://en.wikipedia.org/wiki/Firefox");
         //$crawler = $client->request('GET', "https://en.wikipedia.org/wiki/Opera_(web_browser)");
         //$crawler = $client->request('GET', "https://en.wikipedia.org/wiki/Internet_Explorer");
         //$crawler = $client->request('GET', "https://en.wikipedia.org/wiki/Safari_(web_browser)");
@@ -76,6 +76,26 @@ class PageController extends Controller
         preg_match_all("/([0-9]+\.)([0-9]\.?)+/", $stableRelease, $matches, PREG_PATTERN_ORDER);
 
         var_dump($stableRelease, $matches[0][0]);
+
+        $latestStableVersion  = explode('.', $matches[0][0]);
+        $currentClientVersion = explode('.', $clientInfo['version']);
+
+        var_dump(
+            $latestStableVersion, $currentClientVersion
+        );
+
+        foreach($latestStableVersion as $position => $subVersion) {
+            if( isset($currentClientVersion[$position]) ) {
+                if( $currentClientVersion[$position] < $subVersion ) {
+                    $isLatest = FALSE;
+                    break;
+                } else {
+                    $isLatest = TRUE;
+                }
+            }
+        }
+
+        var_dump( $isLatest );
 
         return $this->render('AppBundle:Meat:index.html.twig');
     }
