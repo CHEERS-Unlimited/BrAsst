@@ -2,7 +2,6 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
-    - { resource: @AppBundle/Service/Bone/services.yml }
     - { resource: @AppBundle/Service/Meat/services.yml }
 
 framework:
