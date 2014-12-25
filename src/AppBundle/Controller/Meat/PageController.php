@@ -50,21 +50,20 @@ class PageController extends Controller
 
         $client = new Client();
         //$crawler = $client->request('GET', "https://en.wikipedia.org/wiki/Google_Chrome");
-        $crawler = $client->request('GET', "https://en.wikipedia.org/wiki/Firefox");
+        //$crawler = $client->request('GET', "https://en.wikipedia.org/wiki/Firefox");
         //$crawler = $client->request('GET', "https://en.wikipedia.org/wiki/Opera_(web_browser)");
         //$crawler = $client->request('GET', "https://en.wikipedia.org/wiki/Internet_Explorer");
-        //$crawler = $client->request('GET', "https://en.wikipedia.org/wiki/Safari_(web_browser)");
+        $crawler = $client->request('GET', "https://en.wikipedia.org/wiki/Safari_(web_browser)");
         $status_code = $client->getResponse()->getStatus();
-        if($status_code==200){
+
+        if($status_code==200)
+        {
             //process the documents
             $tableBlock = $crawler->filter('body > div#content > div#bodyContent > div#mw-content-text > table.infobox > tr');
 
-            //var_dump( $crawler->filter('body > div#content > div#bodyContent > div#mw-content-text > table.infobox > tr')->eq(3)->text() );
-            //var_dump( $crawler->filter('body > div#content > div#bodyContent > div#mw-content-text > table.infobox > tr')->eq(4)->text() );
-
             $siblingsNumber = count($tableBlock->siblings());
 
-            for($i = 1; $i < $siblingsNumber; $i++)
+            for($i = 1; $i <= $siblingsNumber; $i++)
             {
                 if( count($tableBlock->eq($i)->filter('th')) && $tableBlock->eq($i)->filter('th')->text() == 'Stable release' ) {
                     $stableRelease = $tableBlock->eq($i)->filter('td')->text();
@@ -77,6 +76,10 @@ class PageController extends Controller
 
         var_dump($stableRelease, $matches[0][0]);
 
+        if( empty($matches[0][0]) ) {
+            return FALSE;
+        }
+
         $latestStableVersion  = explode('.', $matches[0][0]);
         $currentClientVersion = explode('.', $clientInfo['version']);
 
@@ -84,8 +87,10 @@ class PageController extends Controller
             $latestStableVersion, $currentClientVersion
         );
 
-        foreach($latestStableVersion as $position => $subVersion) {
-            if( isset($currentClientVersion[$position]) ) {
+        foreach($latestStableVersion as $position => $subVersion)
+        {
+            if( isset($currentClientVersion[$position]) )
+            {
                 if( $currentClientVersion[$position] < $subVersion ) {
                     $isLatest = FALSE;
                     break;
@@ -96,6 +101,41 @@ class PageController extends Controller
         }
 
         var_dump( $isLatest );
+
+        if( $isLatest ) {
+            print_r("Looks like you've got the latest {$clientInfo['name']} browser");
+        } else {
+            print_r("You {$clientInfo['name']} browser is outdated. We recommend to download latest version:");
+
+            var_dump(
+                "https://www.google.com/chrome/browser/desktop",
+                "https://www.mozilla.org/ru/firefox/new",
+                "http://windows.microsoft.com/en-us/internet-explorer/download-ie",
+                "http://support.apple.com/downloads/#safari",
+                "http://www.opera.com/ru/computer/windows"
+            );
+        }
+
+        $client = new Client();
+        $link = "http://www.w3counter.com/globalstats.php?year=" . date('Y') . "&month=" . date('m', strtotime("-1 month"));
+        $crawler = $client->request('GET', $link);
+        $status_code = $client->getResponse()->getStatus();
+
+        if( $status_code == 200 )
+        {
+            $browsers = $crawler->filter('body > #wrap > div')->eq(2)->filter('.container > .row > .col-md-9 > .bargraphs > div > .bar');
+
+            $browsersNumber = $browsers->count();
+
+            for($i = 0; $i < $browsersNumber; $i++) {
+                $statsBrowsers[] = [
+                    'name'    => $browsers->eq($i)->filter('.lab')->text(),
+                    'percent' => $browsers->eq($i)->filter('.value')->text()
+                ];
+            }
+
+            var_dump($statsBrowsers);
+        }
 
         return $this->render('AppBundle:Meat:index.html.twig');
     }
