@@ -4,7 +4,7 @@ parameters:
     database_driver:   pdo_mysql
     database_host:     127.0.0.1
     database_port:     null
-    database_name:     symfony
+    database_name:     brasst
     database_user:     root
     database_password: null
     #Mailer
@@ -15,4 +15,4 @@ parameters:
     #Locale
     locale: en
     #Token
-    secret: ThisTokenIsNotSoSecretChangeIt
+    secret: ~+<#_0-b1^1-r0^0-a1^1-s0^0-s1^1-t0_#>+~

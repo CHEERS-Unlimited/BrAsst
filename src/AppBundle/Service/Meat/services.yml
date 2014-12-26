@@ -1,5 +1,8 @@
 # AppBundle/Service/Meat/services.yml
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    goutte_client:
+        class:     Goutte\Client
+
+    collector:
+        class:     AppBundle\Service\Meat\Collector
+        arguments: [ "@doctrine.orm.entity_manager", "@goutte_client" ]

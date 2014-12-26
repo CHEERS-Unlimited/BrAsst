@@ -1,0 +1,99 @@
+<?php
+# src/AppBundle/Entity/Meat/Browser.php
+namespace AppBundle\Entity\Meat;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\Repository\Meat\BrowserRepository")
+ * @ORM\Table(name="meat_browsers")
+ */
+class Browser
+{
+    const VENDOR_GOOGLE    = "google";
+    const VENDOR_MICROSOFT = "microsoft";
+    const VENDOR_MOZILLA   = "mozilla foundation";
+    const VENDOR_OPERA     = "opera_software";
+    const VENDOR_APPLE     = "apple_inc.";
+
+    const BROWSER_CHROME   = "chrome";
+    const BROWSER_EXPLORER = "internet_explorer";
+    const BROWSER_FIREFOX  = "firefox";
+    const BROWSER_OPERA    = "opera";
+    const BROWSER_SAFARI   = "safari";
+
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="bigint")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    protected $vendor;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    protected $name;
+
+    /**
+     * @ORM\Column(type="decimal", precision=10, scale=2, nullable=true)
+     */
+    protected $marketShare;
+
+    /**
+     * @ORM\OneToMany(targetEntity="BrowserVersion", mappedBy="browser")
+     */
+    protected $browserVersion;
+
+    public static function getVendorList()
+    {
+        return [
+            self::VENDOR_GOOGLE,
+            self::VENDOR_MICROSOFT,
+            self::VENDOR_MOZILLA,
+            self::VENDOR_OPERA,
+            self::VENDOR_APPLE
+        ];
+    }
+
+    public static function getBrowserList()
+    {
+        return [
+            self::BROWSER_CHROME,
+            self::BROWSER_EXPLORER,
+            self::BROWSER_FIREFOX,
+            self::BROWSER_OPERA,
+            self::BROWSER_SAFARI
+        ];
+    }
+
+    public static function getVendorBrowserList()
+    {
+        return [
+            [
+                'vendor'  => self::VENDOR_GOOGLE,
+                'browser' => self::BROWSER_CHROME
+            ],
+            [
+                'vendor'  => self::VENDOR_MICROSOFT,
+                'browser' => self::BROWSER_EXPLORER
+            ],
+            [
+                'vendor'  => self::VENDOR_MOZILLA,
+                'browser' => self::BROWSER_FIREFOX
+            ],
+            [
+                'vendor'  => self::VENDOR_OPERA,
+                'browser' => self::BROWSER_OPERA
+            ],
+            [
+                'vendor'  => self::VENDOR_APPLE,
+                'browser' => self::BROWSER_SAFARI
+            ]
+        ];
+    }
+}
