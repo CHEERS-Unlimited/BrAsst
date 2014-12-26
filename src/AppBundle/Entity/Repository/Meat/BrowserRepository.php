@@ -9,7 +9,8 @@ class BrowserRepository extends EntityRepository
     public function findByName(array $nameList)
     {
         $query = $this->createQueryBuilder('browser')
-            ->select('browser')
+            ->select('browser, browserVersion')
+            ->join('browser.browserVersion', 'browserVersion')
             ->where('browser.name IN (:nameList)')
             ->setParameter(':nameList', $nameList)
             ->getQuery();

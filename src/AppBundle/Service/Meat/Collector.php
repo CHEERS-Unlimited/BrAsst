@@ -16,7 +16,7 @@ class Collector
     private $_manager      = NULL;
     private $_goutteClient = NULL;
 
-    private $wikiLinks = [
+    private $versionLinks = [
         Browser::BROWSER_CHROME   => "https://en.wikipedia.org/wiki/Google_Chrome",
         Browser::BROWSER_EXPLORER => 'https://en.wikipedia.org/wiki/Internet_Explorer',
         Browser::BROWSER_FIREFOX  => 'https://en.wikipedia.org/wiki/Firefox',
@@ -24,17 +24,41 @@ class Collector
         Browser::BROWSER_SAFARI   => 'https://en.wikipedia.org/wiki/Safari_(web_browser)'
     ];
 
+    private $statisticsLink = "http://www.w3counter.com/globalstats.php";
+
     public function __construct(EntityManager $manager, Client $goutteClient)
     {
         $this->_manager      = $manager;
         $this->_goutteClient = $goutteClient;
     }
 
+    public function updateBrowserStableRelease()
+    {
+        $collectedStableReleaseList = $this->collectBrowsersStableRelease();
+
+        $browserList = $this->getBrowserList($collectedStableReleaseList);
+
+        foreach($browserList as $browser)
+        {
+            $browserName = $browser->getName();
+
+            $browserVersionList = $browser->getBrowserVersion();
+
+            foreach($browserVersionList as $version) {
+                $version->setVersion($collectedStableReleaseList[$browserName]);
+            }
+
+            $this->_manager->persist($browser);
+        }
+
+        $this->_manager->flush();
+    }
+
     private function collectBrowsersStableRelease()
     {
         $collectedStableReleaseList = [];
 
-        foreach($this->wikiLinks as $browser => $wikiLink)
+        foreach($this->versionLinks as $browser => $wikiLink)
         {
             $crawler = $this->_goutteClient->request("GET", $wikiLink);
 
@@ -83,22 +107,66 @@ class Collector
         return ( !empty($matches[0][0]) ) ? $matches[0][0] : FALSE;
     }
 
-    public function updateBrowserStableRelease()
+    public function updateBrowsersMarketShare()
     {
-        $collectedStableReleaseList = $this->collectBrowsersStableRelease();
+        $statisticsContent = $this->collectBrowsersMarketShare();
 
-        $browserNameList = array_keys($collectedStableReleaseList);
+        $browserList = $this->getBrowserList($statisticsContent);
 
-        $browserList = $this->_manager->getRepository('AppBundle:Meat\Browser')
-            ->findByName($browserNameList);
+        foreach($browserList as $browser)
+        {
+            $browserName = $browser->getName();
 
-        foreach($browserList as $browser) {
-            var_dump( $browser->getBrowserVersion() );
+            $browser->setMarketShare($statisticsContent[$browserName]);
+
+            $this->_manager->persist($browser);
         }
+
+        $this->_manager->flush();
     }
 
-    public function collectBrowsersMarketShare()
+    private function collectBrowsersMarketShare()
     {
+        $crawler = $this->_goutteClient->request("GET", $this->statisticsLink);
 
+        $status_code = $this->_goutteClient->getResponse()->getStatus();
+
+        if( $status_code != 200 )
+            return FALSE;
+
+        $statisticsContent = $this->scrapStatistics($crawler);
+
+        if( !$statisticsContent )
+            return FALSE;
+
+        return $statisticsContent;
+    }
+
+    private function scrapStatistics(Crawler $crawler)
+    {
+        $statistics = $crawler->filter('body > #wrap > div')->eq(2)->filter('.container > .row > .col-md-9 > .bargraphs > div > .bar');
+
+        $statisticsContent = [];
+
+        for($i = 0; $i < $statistics->count(); $i++)
+        {
+            $browser = str_replace(' ', '_', strtolower(
+                $statistics->eq($i)->filter('.lab')->text())
+            );
+
+            $marketShare = $statistics->eq($i)->filter('.value')->text();
+
+            $statisticsContent[$browser] = $marketShare;
+        }
+
+        return $statisticsContent;
+    }
+
+    private function getBrowserList(array $keysAsBrowserName)
+    {
+        $browserNameList = array_keys($keysAsBrowserName);
+
+        return $this->_manager->getRepository('AppBundle:Meat\Browser')
+            ->findByName($browserNameList);
     }
 }

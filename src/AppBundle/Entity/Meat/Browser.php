@@ -12,7 +12,7 @@ class Browser
 {
     const VENDOR_GOOGLE    = "google";
     const VENDOR_MICROSOFT = "microsoft";
-    const VENDOR_MOZILLA   = "mozilla foundation";
+    const VENDOR_MOZILLA   = "mozilla_foundation";
     const VENDOR_OPERA     = "opera_software";
     const VENDOR_APPLE     = "apple_inc.";
 
@@ -159,6 +159,14 @@ class Browser
     public function getName()
     {
         return $this->name;
+    }
+
+    public function getUnpackedName()
+    {
+        return implode(' ', array_map(
+            'ucfirst',
+            explode(' ', str_replace('_', ' ', $this->name))
+        ));
     }
 
     /**
