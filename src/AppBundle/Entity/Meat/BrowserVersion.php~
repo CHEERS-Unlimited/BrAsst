@@ -1,0 +1,48 @@
+<?php
+# src/AppBundle/Entity/Meat/BrowserVersion.php
+namespace AppBundle\Entity\Meat;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\Repository\Meat\BrowserVersionRepository")
+ * @ORM\Table(name="meat_browser_version")
+ */
+class BrowserVersion
+{
+    const SYSTEM_WINDOWS = "Windows";
+    const SYSTEM_LINUX   = "GNU/Linux";
+    const SYSTEM_MAC     = "Mac";
+
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="bigint")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    protected $name;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $version;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Browser", inversedBy="browserVersion")
+     * @ORM\JoinColumn(name="browser_id", referencedColumnName="id")
+     */
+    protected $browser;
+
+    public static function getSystemList()
+    {
+        return [
+            self::SYSTEM_WINDOWS,
+            self::SYSTEM_LINUX,
+            self::SYSTEM_MAC
+        ];
+    }
+}
