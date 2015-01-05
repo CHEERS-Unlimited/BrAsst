@@ -20,8 +20,12 @@ class PageController extends Controller
      */
     public function indexAction()
     {
-        $this->get('collector')->updateBrowserStableRelease();
-        $this->get('collector')->updateBrowsersMarketShare();
+        //$this->get('collector')->updateBrowserStableRelease();
+        //$this->get('collector')->updateBrowsersMarketShare();
+
+        var_dump(
+            $this->get('detector')->getDetectedDevice()
+        );
 
         return $this->render('AppBundle:Meat:index.html.twig');
     }

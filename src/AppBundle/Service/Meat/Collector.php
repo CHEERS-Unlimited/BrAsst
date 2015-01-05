@@ -8,8 +8,7 @@ use Doctrine\ORM\EntityManager;
 
 use Goutte\Client;
 
-use AppBundle\Entity\Meat\Browser,
-    AppBundle\Entity\Meat\BrowserVersion;
+use AppBundle\Entity\Meat\Browser;
 
 class Collector
 {

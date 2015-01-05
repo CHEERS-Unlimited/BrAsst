@@ -6,3 +6,7 @@ services:
     collector:
         class:     AppBundle\Service\Meat\Collector
         arguments: [ "@doctrine.orm.entity_manager", "@goutte_client" ]
+
+    detector:
+        class:     AppBundle\Service\Meat\Detector
+        arguments: [ "@request_stack" ]
