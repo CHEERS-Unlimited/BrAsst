@@ -1,0 +1,38 @@
+{# AppBundle/Resources/views/Meat/index.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {% stylesheets
+        'bundles/app/Meat/css/css_1.css'
+        'bundles/app/Meat/css/css_2.css' output='compiled/Meat/css/main.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+    {% stylesheets
+        'bundles/app/Meat/css/css_3.css' output='compiled/Meat/css/additional.css' filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+    Вы используете браузер {{ clientBrowser.getUnpackedName }} от компании {{ clientBrowser.getUnpackedVendor }} для операционной системы {{ clientBrowserVersion.name }}.
+    <br>
+    {% set shortClientVersion = detectedDevice.client.version|split('.')[0] %}
+    {% set shortStableVersion = clientBrowserVersion.version|split('.')[0] %}
+    {% if isOutdated %}
+        Версия, которую вы используете, {{ shortBrowserVersion }} [{{ detectedDevice.client.version }}] - устарела. Рекомендуем обновить до версии {{ shortStableVersion }} [clientBrowserVersion.version]
+    {% else %}
+        У вас наиболее новая версия, {{ shortStableVersion }} [{{ clientBrowserVersion.version }}]
+    {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts
+        'bundles/app/Meat/js/js_1.js'
+        'bundles/app/Meat/js/js_2.js' output='compiled/Meat/js/main.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    {% javascripts
+        'bundles/app/Meat/js/js_3.js' output='compiled/Meat/js/additional.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

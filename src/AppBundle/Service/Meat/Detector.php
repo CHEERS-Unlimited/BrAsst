@@ -8,10 +8,16 @@ use DeviceDetector\DeviceDetector,
     DeviceDetector\Parser\OperatingSystem,
     DeviceDetector\Parser\Device\DeviceParserAbstract;
 
+use AppBundle\Entity\Meat\Browser,
+    AppBundle\Entity\Meat\BrowserVersion;
+
 class Detector
 {
-    const USER_ERROR_IS_BOT    = 'is_bot';
-    const USER_ERROR_IS_MOBILE = 'is_mobile';
+    const USER_ERROR_IS_BOT              = 'is_bot';
+    const USER_ERROR_IS_MOBILE           = 'is_mobile';
+    const USER_ERROR_NOT_BROWSER         = 'not_browser';
+    const USER_ERROR_UNSUPPORTED_BROWSER = 'unsupported_browser';
+    const USER_ERROR_UNSUPPORTED_OS      = 'unsupported_os';
 
     private $_request        = NULL;
     private $_deviceDetector = NULL;
@@ -76,11 +82,81 @@ class Detector
         $clientInformation = $this->_deviceDetector->getClient();
         $osInformation     = $this->_deviceDetector->getOs();
 
+        if( $clientInformation['type'] !== 'browser' )
+            return self::USER_ERROR_NOT_BROWSER;
+
         $osInformation['family'] = OperatingSystem::getOsFamily($osInformation['short_name']);
+
+        if( !array_filter($clientInformation) || !array_filter($osInformation) )
+            return FALSE;
 
         return [
             'client' => $clientInformation,
             'os'     => $osInformation
         ];
+    }
+
+    public function getClientBrowser($browsers, $detectedDevice)
+    {
+        if( empty($detectedDevice['client']['name']) )
+            return FALSE;
+
+        $detectedDeviceClientName = $detectedDevice['client']['name'];
+
+        foreach($browsers as $browser) {
+            if( $this->isDetectedBrowser($browser, $detectedDeviceClientName) )
+                return $browser;
+        }
+
+        return self::USER_ERROR_UNSUPPORTED_BROWSER;
+    }
+
+    private function isDetectedBrowser(Browser $browser, $detectedDeviceClientName)
+    {
+        return $browser->getUnpackedName() === $detectedDeviceClientName;
+    }
+
+    public function getClientBrowserVersion(Browser $clientBrowser, $detectedDevice)
+    {
+        if( empty($detectedDevice['os']['family']) )
+            return FALSE;
+
+        $detectedDeviceOsFamily = $detectedDevice['os']['family'];
+
+        foreach($clientBrowser->getBrowserVersion() as $browserVersion) {
+            if( $this->isDetectedBrowserVersion($browserVersion, $detectedDeviceOsFamily) )
+                return $browserVersion;
+        }
+
+        return self::USER_ERROR_UNSUPPORTED_OS;
+    }
+
+    private function isDetectedBrowserVersion(BrowserVersion $browserVersion, $detectedDeviceOsFamily)
+    {
+        return $browserVersion->getName() === $detectedDeviceOsFamily;
+    }
+
+    public function isClientOutdated(BrowserVersion $clientBrowserVersion, $detectedDevice)
+    {
+        if( empty($detectedDevice['client']['version']) )
+            return FALSE;
+
+        $detectedDeviceClientVersion = $detectedDevice['client']['version'];
+        $detectedDeviceStableVersion = $clientBrowserVersion->getVersion();
+
+        $currentClientVersion = explode('.', $detectedDeviceClientVersion);
+        $currentStableVersion = explode('.', $detectedDeviceStableVersion);
+
+        foreach($currentStableVersion as $position => $subVersion)
+        {
+            if( isset($currentClientVersion[$position]) )
+            {
+                if( $currentClientVersion[$position] < $subVersion ) {
+                    return TRUE;
+                }
+            }
+        }
+
+        return FALSE;
     }
 }

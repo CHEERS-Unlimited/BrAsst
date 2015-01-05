@@ -139,6 +139,19 @@ class Browser
     }
 
     /**
+     * Get unpacked vendor
+     *
+     * @return string
+     */
+    public function getUnpackedVendor()
+    {
+        return implode(' ', array_map(
+            'ucfirst',
+            explode(' ', str_replace('_', ' ', $this->vendor))
+        ));
+    }
+
+    /**
      * Set name
      *
      * @param string $name
@@ -161,6 +174,11 @@ class Browser
         return $this->name;
     }
 
+    /**
+     * Get unpacked name
+     *
+     * @return string
+     */
     public function getUnpackedName()
     {
         return implode(' ', array_map(

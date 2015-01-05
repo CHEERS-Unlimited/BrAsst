@@ -2,16 +2,11 @@
 # AppBundle/Controller/Meat/PageController.php
 namespace AppBundle\Controller\Meat;
 
+use AppBundle\Entity\Meat\Browser;
+use AppBundle\Entity\Meat\BrowserVersion;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-
-use DeviceDetector\DeviceDetector;
-use DeviceDetector\Parser\OperatingSystem;
-use DeviceDetector\Parser\Device\DeviceParserAbstract;
-use DeviceDetector\Cache\CacheFile;
-
-use Goutte\Client;
 
 class PageController extends Controller
 {
@@ -20,13 +15,30 @@ class PageController extends Controller
      */
     public function indexAction()
     {
-        //$this->get('collector')->updateBrowserStableRelease();
-        //$this->get('collector')->updateBrowsersMarketShare();
+        $_detector = $this->get('detector');
 
-        var_dump(
-            $this->get('detector')->getDetectedDevice()
-        );
+        $browsers = $this->getDoctrine()->getManager()
+            ->getRepository('AppBundle:Meat\Browser')->findAll();
 
-        return $this->render('AppBundle:Meat:index.html.twig');
+        if( !is_array($detectedDevice = $_detector->getDetectedDevice()) ) {
+            $userError = $detectedDevice;
+        } else {
+            var_dump($detectedDevice);
+
+            if( !(($clientBrowser = $_detector->getClientBrowser($browsers, $detectedDevice)) instanceof Browser) )
+                $userError = $clientBrowser;
+
+            if( !(($clientBrowserVersion = $_detector->getClientBrowserVersion($clientBrowser, $detectedDevice)) instanceof BrowserVersion) )
+                $userError = $clientBrowserVersion;
+
+            $isOutdated = $_detector->isClientOutdated($clientBrowserVersion, $detectedDevice);
+        }
+
+        return $this->render('AppBundle:Meat\Page:index.html.twig', [
+            'detectedDevice'       => $detectedDevice,
+            'clientBrowser'        => $clientBrowser,
+            'clientBrowserVersion' => $clientBrowserVersion,
+            'isOutdated'           => $isOutdated
+        ]);
     }
 }
