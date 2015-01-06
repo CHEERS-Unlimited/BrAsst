@@ -6,6 +6,11 @@ use Doctrine\ORM\EntityRepository;
 
 class BrowserRepository extends EntityRepository
 {
+    public function findAll()
+    {
+        return $this->findBy([], ['marketShare' => 'DESC']);
+    }
+
     public function findByName(array $nameList)
     {
         $query = $this->createQueryBuilder('browser')

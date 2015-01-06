@@ -24,6 +24,7 @@
         {% else %}
             У вас наиболее новая версия, {{ shortStableVersion }} [{{ detectedBrowser.stableVersion }}]
         {% endif %}
+        {# if IE - complain! #}
     {% else %}
         Ошибка - {{ userError }}
     {% endif %}

@@ -26,8 +26,9 @@ class PageController extends Controller
             $userError = $_detector->getUserError();
 
         return $this->render('AppBundle:Meat\Page:index.html.twig', [
+            'userError'       => $userError,
             'detectedBrowser' => $detectedBrowser,
-            'userError'       => $userError
+            'browsers'        => $browsers
         ]);
     }
 }
