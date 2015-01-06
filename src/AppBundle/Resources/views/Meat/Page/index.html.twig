@@ -14,14 +14,18 @@
 {% endblock %}
 
 {% block body %}
-    Вы используете браузер {{ clientBrowser.getUnpackedName }} от компании {{ clientBrowser.getUnpackedVendor }} для операционной системы {{ clientBrowserVersion.name }}.
-    <br>
-    {% set shortClientVersion = detectedDevice.client.version|split('.')[0] %}
-    {% set shortStableVersion = clientBrowserVersion.version|split('.')[0] %}
-    {% if isOutdated %}
-        Версия, которую вы используете, {{ shortBrowserVersion }} [{{ detectedDevice.client.version }}] - устарела. Рекомендуем обновить до версии {{ shortStableVersion }} [clientBrowserVersion.version]
+    {% if detectedBrowser %}
+        Вы используете браузер {{ detectedBrowser.browser }} от компании {{ detectedBrowser.vendor }} для операционной системы {{ detectedBrowser.osFamily }}.
+        <br>
+        {% set shortClientVersion = detectedBrowser.clientVersion|split('.')[0] %}
+        {% set shortStableVersion = detectedBrowser.stableVersion|split('.')[0] %}
+        {% if detectedBrowser.isOutdated %}
+            Версия, которую вы используете, {{ shortBrowserVersion }} [{{ detectedBrowser.clientVersion }}] - устарела. Рекомендуем обновить до версии {{ shortStableVersion }} [{{ detectedBrowser.stableVersion }}]
+        {% else %}
+            У вас наиболее новая версия, {{ shortStableVersion }} [{{ detectedBrowser.stableVersion }}]
+        {% endif %}
     {% else %}
-        У вас наиболее новая версия, {{ shortStableVersion }} [{{ clientBrowserVersion.version }}]
+        Ошибка - {{ userError }}
     {% endif %}
 {% endblock %}
 

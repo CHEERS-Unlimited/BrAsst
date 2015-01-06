@@ -2,14 +2,16 @@
 # src/AppBundle/Service/Meat/Detector.php
 namespace AppBundle\Service\Meat;
 
-use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\RequestStack,
+    Symfony\Component\HttpKernel\Exception\HttpException;
 
 use DeviceDetector\DeviceDetector,
     DeviceDetector\Parser\OperatingSystem,
     DeviceDetector\Parser\Device\DeviceParserAbstract;
 
 use AppBundle\Entity\Meat\Browser,
-    AppBundle\Entity\Meat\BrowserVersion;
+    AppBundle\Entity\Meat\BrowserVersion,
+    AppBundle\Model\Meat\BrowserDetected;
 
 class Detector
 {
@@ -19,6 +21,8 @@ class Detector
     const USER_ERROR_UNSUPPORTED_BROWSER = 'unsupported_browser';
     const USER_ERROR_UNSUPPORTED_OS      = 'unsupported_os';
 
+    private $user_error = NULL;
+
     private $_request        = NULL;
     private $_deviceDetector = NULL;
 
@@ -27,34 +31,11 @@ class Detector
         $this->_request = $requestStack->getCurrentRequest();
 
         $this->setDeviceDetector($this->_request);
+    }
 
-        //---
-
-        /*DeviceParserAbstract::setVersionTruncation(DeviceParserAbstract::VERSION_TRUNCATION_NONE);
-
-        $dd = new DeviceDetector($this->get('request')->headers->get('User-Agent') );
-
-        // OPTIONAL: If called, getBot() will only return true if a bot was detected  (speeds up detection a bit)
-        $dd->discardBotInformation();
-
-        $dd->parse();
-
-        if ($dd->isBot()) {
-            // handle bots,spiders,crawlers,...
-            $botInfo = $dd->getBot();
-        } else {
-            $clientInfo = $dd->getClient(); // holds information about browser, feed reader, media player, ...
-            $osInfo = $dd->getOs();
-            $device = $dd->getDevice();
-            $brand = $dd->getBrand();
-            $model = $dd->getModel();
-
-            var_dump( OperatingSystem::getOsFamily($osInfo['short_name']) );
-
-            var_dump(
-                $clientInfo, $osInfo, $device, $brand, $model
-            );
-        }*/
+    public function getUserError()
+    {
+        return $this->user_error;
     }
 
     private function setDeviceDetector($_request)
@@ -68,27 +49,33 @@ class Detector
 
     public function getDetectedDevice()
     {
-        if( !$this->_deviceDetector instanceof DeviceDetector )
-            return FALSE;
+        if( !($this->_deviceDetector instanceof DeviceDetector) )
+            throw new HttpException(500, 'DeviceDetector is not set');
 
         $this->_deviceDetector->parse();
 
-        if( $this->_deviceDetector->isBot() )
-            return self::USER_ERROR_IS_BOT;
+        if( $this->_deviceDetector->isBot() ) {
+            $this->user_error = self::USER_ERROR_IS_BOT;
+            return FALSE;
+        }
 
-        if( $this->_deviceDetector->isMobile() )
-            return self::USER_ERROR_IS_MOBILE;
+        if( $this->_deviceDetector->isMobile() ) {
+            $this->user_error = self::USER_ERROR_IS_MOBILE;
+            return FALSE;
+        }
 
         $clientInformation = $this->_deviceDetector->getClient();
         $osInformation     = $this->_deviceDetector->getOs();
 
-        if( $clientInformation['type'] !== 'browser' )
-            return self::USER_ERROR_NOT_BROWSER;
+        if( $clientInformation['type'] !== 'browser' ) {
+            $this->user_error = self::USER_ERROR_NOT_BROWSER;
+            return FALSE;
+        }
 
         $osInformation['family'] = OperatingSystem::getOsFamily($osInformation['short_name']);
 
         if( !array_filter($clientInformation) || !array_filter($osInformation) )
-            return FALSE;
+            throw new HttpException(500, 'DeviceDetector failed to complete task');
 
         return [
             'client' => $clientInformation,
@@ -99,7 +86,7 @@ class Detector
     public function getClientBrowser($browsers, $detectedDevice)
     {
         if( empty($detectedDevice['client']['name']) )
-            return FALSE;
+            throw new HttpException(500, 'Invalid parameter');
 
         $detectedDeviceClientName = $detectedDevice['client']['name'];
 
@@ -108,7 +95,8 @@ class Detector
                 return $browser;
         }
 
-        return self::USER_ERROR_UNSUPPORTED_BROWSER;
+        $this->user_error = self::USER_ERROR_UNSUPPORTED_BROWSER;
+        return FALSE;
     }
 
     private function isDetectedBrowser(Browser $browser, $detectedDeviceClientName)
@@ -119,7 +107,7 @@ class Detector
     public function getClientBrowserVersion(Browser $clientBrowser, $detectedDevice)
     {
         if( empty($detectedDevice['os']['family']) )
-            return FALSE;
+            throw new HttpException(500, 'Invalid parameter');
 
         $detectedDeviceOsFamily = $detectedDevice['os']['family'];
 
@@ -128,7 +116,8 @@ class Detector
                 return $browserVersion;
         }
 
-        return self::USER_ERROR_UNSUPPORTED_OS;
+        $this->user_error = self::USER_ERROR_UNSUPPORTED_OS;
+        return FALSE;
     }
 
     private function isDetectedBrowserVersion(BrowserVersion $browserVersion, $detectedDeviceOsFamily)
@@ -139,7 +128,7 @@ class Detector
     public function isClientOutdated(BrowserVersion $clientBrowserVersion, $detectedDevice)
     {
         if( empty($detectedDevice['client']['version']) )
-            return FALSE;
+            throw new HttpException(500, 'Invalid parameter');
 
         $detectedDeviceClientVersion = $detectedDevice['client']['version'];
         $detectedDeviceStableVersion = $clientBrowserVersion->getVersion();
@@ -158,5 +147,33 @@ class Detector
         }
 
         return FALSE;
+    }
+
+    public function getDetectedBrowser($browsers)
+    {
+        $browserDetected = new BrowserDetected;
+        
+        if( !($detectedDevice = $this->getDetectedDevice()) )
+            return FALSE;
+
+        $browserDetected->setClientVersion($detectedDevice['client']['version']);
+
+        if( !(($clientBrowser = $this->getClientBrowser($browsers, $detectedDevice)) instanceof Browser) )
+            return FALSE;
+
+        $browserDetected->setBrowser($clientBrowser->getUnpackedName());
+        $browserDetected->setVendor($clientBrowser->getUnpackedVendor());
+
+        if( !(($clientBrowserVersion = $this->getClientBrowserVersion($clientBrowser, $detectedDevice)) instanceof BrowserVersion) )
+            return FALSE;
+
+        $browserDetected->setOsFamily($clientBrowserVersion->getName());
+        $browserDetected->setStableVersion($clientBrowserVersion->getVersion());
+
+        $isOutdated = $this->isClientOutdated($clientBrowserVersion, $detectedDevice);
+
+        $browserDetected->setIsOutdated($isOutdated);
+
+        return $browserDetected;
     }
 }
