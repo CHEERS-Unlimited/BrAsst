@@ -12,7 +12,8 @@ parameters:
     mailer_host:      127.0.0.1
     mailer_user:      null
     mailer_password:  null
-    #Locale
-    locale: en
+    #Specific
+    locale: ua
+    domain: brasst.com
     #Token
     secret: ~+<#_0-b1^1-r0^0-a1^1-s0^0-s1^1-t0_#>+~

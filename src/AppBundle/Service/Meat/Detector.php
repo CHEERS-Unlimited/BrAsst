@@ -15,11 +15,11 @@ use AppBundle\Entity\Meat\Browser,
 
 class Detector
 {
-    const USER_ERROR_IS_BOT              = 'is_bot';
-    const USER_ERROR_IS_MOBILE           = 'is_mobile';
-    const USER_ERROR_NOT_BROWSER         = 'not_browser';
-    const USER_ERROR_UNSUPPORTED_BROWSER = 'unsupported_browser';
-    const USER_ERROR_UNSUPPORTED_OS      = 'unsupported_os';
+    const USER_ERROR_IS_BOT              = 'user_error_is_bot';
+    const USER_ERROR_IS_MOBILE           = 'user_error_is_mobile';
+    const USER_ERROR_NOT_BROWSER         = 'user_error_not_browser';
+    const USER_ERROR_UNSUPPORTED_BROWSER = 'user_error_unsupported_browser';
+    const USER_ERROR_UNSUPPORTED_OS      = 'user_error_unsupported_os';
 
     private $user_error = NULL;
 

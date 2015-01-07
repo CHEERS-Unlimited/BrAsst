@@ -15,18 +15,30 @@
 
 {% block body %}
     {% if detectedBrowser %}
-        Вы используете браузер {{ detectedBrowser.browser }} от компании {{ detectedBrowser.vendor }} для операционной системы {{ detectedBrowser.osFamily }}.
+        {% set clientVersionShort = detectedBrowser.clientVersion|split('.')[0] %}
+        {% set stableVersionShort = detectedBrowser.stableVersion|split('.')[0] %}
+        {{ 'message_standard'|trans({
+            '%browser%':            detectedBrowser.browser,
+            '%vendor%':             detectedBrowser.vendor,
+            '%osFamily%':           detectedBrowser.osFamily,
+            '%clientVersion%':      detectedBrowser.clientVersion,
+            '%clientVersionShort%': clientVersionShort})
+        }}
         <br>
-        {% set shortClientVersion = detectedBrowser.clientVersion|split('.')[0] %}
-        {% set shortStableVersion = detectedBrowser.stableVersion|split('.')[0] %}
         {% if detectedBrowser.isOutdated %}
-            Версия, которую вы используете, {{ shortBrowserVersion }} [{{ detectedBrowser.clientVersion }}] - устарела. Рекомендуем обновить до версии {{ shortStableVersion }} [{{ detectedBrowser.stableVersion }}]
+            {{ 'message_outdated'|trans({
+                '%stableVersionShort%': stableVersionShort,
+                '%stableVersion%': detectedBrowser.stableVersion})
+            }}
         {% else %}
-            У вас наиболее новая версия, {{ shortStableVersion }} [{{ detectedBrowser.stableVersion }}]
+            {{ 'message_uptodate'|trans }}
         {% endif %}
-        {# if IE - complain! #}
+        <br>
+        {% if detectedBrowser.browser == "Internet Explorer" %}
+            {{ 'message_explorer'|trans }}
+        {% endif %}
     {% else %}
-        Ошибка - {{ userError }}
+        {{ userError|trans }}
     {% endif %}
 {% endblock %}
 

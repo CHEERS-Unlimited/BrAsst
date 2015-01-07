@@ -4,14 +4,27 @@ namespace AppBundle\Controller\Meat;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
+    Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 use AppBundle\Model\Meat\BrowserDetected;
 
 class PageController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Method({"GET"})
+     * @Route(
+     *      "/",
+     *      name="homepage",
+     *      host="{_locale}.{domain}",
+     *      defaults={"_locale" = "%locale%", "domain" = "%domain%"},
+     *      requirements={"_locale" = "ua|en|ru", "domain" = "%domain%"}
+     * )
+     * @Route(
+     *      "/",
+     *      name="homepage_default",
+     *      defaults={"_locale" = "%locale%"}
+     * )
      */
     public function indexAction()
     {
