@@ -22,6 +22,12 @@ class Browser
     const BROWSER_OPERA    = "opera";
     const BROWSER_SAFARI   = "safari";
 
+    const LINK_CHROME   = "https://www.google.com/chrome";
+    const LINK_EXPLORER = "http://windows.microsoft.com/en-us/internet-explorer/download-ie";
+    const LINK_FIREFOX  = "https://www.mozilla.org/firefox";
+    const LINK_OPERA    = "http://www.opera.com/download";
+    const LINK_SAFARI   = "http://support.apple.com/downloads/#safari";
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -38,6 +44,11 @@ class Browser
      * @ORM\Column(type="string", length=255)
      */
     protected $name;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    protected $link;
 
     /**
      * @ORM\Column(type="decimal", precision=10, scale=2, nullable=true)
@@ -185,6 +196,29 @@ class Browser
             'ucfirst',
             explode(' ', str_replace('_', ' ', $this->name))
         ));
+    }
+
+    /**
+     * Set link
+     *
+     * @param string $link
+     * @return Browser
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
+
+        return $this;
+    }
+
+    /**
+     * Get link
+     *
+     * @return string
+     */
+    public function getLink()
+    {
+        return $this->link;
     }
 
     /**

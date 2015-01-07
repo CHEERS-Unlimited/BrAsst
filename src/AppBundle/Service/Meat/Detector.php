@@ -163,6 +163,7 @@ class Detector
 
         $browserDetected->setBrowser($clientBrowser->getUnpackedName());
         $browserDetected->setVendor($clientBrowser->getUnpackedVendor());
+        $browserDetected->setStableVersionLink($clientBrowser->getLink());
 
         if( !(($clientBrowserVersion = $this->getClientBrowserVersion($clientBrowser, $detectedDevice)) instanceof BrowserVersion) )
             return FALSE;

@@ -16,6 +16,8 @@ class BrowserDetected
 
     protected $isOutdated;
 
+    protected $stableVersionLink;
+
     public function setBrowser($browser)
     {
         $this->browser = $browser;
@@ -74,5 +76,15 @@ class BrowserDetected
     public function getIsOutdated()
     {
         return $this->isOutdated;
+    }
+
+    public function setStableVersionLink($stableVersionLink)
+    {
+        $this->stableVersionLink = $stableVersionLink;
+    }
+
+    public function getStableVersionLink()
+    {
+        return $this->stableVersionLink;
     }
 }

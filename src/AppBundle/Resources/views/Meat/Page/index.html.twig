@@ -30,6 +30,8 @@
                 '%stableVersionShort%': stableVersionShort,
                 '%stableVersion%': detectedBrowser.stableVersion})
             }}
+            <br>
+            <a href="{{ detectedBrowser.stableVersionLink }}">{{ detectedBrowser.stableVersionLink }}</a>
         {% else %}
             {{ 'message_uptodate'|trans }}
         {% endif %}
@@ -40,6 +42,21 @@
     {% else %}
         {{ userError|trans }}
     {% endif %}
+
+    {% for browser in browsers %}
+        {% set browserVersion = browser.browserVersion[0] %}
+        {% set stableVersionShort = browserVersion.version|split('.')[0] %}
+        -----
+        <br>
+        {{ browser.marketShare }}%
+        <br>
+        {{ browser.vendor }} / {{ browser.name }}
+        <br>
+        {{ stableVersionShort }} ({{ browserVersion.version }})
+        <br>
+        {{ browser.link }}
+        <br>
+    {% endfor %}
 {% endblock %}
 
 {% block javascripts %}
