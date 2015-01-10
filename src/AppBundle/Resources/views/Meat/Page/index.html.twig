@@ -14,34 +14,7 @@
 {% endblock %}
 
 {% block body %}
-    {% if detectedBrowser %}
-        {% set clientVersionShort = detectedBrowser.clientVersion|split('.')[0] %}
-        {% set stableVersionShort = detectedBrowser.stableVersion|split('.')[0] %}
-        {{ 'message_standard'|trans({
-            '%browser%':            detectedBrowser.browser,
-            '%vendor%':             detectedBrowser.vendor,
-            '%osFamily%':           detectedBrowser.osFamily,
-            '%clientVersion%':      detectedBrowser.clientVersion,
-            '%clientVersionShort%': clientVersionShort})
-        }}
-        <br>
-        {% if detectedBrowser.isOutdated %}
-            {{ 'message_outdated'|trans({
-                '%stableVersionShort%': stableVersionShort,
-                '%stableVersion%': detectedBrowser.stableVersion})
-            }}
-            <br>
-            <a href="{{ detectedBrowser.stableVersionLink }}">{{ detectedBrowser.stableVersionLink }}</a>
-        {% else %}
-            {{ 'message_uptodate'|trans }}
-        {% endif %}
-        <br>
-        {% if detectedBrowser.browser == "Internet Explorer" %}
-            {{ 'message_explorer'|trans }}
-        {% endif %}
-    {% else %}
-        {{ userError|trans }}
-    {% endif %}
+    {% render controller('AppBundle:Meat\\Common:widgetHtml') %}
 
     {% for browser in browsers %}
         {% set browserVersion = browser.browserVersion[0] %}
