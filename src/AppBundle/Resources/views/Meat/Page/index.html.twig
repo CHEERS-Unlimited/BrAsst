@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block body %}
-    {% render controller('AppBundle:Meat\\Common:widgetHtml') %}
+    {% render controller('AppBundle:Meat\\Api:widget', { 'browsers': browsers }) %}
 
     {% for browser in browsers %}
         {% set browserVersion = browser.browserVersion[0] %}

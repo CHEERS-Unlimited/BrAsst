@@ -21,28 +21,23 @@ class Detector
     const USER_ERROR_UNSUPPORTED_BROWSER = 'user_error_unsupported_browser';
     const USER_ERROR_UNSUPPORTED_OS      = 'user_error_unsupported_os';
 
-    private $user_error = NULL;
+    private $userError = NULL;
 
-    private $_request        = NULL;
     private $_deviceDetector = NULL;
 
-    public function __construct(RequestStack $requestStack)
+    public function __construct()
     {
-        $this->_request = $requestStack->getCurrentRequest();
-
-        $this->setDeviceDetector($this->_request);
+        DeviceParserAbstract::setVersionTruncation(DeviceParserAbstract::VERSION_TRUNCATION_NONE);
     }
 
     public function getUserError()
     {
-        return $this->user_error;
+        return $this->userError;
     }
 
-    private function setDeviceDetector($_request)
+    private function setDeviceDetector($httpUserAgent)
     {
-        DeviceParserAbstract::setVersionTruncation(DeviceParserAbstract::VERSION_TRUNCATION_NONE);
-
-        $this->_deviceDetector = new DeviceDetector($_request->headers->get('User-Agent') );
+        $this->_deviceDetector = new DeviceDetector($httpUserAgent);
 
         $this->_deviceDetector->discardBotInformation();
     }
@@ -55,12 +50,12 @@ class Detector
         $this->_deviceDetector->parse();
 
         if( $this->_deviceDetector->isBot() ) {
-            $this->user_error = self::USER_ERROR_IS_BOT;
+            $this->userError = self::USER_ERROR_IS_BOT;
             return FALSE;
         }
 
         if( $this->_deviceDetector->isMobile() ) {
-            $this->user_error = self::USER_ERROR_IS_MOBILE;
+            $this->userError = self::USER_ERROR_IS_MOBILE;
             return FALSE;
         }
 
@@ -68,7 +63,7 @@ class Detector
         $osInformation     = $this->_deviceDetector->getOs();
 
         if( $clientInformation['type'] !== 'browser' ) {
-            $this->user_error = self::USER_ERROR_NOT_BROWSER;
+            $this->userError = self::USER_ERROR_NOT_BROWSER;
             return FALSE;
         }
 
@@ -83,20 +78,18 @@ class Detector
         ];
     }
 
-    public function getClientBrowser($browsers, $detectedDevice)
+    public function getClientBrowser($browsers, BrowserDetected $browserDetected)
     {
-        if( empty($detectedDevice['client']['name']) )
+        if( !($detectedDeviceClientName = $browserDetected->getBrowser()) )
             throw new HttpException(500, 'Invalid parameter');
-
-        $detectedDeviceClientName = $detectedDevice['client']['name'];
 
         foreach($browsers as $browser) {
             if( $this->isDetectedBrowser($browser, $detectedDeviceClientName) )
                 return $browser;
         }
 
-        $this->user_error = self::USER_ERROR_UNSUPPORTED_BROWSER;
-        return FALSE;
+        $browserDetected->setUserWarning(self::USER_ERROR_UNSUPPORTED_BROWSER);
+        return $browserDetected;
     }
 
     private function isDetectedBrowser(Browser $browser, $detectedDeviceClientName)
@@ -104,20 +97,18 @@ class Detector
         return $browser->getUnpackedName() === $detectedDeviceClientName;
     }
 
-    public function getClientBrowserVersion(Browser $clientBrowser, $detectedDevice)
+    public function getClientBrowserVersion(Browser $clientBrowser, BrowserDetected $browserDetected)
     {
-        if( empty($detectedDevice['os']['family']) )
+        if( !($detectedDeviceOsFamily = $browserDetected->getOsFamily()) )
             throw new HttpException(500, 'Invalid parameter');
-
-        $detectedDeviceOsFamily = $detectedDevice['os']['family'];
 
         foreach($clientBrowser->getBrowserVersion() as $browserVersion) {
             if( $this->isDetectedBrowserVersion($browserVersion, $detectedDeviceOsFamily) )
                 return $browserVersion;
         }
 
-        $this->user_error = self::USER_ERROR_UNSUPPORTED_OS;
-        return FALSE;
+        $browserDetected->setUserWarning(self::USER_ERROR_UNSUPPORTED_OS);
+        return $browserDetected;
     }
 
     private function isDetectedBrowserVersion(BrowserVersion $browserVersion, $detectedDeviceOsFamily)
@@ -125,12 +116,11 @@ class Detector
         return $browserVersion->getName() === $detectedDeviceOsFamily;
     }
 
-    public function isClientOutdated(BrowserVersion $clientBrowserVersion, $detectedDevice)
+    public function isClientOutdated(BrowserVersion $clientBrowserVersion, BrowserDetected $browserDetected)
     {
-        if( empty($detectedDevice['client']['version']) )
+        if( !($detectedDeviceClientVersion = $browserDetected->getClientVersion()) )
             throw new HttpException(500, 'Invalid parameter');
 
-        $detectedDeviceClientVersion = $detectedDevice['client']['version'];
         $detectedDeviceStableVersion = $clientBrowserVersion->getVersion();
 
         $currentClientVersion = explode('.', $detectedDeviceClientVersion);
@@ -149,29 +139,37 @@ class Detector
         return FALSE;
     }
 
-    public function getDetectedBrowser($browsers)
+    public function getDetectedBrowser($httpUserAgent, $browsers)
     {
+        $this->setDeviceDetector($httpUserAgent);
+
         $browserDetected = new BrowserDetected;
-        
+
         if( !($detectedDevice = $this->getDetectedDevice()) )
             return FALSE;
 
+        $browserDetected->setBrowser($detectedDevice['client']['name']);
+        $browserDetected->setOsFamily($detectedDevice['os']['family']);
         $browserDetected->setClientVersion($detectedDevice['client']['version']);
 
-        if( !(($clientBrowser = $this->getClientBrowser($browsers, $detectedDevice)) instanceof Browser) )
-            return FALSE;
+        if( !(($result = $this->getClientBrowser($browsers, $browserDetected)) instanceof Browser) )
+            //@return BrowserDetected
+            return $result;
+        else
+            $clientBrowser = $result;
 
-        $browserDetected->setBrowser($clientBrowser->getUnpackedName());
         $browserDetected->setVendor($clientBrowser->getUnpackedVendor());
         $browserDetected->setStableVersionLink($clientBrowser->getLink());
 
-        if( !(($clientBrowserVersion = $this->getClientBrowserVersion($clientBrowser, $detectedDevice)) instanceof BrowserVersion) )
-            return FALSE;
+        if( !(($result = $this->getClientBrowserVersion($clientBrowser, $browserDetected)) instanceof BrowserVersion) )
+            //@return BrowserDetected
+            return $result;
+        else
+            $clientBrowserVersion = $result;
 
-        $browserDetected->setOsFamily($clientBrowserVersion->getName());
         $browserDetected->setStableVersion($clientBrowserVersion->getVersion());
 
-        $isOutdated = $this->isClientOutdated($clientBrowserVersion, $detectedDevice);
+        $isOutdated = $this->isClientOutdated($clientBrowserVersion, $browserDetected);
 
         $browserDetected->setIsOutdated($isOutdated);
 

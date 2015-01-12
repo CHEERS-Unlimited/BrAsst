@@ -18,6 +18,8 @@ class BrowserDetected
 
     protected $stableVersionLink;
 
+    protected $userWarning;
+
     public function setBrowser($browser)
     {
         $this->browser = $browser;
@@ -86,5 +88,15 @@ class BrowserDetected
     public function getStableVersionLink()
     {
         return $this->stableVersionLink;
+    }
+
+    public function setUserWarning($userWarning)
+    {
+        $this->userWarning = $userWarning;
+    }
+
+    public function getUserWarning()
+    {
+        return $this->userWarning;
     }
 }

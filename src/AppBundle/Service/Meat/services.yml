@@ -9,4 +9,3 @@ services:
 
     detector:
         class:     AppBundle\Service\Meat\Detector
-        arguments: [ "@request_stack" ]

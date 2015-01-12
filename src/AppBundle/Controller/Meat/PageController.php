@@ -4,6 +4,7 @@ namespace AppBundle\Controller\Meat;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller,
     Symfony\Component\HttpFoundation\Response,
+    Symfony\Component\HttpFoundation\JsonResponse,
     Symfony\Component\HttpFoundation\Request;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
@@ -11,9 +12,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
 
 class PageController extends Controller
 {
-    const RESPONSE_TYPE_HTML = 'html';
-    const RESPONSE_TYPE_JSON = 'json';
-
     /**
      * @Method({"GET"})
      * @Route(
@@ -42,36 +40,26 @@ class PageController extends Controller
     /**
      * @Method({"GET"})
      * @Route(
-     *      "/api/{_response_type}/{_locale}",
+     *      "/api/{response_type}/{_locale}",
      *      name="api",
-     *      defaults={"_response_type" = "html", "_locale" = "%locale%"},
-     *      requirements={"_response_type" = "html|json", "_locale" = "%locale%|en|ru"}
+     *      defaults={"response_type" = "html", "_locale" = "%locale%"},
+     *      requirements={"response_type" = "html|json", "_locale" = "%locale%|en|ru"}
      * )
      */
-    public function apiAction(Request $request, $_response_type)
+    public function apiAction(Request $request, $response_type)
     {
         if( ($httpOrigin = $request->server->get('HTTP_ORIGIN')) == NULL ) {
             throw $this->createNotFoundException();
         } else {
-            $response = new Response;
+            $browsers = $this->getDoctrine()->getManager()
+                ->getRepository('AppBundle:Meat\Browser')->findAll();
+
+            $response = $this->forward('AppBundle:Meat\Api:widget', [
+                'response_type' => $response_type,
+                'browsers'      => $browsers
+            ]);
 
             $response->headers->set("Access-Control-Allow-Origin", $httpOrigin);
-
-            if( ($httpUserAgent = $request->server->get('HTTP_USER_AGENT')) == NULL ) {
-                return $response->setContent('ERROR #1: Server index HTTP_USER_AGENT is empty', 500);
-            }
-
-            switch($_response_type)
-            {
-                case self::RESPONSE_TYPE_HTML:
-                    //get html
-                    $response->setContent($this->forward('AppBundle:Meat\Common:widgetHtml')->getContent());
-                break;
-
-                case self::RESPONSE_TYPE_JSON:
-                    //get json
-                break;
-            }
 
             return $response;
         }

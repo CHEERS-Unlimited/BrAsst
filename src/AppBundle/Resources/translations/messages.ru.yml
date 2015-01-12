@@ -1,5 +1,7 @@
 # src/AppBundle/Resources/translations/messages.ru.yml
 message_standard:
+  Вы используете браузер %browser% для операционной системы %osFamily%. Версия вашего браузера - %clientVersionShort% (%clientVersion%)
+message_standard_extended:
   Вы используете браузер %browser% от компании %vendor% для операционной системы %osFamily%. Версия вашего браузера - %clientVersionShort% (%clientVersion%)
 message_outdated:
   Эта версия устарела, а значит, самое время обновить ее до новейшей %stableVersionShort% (%stableVersion%)! Текущая же версия вполне может испортить впечатление от просмотра и использования современных сайтов в сети Интернет
