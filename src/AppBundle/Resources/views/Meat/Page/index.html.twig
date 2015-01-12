@@ -29,6 +29,8 @@
         <br>
         {{ browser.link }}
         <br>
+        {{ browser.getSupportedSystems|join(' | ') }}
+        <br>
     {% endfor %}
 {% endblock %}
 

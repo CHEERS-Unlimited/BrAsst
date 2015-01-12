@@ -276,4 +276,16 @@ class Browser
     {
         return $this->browserVersion;
     }
+
+    public function getSupportedSystems()
+    {
+        $supportedSystems = [];
+
+        foreach($this->browserVersion as $browserVersion)
+        {
+            $supportedSystems[] = $browserVersion->getName();
+        }
+
+        return $supportedSystems;
+    }
 }
