@@ -21,14 +21,19 @@
         {% set stableVersionShort = browserVersion.version|split('.')[0] %}
         -----
         <br>
-        {{ browser.marketShare }}%
+        {{ 'browser_market_share'|trans({
+            '%marketShare%': browser.marketShare
+        }) }}
         <br>
         {{ browser.vendor }} / {{ browser.name }}
         <br>
+        {{ 'browser_stable_release'|trans }}:
         {{ stableVersionShort }} ({{ browserVersion.version }})
         <br>
-        {{ browser.link }}
+        <a href="{{ browser.link }}">{{ 'browser_button_download'|trans }} {{ 'browser_button_official_page'|trans }}</a>
+        <span title="{{ 'tooltip_uninstall_browser'|trans }}">[!]</span>
         <br>
+        {{ 'browser_os'|trans }}:
         {{ browser.getSupportedSystems|join(' | ') }}
         <br>
     {% endfor %}

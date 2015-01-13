@@ -2,12 +2,12 @@
 # src/AppBundle/Controller/Meat/ApiController.php
 namespace AppBundle\Controller\Meat;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller,
-    Symfony\Component\HttpFoundation\Request,
-    Symfony\Component\HttpFoundation\Response,
-    Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Symfony\Component\Serializer\Serializer,
+use Symfony\Component\HttpFoundation\Request,
+    Symfony\Component\HttpFoundation\Response,
+    Symfony\Component\HttpFoundation\JsonResponse,
+    Symfony\Component\Serializer\Serializer,
     Symfony\Component\Serializer\Encoder\JsonEncoder,
     Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 

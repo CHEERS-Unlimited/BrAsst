@@ -2,8 +2,7 @@
 # src/AppBundle/Service/Meat/Detector.php
 namespace AppBundle\Service\Meat;
 
-use Symfony\Component\HttpFoundation\RequestStack,
-    Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 use DeviceDetector\DeviceDetector,
     DeviceDetector\Parser\OperatingSystem,
@@ -18,8 +17,9 @@ class Detector
     const USER_ERROR_IS_BOT              = 'user_error_is_bot';
     const USER_ERROR_IS_MOBILE           = 'user_error_is_mobile';
     const USER_ERROR_NOT_BROWSER         = 'user_error_not_browser';
-    const USER_ERROR_UNSUPPORTED_BROWSER = 'user_error_unsupported_browser';
-    const USER_ERROR_UNSUPPORTED_OS      = 'user_error_unsupported_os';
+
+    const USER_WARNING_UNSUPPORTED_BROWSER = 'user_warning_unsupported_browser';
+    const USER_WARNING_UNSUPPORTED_OS      = 'user_warning_unsupported_os';
 
     private $userError = NULL;
 
@@ -88,7 +88,7 @@ class Detector
                 return $browser;
         }
 
-        $browserDetected->setUserWarning(self::USER_ERROR_UNSUPPORTED_BROWSER);
+        $browserDetected->setUserWarning(self::USER_WARNING_UNSUPPORTED_BROWSER);
         return $browserDetected;
     }
 
@@ -107,7 +107,7 @@ class Detector
                 return $browserVersion;
         }
 
-        $browserDetected->setUserWarning(self::USER_ERROR_UNSUPPORTED_OS);
+        $browserDetected->setUserWarning(self::USER_WARNING_UNSUPPORTED_OS);
         return $browserDetected;
     }
 

@@ -20,6 +20,8 @@
         }}
     {% endif %}
 
+    <span title="{{ 'tooltip_wrong_browser'|trans }}">[!]</span>
+
     <br>
 
     {% if detectedBrowser.userWarning %}
@@ -31,8 +33,12 @@
                 '%stableVersionShort%': stableVersionShort,
                 '%stableVersion%': detectedBrowser.stableVersion})
             }}
+
             <br>
+
             <a href="{{ detectedBrowser.stableVersionLink }}">{{ detectedBrowser.stableVersionLink }}</a>
+
+            <span title="{{ 'tooltip_uninstall_browser'|trans }}">[!]</span>
         {% else %}
             {{ 'message_uptodate'|trans }}
         {% endif %}
