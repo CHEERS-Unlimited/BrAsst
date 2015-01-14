@@ -4,7 +4,7 @@
     {% set stableVersionShort = detectedBrowser.stableVersion|split('.')[0] %}
 
     {% if detectedBrowser.vendor %}
-        {{ 'message_standard_extended'|trans({
+        {{ 'message.standard_extended'|trans({
             '%browser%':            detectedBrowser.browser,
             '%vendor%':             detectedBrowser.vendor,
             '%osFamily%':           detectedBrowser.osFamily,
@@ -12,7 +12,7 @@
             '%clientVersionShort%': clientVersionShort})
         }}
     {% else %}
-        {{ 'message_standard'|trans({
+        {{ 'message.standard'|trans({
             '%browser%':            detectedBrowser.browser,
             '%osFamily%':           detectedBrowser.osFamily,
             '%clientVersion%':      detectedBrowser.clientVersion,
@@ -20,7 +20,7 @@
         }}
     {% endif %}
 
-    <span title="{{ 'tooltip_wrong_browser'|trans }}">[!]</span>
+    <small title="{{ 'tooltip.wrong_browser'|trans }}">[скорее всего...]</small>
 
     <br>
 
@@ -29,22 +29,22 @@
         <br>
     {% else %}
         {% if detectedBrowser.isOutdated %}
-            {{ 'message_outdated'|trans({
+            {{ 'message.outdated'|trans({
                 '%stableVersionShort%': stableVersionShort,
                 '%stableVersion%': detectedBrowser.stableVersion})
             }}
 
             <br>
 
-            <a href="{{ detectedBrowser.stableVersionLink }}">{{ detectedBrowser.stableVersionLink }}</a>
+            <a href="{{ detectedBrowser.stableVersionLink }}">{{ 'browser.button_download'|trans }} {{ 'browser.button_official_page'|trans }}</a>
 
-            <span title="{{ 'tooltip_uninstall_browser'|trans }}">[!]</span>
+            <small title="{{ 'tooltip.uninstall_browser'|trans }}">[!]</small>
         {% else %}
-            {{ 'message_uptodate'|trans }}
+            {{ 'message.uptodate'|trans }}
         {% endif %}
         <br>
         {% if detectedBrowser.browser == "Internet Explorer" %}
-            {{ 'message_explorer'|trans }}
+            {{ 'message.explorer'|trans }}
             <br>
         {% endif %}
     {% endif %}

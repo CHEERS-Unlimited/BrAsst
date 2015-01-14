@@ -16,27 +16,92 @@
 {% block body %}
     {% render controller('AppBundle:Meat\\Api:widget', { 'browsers': browsers }) %}
 
+    <h2>
+        {{ 'content_idea.title'|trans }}
+    </h2>
+    <p>
+        {{ 'content_idea.text'|trans }}
+    </p>
+    <p>
+        {{ 'content_idea.about'|trans }}
+    </p>
+
     {% for browser in browsers %}
         {% set browserVersion = browser.browserVersion[0] %}
         {% set stableVersionShort = browserVersion.version|split('.')[0] %}
-        -----
-        <br>
-        {{ 'browser_market_share'|trans({
-            '%marketShare%': browser.marketShare
-        }) }}
-        <br>
-        {{ browser.vendor }} / {{ browser.name }}
-        <br>
-        {{ 'browser_stable_release'|trans }}:
-        {{ stableVersionShort }} ({{ browserVersion.version }})
-        <br>
-        <a href="{{ browser.link }}">{{ 'browser_button_download'|trans }} {{ 'browser_button_official_page'|trans }}</a>
-        <span title="{{ 'tooltip_uninstall_browser'|trans }}">[!]</span>
-        <br>
-        {{ 'browser_os'|trans }}:
-        {{ browser.getSupportedSystems|join(' | ') }}
-        <br>
+        <p>
+            {{ 'browser.market_share'|trans({
+                '%marketShare%': browser.marketShare
+            }) }}
+            <br>
+            {{ browser.vendor }} / {{ browser.name }}
+            <br>
+            {{ 'browser.stable_release'|trans }}:
+            {{ stableVersionShort }} ({{ browserVersion.version }})
+            <br>
+            <a href="{{ browser.link }}">{{ 'browser.button_download'|trans }} {{ 'browser.button_official_page'|trans }}</a>
+            <small title="{{ 'tooltip.uninstall_browser'|trans }}">[перед установкой...]</small>
+            <br>
+            {{ 'browser.os'|trans }}:
+            {{ browser.getSupportedSystems|join(' | ') }}
+        </p>
     {% endfor %}
+
+    <h2>
+        {{ 'content_api.title'|trans }}
+    </h2>
+    <p>
+        {{ 'content_api.text'|trans }}
+    </p>
+
+    <h3>
+        {{ 'content_api.guide.title'|trans }}:
+    </h3>
+    <h4>
+        HTML: {{ 'content_api.guide.html.title'|trans }}
+    </h4>
+    <p>
+        {{ 'content_api.guide.html.text'|trans({
+            '%jsLink%': '<a href="cheers_brasst_api.js">JavaScript</a>'})|raw
+        }}
+    </p>
+    <p>
+        1 - {{ 'content_api.guide.html.step.1'|trans }}:
+    </p>
+    <span>{{ '<script src="cheers_brasst_api.js"></script>'|escape }}</span>
+    <p>
+        2 - {{ 'content_api.guide.html.step.2'|trans }}:
+    </p>
+    <span>{{ '<div id="brasst_widget"></div>'|escape }}</span>
+    <p>
+        3 - {{ 'content_api.guide.html.step.3'|trans }}:
+    </p>
+    <span>{{ '<script>var apiLink="https://brasst.com/api/html/ua";</script>'|escape }}</span>
+    <p>Готово!</p>
+
+    <h4>
+        JSON: {{ 'content_api.guide.json.title'|trans }}
+    </h4>
+    <p>
+        {{ 'content_api.guide.json.text'|trans }}:
+    </p>
+<pre>
+{
+    "browser":"Firefox",
+    "vendor":"Mozilla Foundation",
+    "osFamily":"Windows",
+    "stableVersion":"34.0.5",
+    "clientVersion":"34.0",
+    "isOutdated":false,
+    "stableVersionLink":"https:\/\/www.mozilla.org\/firefox",
+    "userWarning":null
+}
+</pre>
+
+    <p>
+        {{ 'content_api.guide.additional'|trans }}: <a href="https://github.com/CheersUnlimited/BrAsst/apiExamples">{{ 'content_api.github'|trans }}</a>
+    </p>
+
 {% endblock %}
 
 {% block javascripts %}
