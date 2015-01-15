@@ -40,17 +40,19 @@ class PageController extends Controller
     /**
      * @Method({"GET"})
      * @Route(
-     *      "/api/{response_type}/{_locale}",
+     *      "/api/{_locale}",
      *      name="api",
-     *      defaults={"response_type" = "html", "_locale" = "%locale%"},
-     *      requirements={"response_type" = "html|json", "_locale" = "%locale%|en|ru"}
+     *      defaults={"_locale" = "%locale%"},
+     *      requirements={"_locale" = "%locale%|en|ru"}
      * )
      */
-    public function apiAction(Request $request, $response_type)
+    public function apiAction(Request $request)
     {
         if( ($httpOrigin = $request->server->get('HTTP_ORIGIN')) == NULL ) {
             throw $this->createNotFoundException();
         } else {
+            $response_type = $request->query->get('type');
+
             $browsers = $this->getDoctrine()->getManager()
                 ->getRepository('AppBundle:Meat\Browser')->findAll();
 

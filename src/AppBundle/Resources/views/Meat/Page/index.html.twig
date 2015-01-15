@@ -16,15 +16,12 @@
 {% block body %}
     {% render controller('AppBundle:Meat\\Api:widget', { 'browsers': browsers }) %}
 
-    <h2>
-        {{ 'content_idea.title'|trans }}
-    </h2>
-    <p>
-        {{ 'content_idea.text'|trans }}
-    </p>
-    <p>
-        {{ 'content_idea.about'|trans }}
-    </p>
+    <h1>
+        {{ 'content_slogan.headline'|trans }}
+    </h1>
+    <h3>
+        {{ 'content_slogan.subheadline'|trans }}
+    </h3>
 
     {% for browser in browsers %}
         {% set browserVersion = browser.browserVersion[0] %}
@@ -48,6 +45,16 @@
     {% endfor %}
 
     <h2>
+        {{ 'content_idea.title'|trans }}
+    </h2>
+    <p>
+        {{ 'content_idea.text'|trans }}
+    </p>
+    <p>
+        {{ 'content_idea.about'|trans }}
+    </p>
+
+    <h2>
         {{ 'content_api.title'|trans }}
     </h2>
     <p>
@@ -68,16 +75,18 @@
     <p>
         1 - {{ 'content_api.guide.html.step.1'|trans }}:
     </p>
-    <span>{{ '<script src="cheers_brasst_api.js"></script>'|escape }}</span>
+    <span>{{ '<div id="brasst_widget"></div>'|escape }}</span>
     <p>
         2 - {{ 'content_api.guide.html.step.2'|trans }}:
     </p>
-    <span>{{ '<div id="brasst_widget"></div>'|escape }}</span>
+    <span>{{ '<script src="brasst_api.js"></script><script>var brasst = new Brasst({url: "https://brasst.com.ua/api/ua"});</script>'|escape }}</span>
     <p>
         3 - {{ 'content_api.guide.html.step.3'|trans }}:
     </p>
-    <span>{{ '<script>var apiLink="https://brasst.com/api/html/ua";</script>'|escape }}</span>
-    <p>Готово!</p>
+    <span>{{ 'var brasst = new Brasst({url: "https://brasst.com.ua/api/en"});'|escape }}</span>
+    <p>
+        Готово!
+    </p>
 
     <h4>
         JSON: {{ 'content_api.guide.json.title'|trans }}
@@ -87,14 +96,14 @@
     </p>
 <pre>
 {
-    "browser":"Firefox",
-    "vendor":"Mozilla Foundation",
-    "osFamily":"Windows",
-    "stableVersion":"34.0.5",
-    "clientVersion":"34.0",
-    "isOutdated":false,
-    "stableVersionLink":"https:\/\/www.mozilla.org\/firefox",
-    "userWarning":null
+    "browser":           "Firefox",
+    "vendor":            "Mozilla Foundation",
+    "osFamily":          "Windows",
+    "stableVersion":     "34.0.5",
+    "clientVersion":     "34.0",
+    "isOutdated":        false,
+    "stableVersionLink": "https:\/\/www.mozilla.org\/firefox",
+    "userWarning":       null
 }
 </pre>
 

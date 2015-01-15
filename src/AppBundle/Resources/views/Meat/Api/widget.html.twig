@@ -3,6 +3,14 @@
     {% set clientVersionShort = detectedBrowser.clientVersion|split('.')[0] %}
     {% set stableVersionShort = detectedBrowser.stableVersion|split('.')[0] %}
 
+    <h3>
+        {% if detectedBrowser.userWarning or detectedBrowser.isOutdated %}
+            {{ 'message.outdated.title'|trans }}
+        {% else %}
+            {{ 'message.uptodate.title'|trans }}
+        {% endif %}
+    </h3>
+
     {% if detectedBrowser.vendor %}
         {{ 'message.standard_extended'|trans({
             '%browser%':            detectedBrowser.browser,
@@ -29,7 +37,7 @@
         <br>
     {% else %}
         {% if detectedBrowser.isOutdated %}
-            {{ 'message.outdated'|trans({
+            {{ 'message.outdated.text'|trans({
                 '%stableVersionShort%': stableVersionShort,
                 '%stableVersion%': detectedBrowser.stableVersion})
             }}
@@ -40,7 +48,7 @@
 
             <small title="{{ 'tooltip.uninstall_browser'|trans }}">[!]</small>
         {% else %}
-            {{ 'message.uptodate'|trans }}
+            {{ 'message.uptodate.text'|trans }}
         {% endif %}
         <br>
         {% if detectedBrowser.browser == "Internet Explorer" %}
