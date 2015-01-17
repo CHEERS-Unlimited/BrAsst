@@ -12,6 +12,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
 
 class PageController extends Controller
 {
+    const TEST = 'en';
+
     /**
      * @Method({"GET"})
      * @Route(
