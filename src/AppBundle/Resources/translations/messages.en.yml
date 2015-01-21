@@ -1,56 +1,55 @@
 # src/AppBundle/Resources/translations/messages.en.yml
 message:
   standard: >
-    Вы используете браузер %browser% для операционной системы %osFamily%.
-    Версия вашего браузера - %clientVersionShort% (%clientVersion%)
+    You are using %browser% browser for %osFamily% operating system.
+    Your browser version is %clientVersionShort% (%clientVersion%)
   standard_extended: >
-    Вы используете браузер %browser% от компании %vendor% для операционной системы %osFamily%.
-    Версия вашего браузера - %clientVersionShort% (%clientVersion%)
+    You are using %browser% from %vendor% for %osFamily% operating system.
+    Your browser version is %clientVersionShort% (%clientVersion%)
   outdated:
     title:
-      О нет!
+      Oh noes!
     text: >
-      Эта версия устарела, а значит, самое время обновить ее до новейшей %stableVersionShort% (%stableVersion%)!
-      Текущая же версия вполне может испортить впечатление от просмотра современных сайтов в сети Интернет
+      This version is obsolete, which means it's time to update it to the latest %stableVersionShort% (%stableVersion%)!
+      Version that you have can dramatically spoil your experience from modern websites
   uptodate:
     title:
-      Отлично!
+      Great!
     text: >
-      На данный момент это новейшая версия браузера
+      It is the latest browser version available
   explorer: >
-    Ох... Internet Explorer, хотя и является популярным браузером по ряду причин, накладывает на разработчиков сайтов
-    ряд ограничений и очень часто не позволяет пользователям в полной мере оценить их работу.
-    Этого можно и не делать, но в некоторых случаях мы рекомендуем установить другой браузер, который, скорее всего, лучше
-    справится с поставленными задачами и сделает вашу работу и развлечения в сети более комфортными.
+    Oh... Internet Explorer, though for some reasons really is a popular browser, often cannot deliver to the users
+    everything that website developers want them to see. As a rule of thumb, in some cases we recommend installing
+    another browser, which could perform better to make your web surfing more comfortable and satisfying.
 
 tooltip:
   wrong_browser: >
-    Возможно, Br.Asst. ошибся, и вы используете другой браузер, или другую версию. В этом случае мы будем весьма благодарны,
-    если вы оставите для нас отзыв.
+    It could be that Br.Asst. is wrong, and you are actually using another browser, or it has another version.
+    We would be very grateful if you'll provide feedback in this case.
   uninstall_browser: >
-    Настоятельно рекомендуем удалить старую версию браузера перед установкой новой, сохранив при этом ваши настройки
-    и данные о работе (большинство современных браузеров предлагают такую опцию)
+    We strongly recommend that you remove the old version before installingthe new one, but don't forget to save your
+    browsing data (most of the modern browsers do offer such option)
 
 content_slogan:
-  headline: Только свежие браузеры с Br.Asst.
+  headline: Only fresh browsers with Br.Asst.
   subheadline: >
-    Инструмент проверки и обновления вашего веб-браузера
+    A tool to check and update your web browser
 
 browser:
   market_share:
-    Предпочитают %marketShare%% пользователей сети
+    Preferred by %marketShare%% of Internet users
   stable_release:
-    Текущая версия
+    Current version
   button_download:
-    Скачать
+    Download
   button_official_page:
-    на сайте разработчика
+    from an official website
   os:
-    Для операционных систем
+    Operation systems
 
 content_idea:
   title: >
-    Зачем вам нужен Br.Asst.?
+    Why do you need Br.Asst.?
   text: >
     Несмотря на то, что браузеры научились обновлять себя не отвлекая людей от дел, многие до сих пор используют
     устаревшие версии подобных программ. Это приводит к тому, что для обладателей старых браузеров сайты и системы
@@ -62,15 +61,15 @@ content_idea:
     популярных на сегодняшний день!
 
 content_api:
-  title: Вы можете использовать Br.Asst. на своих сайтах!
+  title: You can use Br.Asst. for your websites!
   text: >
     Мы предоставляем бесплатное и простое API для разработчиков и веб-мастеров. Если вы хотите, чтобы ваши пользователи
     всегда были в курсе версии своего браузера, имели возможность буквально в 3 клика обновить её и увидеть ваши
     проекты такими, какими они должны быть - присоединяйтесь!
   guide:
-    title: Вы можете получить данные в удобном для себя формате
+    title: You can get data type you need
     html:
-      title: Готовый HTML-виджет
+      title: Out of the box HTML-widget
       text: >
         С помощью предоставленного %jsLink% и простейшей интеграции вы получите уже готовый, нейтрально стилизованный
         виджет для встраивания на любую страницу вашего сайта. В случае, если версия браузера посетителя устарела,
@@ -85,28 +84,30 @@ content_api:
         3: >
           Укажите последним параметром ссылки в инициализации скрипта нужный вам язык,
           который поддерживает Br.Asst., например
+        final: >
+          Done!
     json:
-      title: Необходимые данные в формате JSON
+      title: Required data in JSON format
       text: >
         Вы можете самостоятельно стилизовать данные, полученные в формате JSON через кросс-доменный запрос
         GET-запрос по адресу https://brasst.com/api/{locale}, где {locale} - нужный вам язык перевода для ошибок
         и предупреждений, который поддерживает Br.Asst. Также укажите дополнительный GET-параметр 'type=json'.
         Полученный объект будет иметь примерно следующий вид
     additional: >
-      Если вы испытываете затруднения со встраиванием HTML виджета или кросс-доменным запросом для JSON,
-      пожалуйста, ознакомьтесь с подробным описанием параметров и примерами в нашем репозитории на GitHub
-  github: Примеры использования на GitHub
+      If you're experiencing difficulties with HTML-widget embedding or cross-origin request for JSON,
+      please, refer to the detailed parameters description and examples on our GitHub repository
+  github: Examples on GitHub
 
 user_error_is_bot: >
-  Жаль, но определить ваш браузер не удалось, так как, скорее всего, вы - бот
+  Unfortunately it was not possible to detect your browser, because it looks like you're a robot
 user_error_is_mobile: >
-  Жаль, но определить ваш браузер не удалось, так как мы пока не поддерживаем мобильные устройства.
+  Unfortunately it was not possible to detect your browser, because we're not yet supporting mobile devices
 user_error_not_browser: >
-  Жаль, но определить ваш браузер не удалось, так как, скорее всего, ваш клиент - не браузер
+  Unfortunately it was not possible to detect your browser, because it looks like your client is not a web browser
 
 user_warning_unsupported_browser: >
-  Жаль, но мы пока поддерживаем только основные браузеры, и не можем ничего сказать о последней версии вашего
-  или предложить обновление
+  Unfortunately we're supporting only major browsers for now, and we can't tell anything about latest version of yours,
+  or offer an update
 user_warning_unsupported_os: >
-  Браузер, который вы используете, официально не поддерживается вашей операционной системой. Зачем пользоваться
-  программой, от которой отказались её создатели? Самое время скачать и установить другой браузер!
+  The browser you're using is not officially supported by your operating system. Why do you need a program which is
+  abandoned by it's own developers? It's time to download and install another browser!

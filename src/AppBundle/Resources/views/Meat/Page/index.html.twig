@@ -64,36 +64,38 @@
     <h3>
         {{ 'content_api.guide.title'|trans }}:
     </h3>
-    <h4>
-        HTML: {{ 'content_api.guide.html.title'|trans }}
-    </h4>
-    <p>
-        {{ 'content_api.guide.html.text'|trans({
-            '%jsLink%': '<a href="cheers_brasst_api.js">JavaScript</a>'})|raw
-        }}
-    </p>
-    <p>
-        1 - {{ 'content_api.guide.html.step.1'|trans }}:
-    </p>
-    <span>{{ '<div id="brasst_widget"></div>'|escape }}</span>
-    <p>
-        2 - {{ 'content_api.guide.html.step.2'|trans }}:
-    </p>
-    <span>{{ '<script src="brasst_api.js"></script><script>var brasst = new Brasst({url: "https://brasst.com.ua/api/ua"});</script>'|escape }}</span>
-    <p>
-        3 - {{ 'content_api.guide.html.step.3'|trans }}:
-    </p>
-    <span>{{ 'var brasst = new Brasst({url: "https://brasst.com.ua/api/en"});'|escape }}</span>
-    <p>
-        Готово!
-    </p>
-
-    <h4>
-        JSON: {{ 'content_api.guide.json.title'|trans }}
-    </h4>
-    <p>
-        {{ 'content_api.guide.json.text'|trans }}:
-    </p>
+    <div style="width: 50%; float:left">
+        <h4>
+            HTML: {{ 'content_api.guide.html.title'|trans }}
+        </h4>
+        <p>
+            {{ 'content_api.guide.html.text'|trans({
+                '%jsLink%': '<a href="cheers_brasst_api.js">JavaScript</a>'})|raw
+            }}
+        </p>
+        <p>
+            1 - {{ 'content_api.guide.html.step.1'|trans }}:
+        </p>
+        <span>{{ '<div id="brasst_widget"></div>'|escape }}</span>
+        <p>
+            2 - {{ 'content_api.guide.html.step.2'|trans }}:
+        </p>
+        <span>{{ '<script src="brasst_api.js"></script><script>var brasst = new Brasst({url: "https://brasst.com.ua/api/ua"});</script>'|escape }}</span>
+        <p>
+            3 - {{ 'content_api.guide.html.step.3'|trans }}:
+        </p>
+        <span>{{ 'var brasst = new Brasst({url: "https://brasst.com.ua/api/en"});'|escape }}</span>
+        <p>
+            {{ 'content_api.guide.html.step.final'|trans }}
+        </p>
+    </div>
+    <div style="width: 50%; float:left">
+        <h4>
+            JSON: {{ 'content_api.guide.json.title'|trans }}
+        </h4>
+        <p>
+            {{ 'content_api.guide.json.text'|trans }}:
+        </p>
 <pre>
 {
     "browser":           "Firefox",
@@ -106,11 +108,12 @@
     "userWarning":       null
 }
 </pre>
-
-    <p>
-        {{ 'content_api.guide.additional'|trans }}: <a href="https://github.com/CheersUnlimited/BrAsst/apiExamples">{{ 'content_api.github'|trans }}</a>
-    </p>
-
+    </div>
+    <div style="width: 100%; float: left;">
+        <p>
+            {{ 'content_api.guide.additional'|trans }}: <a href="https://github.com/CheersUnlimited/BrAsst/apiExamples">{{ 'content_api.github'|trans }}</a>
+        </p>
+    </div>
 {% endblock %}
 
 {% block javascripts %}
