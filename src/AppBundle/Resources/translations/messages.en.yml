@@ -51,39 +51,36 @@ content_idea:
   title: >
     Why do you need Br.Asst.?
   text: >
-    Несмотря на то, что браузеры научились обновлять себя не отвлекая людей от дел, многие до сих пор используют
-    устаревшие версии подобных программ. Это приводит к тому, что для обладателей старых браузеров сайты и системы
-    в сети будут работать и выглядеть не так, как это было задумано их создателями. Не стоит портить себе впечатление
-    - лучше всегда использовать последние версии браузеров
+    Despite the fact that browser nowadays learned to update themselves without bothering users, older version of
+    such software still in use by many people. As a result, for old browser versions owners websites and systems
+    may perform and look differently then it was intended by it's developers. Do not spoil your impression - just
+    always use the latest browsers versions
   about: >
-    Мы, веб-агентство CHEERS! Unlimited, разработали Br.Asst. с целью заботы о наших клиентах и пользователях.
-    Br.Asst. поможет вам узнать, не устарел ли ваш браузер, а также скачать последнюю версию любого из наиболее
-    популярных на сегодняшний день!
+    We, the CHEERS! Unlimited web-agency, developed Br.Asst. to take care of our customers and users. Br.Asst. will
+    help you to find out whether your browser is outdated and show you where you can get latest version of today's
+    most popular ones.
 
 content_api:
   title: You can use Br.Asst. for your websites!
   text: >
-    Мы предоставляем бесплатное и простое API для разработчиков и веб-мастеров. Если вы хотите, чтобы ваши пользователи
-    всегда были в курсе версии своего браузера, имели возможность буквально в 3 клика обновить её и увидеть ваши
-    проекты такими, какими они должны быть - присоединяйтесь!
+    We provide free and simple API for developers and webmasters. If you wish your users to be always aware of their
+    browser version and could easily update it to see your project the way they should - join up!
   guide:
     title: You can get data type you need
     html:
       title: Out of the box HTML-widget
       text: >
-        С помощью предоставленного %jsLink% и простейшей интеграции вы получите уже готовый, нейтрально стилизованный
-        виджет для встраивания на любую страницу вашего сайта. В случае, если версия браузера посетителя устарела,
-        виджет покажет себя и предложит обновление. Не бойтесь показаться навязчивым: стоит пользователю отказаться
-        от обновления, и он больше не увидит виджет при просмотре вашего сайта.
+        With provided %jsLink% and simplest integration you will get neutrally styled widget, ready to be embedded
+        on any of your website page. If the users browser version is outdated, the widget will show itself to propose
+        an update. Don't be afraid to seem intrusive: if user declines once, he will see the widget no longer
       step:
         1: >
-          Вставьте зарезервированный для вывода блок сразу после открывающего тега <body> на странице,
-          которая должна отображать виджет
+          Insert reserved block for output right after opening <body> tag on page that should display the widget
         2: >
-          Подключите файл скрипта и его инициализацию перед закрывающим тегом </body> на той же странице
+          Plug in the script file and initialize it before closing <body> tag on the same page
         3: >
-          Укажите последним параметром ссылки в инициализации скрипта нужный вам язык,
-          который поддерживает Br.Asst., например
+          Specify the last parameter in script initialization link to be widget display language, among those which
+          are supported by Br.Asst., for example
         final: >
           Done!
     json:

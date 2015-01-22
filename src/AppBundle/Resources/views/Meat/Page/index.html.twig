@@ -80,11 +80,11 @@
         <p>
             2 - {{ 'content_api.guide.html.step.2'|trans }}:
         </p>
-        <span>{{ '<script src="brasst_api.js"></script><script>var brasst = new Brasst({url: "https://brasst.com.ua/api/ua"});</script>'|escape }}</span>
+        <span>{{ ('<script src="brasst_api.js"></script><script>var brasst = new Brasst({url: "https://brasst.com.ua/api/' ~ app.request.getLocale() ~ '"});</script>')|escape }}</span>
         <p>
             3 - {{ 'content_api.guide.html.step.3'|trans }}:
         </p>
-        <span>{{ 'var brasst = new Brasst({url: "https://brasst.com.ua/api/en"});'|escape }}</span>
+        <span>{{ ('var brasst = new Brasst({url: "https://brasst.com.ua/api/' ~ app.request.getLocale() ~ '"});')|escape }}</span>
         <p>
             {{ 'content_api.guide.html.step.final'|trans }}
         </p>
@@ -94,17 +94,24 @@
             JSON: {{ 'content_api.guide.json.title'|trans }}
         </h4>
         <p>
-            {{ 'content_api.guide.json.text'|trans }}:
+            {{ 'content_api.guide.json.text'|trans }}
+        </p>
+        <p>
+            1 - {{ 'content_api.guide.json.step.1'|trans }}:
+        </p>
+        <span>{{ 'https://brasst.com.ua/api/' ~ app.request.getLocale() ~ '?type=json' }}</span>
+        <p>
+            2 - {{ 'content_api.guide.json.step.2'|trans }}:
         </p>
 <pre>
 {
-    "browser":           "Firefox",
-    "vendor":            "Mozilla Foundation",
-    "osFamily":          "Windows",
-    "stableVersion":     "34.0.5",
-    "clientVersion":     "34.0",
-    "isOutdated":        false,
-    "stableVersionLink": "https:\/\/www.mozilla.org\/firefox",
+    "browser":           "Some browser",
+    "vendor":            "Some vendor",
+    "osFamily":          "Some system",
+    "stableVersion":     "42.0",
+    "clientVersion":     "24.0",
+    "isOutdated":        true,
+    "stableVersionLink": "https:\/\/www.somevendor.org\/somebrowser",
     "userWarning":       null
 }
 </pre>
