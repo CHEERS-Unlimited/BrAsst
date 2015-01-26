@@ -11,7 +11,7 @@ message:
       Oh noes!
     text: >
       This version is obsolete, which means it's time to update it to the latest %stableVersionShort% (%stableVersion%)!
-      Version that you have can dramatically spoil your experience from modern websites
+      Version that you currently have can dramatically spoil your experience from modern websites
   uptodate:
     title:
       Great!
@@ -27,8 +27,8 @@ tooltip:
     It could be that Br.Asst. is wrong, and you are actually using another browser, or it has another version.
     We would be very grateful if you'll provide feedback in this case.
   uninstall_browser: >
-    We strongly recommend that you remove the old version before installingthe new one, but don't forget to save your
-    browsing data (most of the modern browsers do offer such option)
+    We strongly recommend that you remove the old version before installing the new one, but don't forget to save your
+    browsing data first (most of the modern browsers do offer such option)
 
 content_slogan:
   headline: Only fresh browsers with Br.Asst.
@@ -45,7 +45,7 @@ browser:
   button_official_page:
     from an official website
   os:
-    Operation systems
+    Operating systems
 
 content_idea:
   title: >
@@ -79,7 +79,7 @@ content_api:
         2: >
           Plug in the script file and initialize it before closing <body> tag on the same page
         3: >
-          Specify the last parameter in script initialization link to be widget display language, among those which
+          Specify the last parameter in script initialization link as widget display language, among those which
           are supported by Br.Asst., for example
         final: >
           Done!
