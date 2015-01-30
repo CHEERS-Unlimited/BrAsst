@@ -86,10 +86,21 @@ content_api:
     json:
       title: Required data in JSON format
       text: >
-        Вы можете самостоятельно стилизовать данные, полученные в формате JSON через кросс-доменный запрос
-        GET-запрос по адресу https://brasst.com/api/{locale}, где {locale} - нужный вам язык перевода для ошибок
-        и предупреждений, который поддерживает Br.Asst. Также укажите дополнительный GET-параметр 'type=json'.
-        Полученный объект будет иметь примерно следующий вид
+        Вы можете получить только нужные данные и использовать их по собственному усмотрению. Объект будет содержать
+        информацию, которую удалось собрать из User-Agent пользователя, а также данные о версии браузера клиента и
+        ее соответствии наиболее новой версии. В случае, если браузер не распознан или не поддерживается на операцонной
+        системе пользователя, в дополнение мы передадим текстовый идентефикатор предупреждения
+
+        You can get only the necessary data to use it as you see fit. Object will contain information gathered from
+        User-Agent, as well as the client browser version and it's ???
+        
+      step:
+        1: >
+          Для того, чтобы получить ответ от Br.Asst. в формате JSON, необходимо сделать кросс-доменный GET-запрос по
+          адресу https://brasst.com/api/{locale} c дополнительным GET-параметром 'type=json'. Последний параметр ссылки
+          {locale} - нужный вам язык перевода для ошибок и предупреждений, который поддерживает Br.Asst, например
+        2: >
+          Полученный объект будет иметь примерно следующий вид:
     additional: >
       If you're experiencing difficulties with HTML-widget embedding or cross-origin request for JSON,
       please, refer to the detailed parameters description and examples on our GitHub repository
