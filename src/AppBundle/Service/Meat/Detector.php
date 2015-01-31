@@ -130,9 +130,11 @@ class Detector
         {
             if( isset($currentClientVersion[$position]) )
             {
-                if( $currentClientVersion[$position] < $subVersion ) {
+                if( $currentClientVersion[$position] < $subVersion )
                     return TRUE;
-                }
+
+                if( $currentClientVersion[$position] > $subVersion )
+                    return FALSE;
             }
         }
 

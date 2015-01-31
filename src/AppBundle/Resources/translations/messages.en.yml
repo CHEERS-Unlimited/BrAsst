@@ -93,7 +93,7 @@ content_api:
 
         You can get only the necessary data to use it as you see fit. Object will contain information gathered from
         User-Agent, as well as the client browser version and it's ???
-        
+
       step:
         1: >
           Для того, чтобы получить ответ от Br.Asst. в формате JSON, необходимо сделать кросс-доменный GET-запрос по
