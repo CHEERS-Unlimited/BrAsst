@@ -86,21 +86,17 @@ content_api:
     json:
       title: Required data in JSON format
       text: >
-        Вы можете получить только нужные данные и использовать их по собственному усмотрению. Объект будет содержать
-        информацию, которую удалось собрать из User-Agent пользователя, а также данные о версии браузера клиента и
-        ее соответствии наиболее новой версии. В случае, если браузер не распознан или не поддерживается на операцонной
-        системе пользователя, в дополнение мы передадим текстовый идентефикатор предупреждения
-
         You can get only the necessary data to use it as you see fit. Object will contain information gathered from
-        User-Agent, as well as the client browser version and it's ???
-
+        client's User-Agent, as well as the client browser version and boolean value that shows whether it's outdated
+        or up to date. In case if browser is not detected or unsopported on user's operating system, we'll additionaly
+        send a warning strind identifier
       step:
         1: >
-          Для того, чтобы получить ответ от Br.Asst. в формате JSON, необходимо сделать кросс-доменный GET-запрос по
-          адресу https://brasst.com/api/{locale} c дополнительным GET-параметром 'type=json'. Последний параметр ссылки
-          {locale} - нужный вам язык перевода для ошибок и предупреждений, который поддерживает Br.Asst, например
+          In order to get the response from Br.Asst. in JSON format you'll have to make a CORS GET request at
+          https://brasst.com/api/{locale} with additional GET parameter 'type=json'. The link's last parameter {locale}
+          specifies your preferred language for errors and warnings output which is supported by Br.Asst., for example:
         2: >
-          Полученный объект будет иметь примерно следующий вид:
+          Received object will look similar to this:
     additional: >
       If you're experiencing difficulties with HTML-widget embedding or cross-origin request for JSON,
       please, refer to the detailed parameters description and examples on our GitHub repository
