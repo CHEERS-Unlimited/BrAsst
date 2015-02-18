@@ -1,0 +1,88 @@
+{# src/AppBundle/Resources/views/Meat/State/brasst_api.html.twig #}
+<div id="api" class="section">
+    <section class="inner">
+        <h1>Используй <span class="sSize">Br.Asst.</span> для своих сайтов</h1>
+        <p>Мы предоставляем бесплатное и простое API для разработчиков и веб-мастеров. Если вы хотите, чтобы ваши пользователи всегда были в курсе версии своего браузера, имели возможность буквально в 3 клика обновить её и увидеть ваши проекты такими, какими они должны быть - присоединяйтесь!</p>
+        <div id="apiType">
+            <div class="circle widget">
+                <span class="icon"></span>
+                <p>Готовый виджет</p>
+            </div>
+            <div class="draggerZone bs">
+                <span class="dragger"></span>
+            </div>
+            <div class="circle json">
+                <span class="icon"></span>
+                <p>Данные в json</p>
+            </div>
+        </div>
+        <div class="help">
+            <p>Если вы испытываете затруднения со встраиванием HTML-виджета или кросс-доменным запросом для JSON, пожалуйста, ознакомьтесь с подробным описанием параметров и примерами в нашем репозитории на GitHub:</p>
+            <a href="#" class="icon"></a>
+        </div>
+    </section>
+    <div class="apInfoOverlay widget bs">
+        <span class="icon close"></span>
+        <div class="info">
+            <section class="inner">
+                <h2>Готовый <span class="sSize">HTML5</span> - виджет</h2>
+                <p>С помощью предоставленного JavaScript и простейшей интеграции вы получите уже готовый, нейтрально стилизованный виджет для встраивания на любую страницу вашего сайта. В случае, если версия браузера посетителя устарела, виджет покажет себя и предложит обновление. Не бойтесь показаться навязчивым: стоит пользователю отказаться от обновления, и он больше не увидит виджет при просмотре вашего сайта.</p>
+                <ul>
+                    <li data-number="1">
+                        <p>Вставьте зарезервированный для вывода блок сразу после открывающего тега
+                            <code class="sSize">&lt;body&gt;</code> на странице, которая должна отображать виджет:</p>
+                        <code class="full">
+                            <p>&lt;div id="brasst_widget"&gt;&lt;/div&gt;</p>
+                        </code>
+                    </li>
+                    <li data-number="2">
+                        <p>Подключите файл скрипта и его инициализацию перед закрывающим тегом </body> на той же странице:</p>
+                        <code class="full">
+                            <p>&lt;script src="brasst_api.js"&gt;&lt;/script&gt;</p>
+                            <p>&lt;script&gt;var brasst = new Brasst({url: "https://brasst.com.ua/api/ru"});&lt;/script&gt;</p>
+                        </code>
+                    </li>
+                    <li data-number="3">
+                        <p>Укажите последним параметром ссылки в инициализации скрипта нужный вам язык, который поддерживает Br.Asst., например:</p>
+                        <code class="full">
+                            <p>var brasst = new Brasst({url: "https://brasst.com.ua/api/ru"});</p>
+                        </code>
+                    </li>
+                </ul>
+                <p class="done">Готово!</p>
+            </section>
+        </div>
+    </div>
+    <div class="apInfoOverlay json bs">
+        <span class="icon close"></span>
+        <div class="info">
+            <section class="inner">
+                <h2>Необходимые данные в формате <span class="sSize">JSON</span></h2>
+                <p>Ви можете отримати тільки необхідні дані та використовувати їх на власний розсуд. Об'єкт буде містити інформацію, яку вдалось зібрати з User-Agent користувача, а також дані про версію браузеру клієнта та її відповідність найбільш новій версії. У випадку, якщо браузер не розпізнаний або не підтримується на операційній системі користувача, ми додатково передамо текстовий ідентифікатор попередження</p>
+                <ul>
+                    <li data-number="1">
+                        <p>Для того, щоб отримати відповідь від Br.Asst. у форматі JSON, необхідно мати крос-доменний GET-запит за адресою https://brasst.com/api/{locale} з додатковим GET-параметром 'type=json'. Останній параметр посилання {locale}- необхідна вам мова перекладу для помилок та попереджень, яку підтримує Br.Asst, наприклад:</p>
+                        <code class="full">https://brasst.com.ua/api/ua?type=json</code>
+                    </li>
+                    <li data-number="2">
+                        <p>Отриманий об'єкт буде мати приблизно наступний вигляд:</p>
+                        <code class="full">
+                            <ul>
+                                <li><span>{</span></li>
+                                <li><span>"browser": "Some browser",</span></li>
+                                <li><span>"vendor": "Some vendor",</span></li>
+                                <li><span>"osFamily": "Some system",</span></li>
+                                <li><span>"stableVersion": "42.0",</span></li>
+                                <li><span>"clientVersion": "24.0",</span></li>
+                                <li><span>"isOutdated": true,</span></li>
+                                <li><span>"stableVersionLink": "https:\/\/www.somevendor.org\/somebrowser",</span></li>
+                                <li><span>"userWarning": null</span></li>
+                                <li><span>}</span></li>
+                            </ul>
+                        </code>
+                    </li>
+                </ul>
+            </section>
+        </div>
+    </div>
+</div>

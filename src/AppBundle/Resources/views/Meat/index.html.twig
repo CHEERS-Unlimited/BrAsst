@@ -1,0 +1,32 @@
+{# src/AppBundle/Resources/views/Meat/layout.html.twig #}
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/app/Meat/css/main.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div id="page">
+        {% include 'AppBundle:Meat\\Common:header.html.twig' %}
+
+        {% block states %}
+            <div id="content">
+                <div id="particles">
+                    <canvas id="connection"></canvas>
+                </div>
+
+                {% render controller('AppBundle:Meat\\State:home') %}
+                {% render controller('AppBundle:Meat\\State:aboutBrasst') %}
+                {% render controller('AppBundle:Meat\\State:browsers') %}
+                {% render controller('AppBundle:Meat\\State:brasstApi') %}
+
+            </div>
+        {% endblock %}
+
+        {% include 'AppBundle:Meat\\Common:footer.html.twig' %}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.15/require.min.js" data-main="{{ asset('bundles/app/Meat/js/boot.js') }}"></script>
+{% endblock %}

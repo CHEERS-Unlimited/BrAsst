@@ -1,4 +1,20 @@
 # src/AppBundle/Resources/translations/messages.en.yml
+developers: CHEERS! Unlimited Web Agency
+
+locale:
+  ua: Ukrainian
+  en: English
+  ru: Russian
+
+state:
+  home: Main
+  aboutBrasst: About Br.Asst.
+  browsers: Browsers
+  brasstApi: Br.Asst. API
+
+copyright: >
+  © CHEERS! Unlimited, 2015. All rights reserved. Usage of the website personal materials without authors' permission is prohibited.
+
 message:
   standard: >
     You are using %browser% browser for %osFamily% operating system.

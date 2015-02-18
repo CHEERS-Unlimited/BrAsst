@@ -1,0 +1,83 @@
+@import url(//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css);
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700&subset=latin,latin-ext);
+@import url(stabilizer.css);
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	Fonts start												*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+h1{
+	font-family: 'Lato', sans-serif;
+	font-weight: 300;
+	font-size: 2.25em;
+	text-align: center;
+	color: #373B44;
+}
+h2{
+	font-family: 'Lato', sans-serif;
+	font-weight: normal;
+	font-size: 1.25em;
+	text-align: center;
+	color: #373B44;
+}
+h3{
+	font-family: 'Lato', sans-serif;
+	font-weight: normal;
+	font-size: 1.125em;
+	color: #373B44;
+}
+p{
+	font-family: 'Lato', sans-serif;
+	font-weight: normal;
+	font-size: 0.875em;
+	color: #373B44;
+}
+a{
+	font-family: 'Lato', sans-serif;
+	font-weight: normal;
+	font-size: 0.875em;
+	text-decoration: none;
+	color: #373B44;
+}
+span{
+	font-family: 'Lato', sans-serif;
+	font-weight: normal;
+	font-size: 0.875em;
+	color: #373B44;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	Fonts end												*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	img start												*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+figure > img, img{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	img end												*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	mixins start											*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.sSize{
+	font-size: 1em;
+}
+.bs{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.clear:after{
+	content:"";
+	display:table;
+	clear:both;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	mixins end												*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+

@@ -1,0 +1,665 @@
+@import url(common.css);
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	main start												*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+#widget{
+	width: 100%;
+	margin-top: 40px;
+	text-align: center;
+	overflow: hidden;
+}
+#widget .icon{
+	display: inline-block;
+	width: 60px;
+	height: 60px;
+	overflow: hidden;
+}
+#widget .icon.updated{background: url(../images/icons.png) no-repeat -60px -600px;}
+#widget .icon.outdated{background: url(../images/icons.png) no-repeat 0px -660px;}
+#widget .icon.detected{background: url(../images/icons.png) no-repeat -60px -660px;}
+
+#widget h2{
+	font-size: 1em;
+	font-weight: normal;
+	margin: 10px 0 0;
+}
+#widget h3{
+	font-size: 1.125em;
+	font-weight: normal;
+	margin-top: 10px;
+	color: #BD5532;
+	font-weight: bold;
+}
+#widget ul li{
+	display: inline-block;
+	vertical-align: middle;
+	margin: 5px 10px 0px 6px;
+}
+#widget ul li .icon.chrome{background: url(../images/icons.png) no-repeat -60px -60px;}
+#widget ul li .icon.explorer{background: url(../images/icons.png) no-repeat -60px -120px;}
+#widget ul li .icon.firefox{background: url(../images/icons.png) no-repeat -60px -180px;}
+#widget ul li .icon.safari{background: url(../images/icons.png) no-repeat -60px -240px;}
+#widget ul li .icon.opera{background: url(../images/icons.png) no-repeat -60px -300px;}
+
+#widget ul li .icon.win{background: url(../images/icons.png) no-repeat -60px -360px;}
+#widget ul li .icon.mac{background: url(../images/icons.png) no-repeat -60px -420px;}
+#widget ul li .icon.linux{background: url(../images/icons.png) no-repeat -60px -480px;}
+
+#widget .old span{ color: #BD5532; }
+#widget .last span{ color: #73C8A9; }
+
+#benefits{
+	width: 100%;
+	margin: 40px 0 20px;
+	text-align: center;
+}
+#benefits li{
+	display: inline-block;
+	width: 180px;
+	height: 180px;
+	margin: 0 25px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+#benefits li a{
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-transform: uppercase;
+	background: #373B44;
+	-webkit-transition: background .5s ease;
+	-o-transition: background .5s ease;
+	transition: background .5s ease;
+	overflow: hidden;
+}
+#benefits li a:before{
+	display: inline-block;
+	width: 60px;
+	height: 60px;
+	margin-top: 35px;
+	content: "";
+	overflow: hidden;
+}
+#benefits li:nth-child(1) a:before{background: url(../images/icons.png) no-repeat -120px -660px;}
+#benefits li:nth-child(2) a:before{background: url(../images/icons.png) no-repeat -180px -660px;}
+#benefits li:nth-child(3) a:before{background: url(../images/icons.png) no-repeat -120px -720px;}
+
+#benefits li a span{
+	display: block;
+	color: #73C8A9;
+	-webkit-transition: color .5s ease;
+	-o-transition: color .5s ease;
+	transition: color .5s ease;
+	margin-top: 10px;
+}
+#benefits li a:hover{
+	background: #73C8A9;
+}
+#benefits li a:hover span{
+	color: #373B44;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	main end												*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	about start												*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+#about .inner{
+	max-width: 920px;
+	position: relative;
+	overflow: visible;
+}
+#about .inner p{
+	text-align: center;
+	padding: 0 100px;
+}
+#about .inner hr{
+	width: 75%;
+	height: 1px;
+	background: -webkit-linear-gradient(left, rgba(55,59,68,0), rgba(55,59,68,1), rgba(55,59,68,0)); 
+	background: -moz-linear-gradient(left, rgba(55,59,68,0), rgba(55,59,68,1), rgba(55,59,68,0)); 
+	background: -ms-linear-gradient(left, rgba(55,59,68,0), rgba(55,59,68,1), rgba(55,59,68,0)); 
+	background: -o-linear-gradient(left, rgba(55,59,68,0), rgba(55,59,68,1), rgba(55,59,68,0));
+	background: linear-gradient(left, rgba(55,59,68,0), rgba(55,59,68,1), rgba(55,59,68,0));
+	margin: 50px auto;
+	text-align: center;
+	overflow: visible;
+}
+#about .inner hr:after{
+	display: inline-block;
+	width: 60px;
+	height: 60px;
+	background: #373B44 url(../images/icons.png) no-repeat -60px -780px; 
+	border-radius: 50%;
+	content: "";
+	margin-top: -30px;
+	overflow: hidden;
+}
+#about .inner hr.pen:after{
+	background: #373B44 url(../images/icons.png) no-repeat -120px -783px; 
+}
+#about .inner .button{
+	margin: 30px auto 20px;
+}
+#about .inner .button a{
+	background: #373B44;
+}
+#about .inner .button a:hover{
+	background: #73C8A9;
+	color: #373B44;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	about end												*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	browsers start											*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+#browsers .icon{
+	display: inline-block;
+	width: 60px;
+	height: 60px;
+	overflow: hidden;
+}
+#browsers ul{
+	margin-top: 50px;
+	text-align: center;	
+}
+#browsers ul li.browser{
+	display: inline-block;
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	background: #373B44;
+	margin: 0 20px;
+	cursor: move;
+	-webkit-transition: all .5s ease;
+	-o-transition: all .5s ease;
+	transition: all .5s ease;
+	-webkit-transform: scale(1);
+	-ms-transform: scale(1);
+	-o-transform: scale(1);
+	transform: scale(1);
+	overflow: hidden;
+}
+#browsers ul li.browser.dragging{
+	-webkit-transform: scale(1.2);
+	-ms-transform: scale(1.2);
+	-o-transform: scale(1.2);
+	transform: scale(1.2);
+}
+#browsers ul li.browser .icon{
+	margin-top: 10px;
+}
+#browsers .browser.chrome .icon{background: url(../images/icons.png) no-repeat 0px -60px;}
+#browsers .browser.explorer .icon{background: url(../images/icons.png) no-repeat 0px -120px;}
+#browsers .browser.firefox .icon{background: url(../images/icons.png) no-repeat 0px -180px;}
+#browsers .browser.safari .icon{background: url(../images/icons.png) no-repeat 0px -240px;}
+#browsers .browser.opera .icon{background: url(../images/icons.png) no-repeat 0px -300px;}
+
+#browsers .browser:hover,
+#browsers .browser.active{background: #73C8A9;}
+
+#browsers .browser.chrome:hover .icon,
+#browsers .browser.chrome.active .icon{background: url(../images/icons.png) no-repeat -60px -60px;}
+#browsers .browser.explorer:hover .icon,
+#browsers .browser.explorer.active .icon{background: url(../images/icons.png) no-repeat -60px -120px;}
+#browsers .browser.firefox:hover .icon,
+#browsers .browser.firefox.active .icon{background: url(../images/icons.png) no-repeat -60px -180px;}
+#browsers .browser.safari:hover .icon,
+#browsers .browser.safari.active .icon{background: url(../images/icons.png) no-repeat -60px -240px;}
+#browsers .browser.opera:hover .icon,
+#browsers .browser.opera.active .icon{background: url(../images/icons.png) no-repeat -60px -300px;}
+
+#browsers #dropZone{
+	width: 320px;
+	height: 320px;
+	border-radius: 50%;
+	background: #373B44;
+	margin: 20px auto;
+	position: relative;
+}
+#browsers #dropZone ul{
+	height: 100%;
+}
+#browsers #dropZone ul li.browserInfo{
+	display: block;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	background: #373B44;
+	position: absolute;
+	-webkit-transform: scale(0);
+	-ms-transform: scale(0);
+	-o-transform: scale(0);
+	transform: scale(0);
+	-webkit-transition: transform .7s cubic-bezier(0.77, 0, 0.175, 1);
+	-o-transition: transform .7s cubic-bezier(0.77, 0, 0.175, 1);
+	transition: transform .7s cubic-bezier(0.77, 0, 0.175, 1);
+}
+#browsers #dropZone ul li.browserInfo.active{
+	-webkit-transform: scale(1);
+	-ms-transform: scale(1);
+	-o-transform: scale(1);
+	transform: scale(1);
+}
+#browsers #dropZone .browserInfo h2{
+	margin-top: 30px;
+	color: #73C8A9;
+	font-size: 1.5em;
+}
+#browsers #dropZone .browserInfo h3,
+#browsers #dropZone .browserInfo p{
+	color: #DEE1B6;
+}
+#browsers #dropZone .browserInfo p span{
+	color: #BD5532;
+}
+#browsers #dropZone .browserInfo p.version{
+	margin-top: 10px;
+}
+#browsers #dropZone .browserInfo.default p{
+	width: 80%;
+	margin: 110px auto 25px;
+}
+#browsers #dropZone .browserInfo.default .icon{
+	background: url(../images/icons.png) no-repeat 0 0;
+}
+#browsers #dropZone .browserInfo.default.dragEnter .icon{
+	-webkit-transition: transform .7s ease;
+	-o-transition: transform .7s ease;
+	transition: transform .7s ease;
+	-webkit-transform: rotate(360deg);
+	-ms-transform: rotate(360deg);
+	-o-transform: rotate(360deg);
+	transform: rotate(360deg);
+}
+#browsers #dropZone .browserInfo ul{
+	width: 20px;
+	height: auto;
+	position: absolute;
+	top: 50%;
+	left: 20px;
+	margin: 0;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	transform: translateY(-50%);
+	overflow: hidden;
+}
+#browsers #dropZone .browserInfo ul li{
+	width: 20px;
+	height: 20px;
+	margin: 10px 0;
+	overflow: hidden;
+}
+#browsers #dropZone .browserInfo ul li .win{background: url(../images/icons.png) no-repeat -20px -380px;}
+#browsers #dropZone .browserInfo ul li .mac{background: url(../images/icons.png) no-repeat -20px -440px;}
+#browsers #dropZone .browserInfo ul li .lin{background: url(../images/icons.png) no-repeat -20px -500px;}
+
+#browsers #dropZone .browserInfo .button{
+	margin: 32px auto 25px;
+}
+#browsers #dropZone .browserInfo .help{
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	top: 50%;
+	left: auto;
+	right: 20px;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+#browsers #dropZone .browserInfo .help .icon{
+	display: block;
+	width: 20px;
+	height: 20px;
+	background: url(../images/icons.png) no-repeat -20px -560px;
+	cursor: pointer;
+	overflow: hidden;
+}
+#browsers #dropZone .browserInfo .help .icon:hover{
+	background: url(../images/icons.png) no-repeat -80px -560px;
+}
+#browsers #dropZone .browserInfo .help .tooltip{
+	display: none;
+	width: 300px;
+	position: absolute;
+	top: 0;
+	left: 25px;
+	background: #373B44;
+	border-radius: 20px;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	transform: translateY(-50%);
+	overflow: hidden;
+}
+#browsers #dropZone .browserInfo .help .tooltip p{
+	color: #DEE1B6;
+	padding: 10px;
+}
+#browsers #dropZone .browserInfo .help .icon:hover + .tooltip{
+	display: block;
+}
+#browsers #dropZone .browserInfo p.percent{
+	font-size: 2em;
+	color: #BD5532;
+	font-weight: bold;
+}
+#browsers #dropZone .close{
+	display: block;
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background: url(../images/icons.png) no-repeat -15px -735px;
+	cursor: pointer;
+	-webkit-transition: transform .7s cubic-bezier(0.77, 0, 0.175, 1);
+	-o-transition: transform .7s cubic-bezier(0.77, 0, 0.175, 1);
+	transition: transform .7s cubic-bezier(0.77, 0, 0.175, 1);
+	-webkit-transform: scale(0);
+	-ms-transform: scale(0);
+	-o-transform: scale(0);
+	transform: scale(0);
+	overflow: hidden;
+}
+#browsers #dropZone .close:hover{
+	background: url(../images/icons.png) no-repeat -75px -735px;
+}
+#browsers #dropZone .close.active{
+	-webkit-transform: scale(1);
+	-ms-transform: scale(1);
+	-o-transform: scale(1);
+	transform: scale(1);
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	browsers end											*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	api start 												*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+#api p{
+	text-align: center;
+	max-width: 800px;
+	margin: 30px auto 0;
+}
+#api .icon{
+	display: block;
+	width: 60px;
+	height: 60px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+#api #apiType{
+	width: 800px;
+	margin: 40px auto 20px;
+	height: 200px;
+	position: relative;
+}
+#api #apiType .circle{
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	background: #373B44;
+	position: absolute;
+	pointer-events: none;
+}
+#api #apiType .circle .icon{
+	margin: 50px auto 20px;
+}
+#api #apiType .circle p{
+	font-weight: normal;
+	color: #DEE1B6;
+	margin: 0;
+	text-transform: uppercase;
+}
+#api #apiType .circle.json{
+	left: 100%;
+	margin-left: -200px;
+}
+#api #apiType .circle.widget .icon{background: url(../images/icons.png) no-repeat -60px -840px;}
+#api #apiType .circle.json .icon{background: url(../images/icons.png) no-repeat -180px -840px;}
+
+#api #apiType .circle.active p{color: #73C8A9;}
+#api #apiType .circle.active.widget .icon{background: url(../images/icons.png) no-repeat 0px -840px;}
+#api #apiType .circle.active.json .icon{background: url(../images/icons.png) no-repeat -120px -840px;}
+
+#api .apInfoOverlay{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: 9;
+	top: auto;
+	left: 0;
+	bottom: 0;
+	-webkit-transition: all .7s ease;
+	-o-transition: all .7s ease;
+	transition: all .7s ease;
+	-webkit-transform: translateY(100%);
+	-ms-transform: translateY(100%);
+	-o-transform: translateY(100%);
+	transform: translateY(100%);
+	background: rgba(0, 0, 0, .7);
+	border-left: 81px solid #DEE1B6;
+	opacity: 0;
+}
+#api .apInfoOverlay .info{
+	width: 100%;
+	height: 90%;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	-webkit-transition: all .7s ease;
+	-o-transition: all .7s ease;
+	transition: all .7s ease;
+	-webkit-transform: translateY(225%);
+	-ms-transform: translateY(225%);
+	-o-transform: translateY(225%);
+	transform: translateY(225%);
+	background: #DEE1B6;
+	opacity: 0;
+	overflow: hidden;
+}
+#api .apInfoOverlay .info .inner{
+	max-width: 800px;
+	margin: 0 auto;
+}
+#api .apInfoOverlay .info h2{
+	font-size: 1.5em;
+	margin: 20px 0 10px;
+	text-transform: uppercase;
+}
+#api .apInfoOverlay .info h2 span{
+	color: #73C8A9;
+}
+#api .apInfoOverlay .info p{
+	margin: 0 auto;
+}
+#api .apInfoOverlay .info ul{
+	width: 100%;
+	margin: 20px auto;
+	overflow: hidden;
+}
+#api .apInfoOverlay .info ul li{
+	display: block;
+	width: 100%;
+	margin-top: 20px;
+	position: relative;
+	overflow: hidden;
+}
+#api .apInfoOverlay .info ul li:before{
+	display: block;
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	top: 50%;
+	left: 2px;
+	border-radius: 50%;
+	background: #373B44;
+	font-family: 'Lato', sans-serif;
+	font-size: 0.875em;
+	color: #BD5532;
+	text-align: center;
+	line-height: 30px;
+	content: attr(data-number);
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+#api .apInfoOverlay .info ul li p{
+	text-align: left;
+	padding-left: 50px;
+}
+#api .apInfoOverlay code{
+	display: inline-block;
+	background: #373B44;
+	color: #DEE1B6;
+	padding: 5px;
+}
+#api .apInfoOverlay code.full{
+	display: block;
+	width: 100%;
+	margin: 10px 0 0 50px;
+	overflow: hidden;
+}
+#api .apInfoOverlay code.full ul,
+#api .apInfoOverlay code.full ul li{
+	display: block;
+	margin: 0;
+}
+#api .apInfoOverlay code.full ul li{
+	margin-left: 20px;
+}
+#api .apInfoOverlay code.full ul li:first-child,
+#api .apInfoOverlay code.full ul li:last-child{
+	margin: 0;
+}
+#api .apInfoOverlay code.full ul li:before{
+	display: none;
+}
+
+#api .apInfoOverlay code.full ul li span{
+	color: #DEE1B6;
+}
+#api .apInfoOverlay .info ul li code p{
+	color: #DEE1B6;
+	padding: 0;
+}
+#api .apInfoOverlay code p::selection{
+	color: #73C8A9;
+	background: #DEE1B6;
+}
+#api .apInfoOverlay code p::-moz-selection{
+	color: #73C8A9;
+	background: #DEE1B6;
+}
+#api .apInfoOverlay .info .done{
+	font-size: 1.25em;
+	font-weight: bold;
+	color: #73C8A9;
+}
+#api .apInfoOverlay.active,
+#api .apInfoOverlay.active .info{
+	-webkit-transform: translateY(0%);
+	-ms-transform: translateY(0%);
+	-o-transform: translateY(0%);
+	transform: translateY(0%);
+	opacity: 1;
+}
+#api .apInfoOverlay .close{
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	top: 5%;
+	right: 20px;
+	margin-top: -15px;
+	-webkit-transition: transform .7s ease;
+	-o-transition: transform .7s ease;
+	transition: transform .7s ease;
+	-webkit-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	transform: rotate(0deg);
+	cursor: pointer;
+	background: url(../images/icons.png) no-repeat -75px -735px;
+	overflow: hidden;
+}
+#api .apInfoOverlay .close:hover{
+	-webkit-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+
+#api #apiType .draggerZone{
+	width: 400px;
+	height: 40px;
+	position: absolute;
+	top: 80px;
+	left: 200px;
+	overflow: hidden;
+}
+#api #apiType .draggerZone:before{
+	display: block;
+	content: "";
+	width: 100%;
+	height: 2px;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	margin-top: -1px;
+	border-top: 2px dashed #373B44;
+	pointer-events: none;
+	overflow: hidden;
+}
+#api #apiType .draggerZone .dragger{
+	display: block;
+	width: 60px;
+	height: 40px;
+	position: absolute;
+	left: 170px;
+	border-radius: 20px;
+	background: #373B44;
+	cursor: move;
+	text-align: center;
+	overflow: hidden;
+}
+#api #apiType .draggerZone .dragger:after{
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	content: "";
+	margin-top: 4px;
+	background: url(../images/icons.png) no-repeat -75px -15px;
+	overflow: hidden;
+}
+#api #apiType .draggerZone .dragger:hover{
+	background: #73C8A9;
+}
+#api .help{
+	width: 100%;
+	margin-bottom: 20px;
+	overflow: hidden;
+}
+#api .help p{
+	max-width: 40%;
+	margin-bottom: 20px;
+}
+#api .help .icon{
+	border-radius: 50%;
+	background: #373B44 url(../images/icons.png) no-repeat 0px -900px;
+}
+#api .help .icon:hover{
+	background: #73C8A9 url(../images/icons.png) no-repeat -60px -900px;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	api end													*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+

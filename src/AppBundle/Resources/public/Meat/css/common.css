@@ -1,0 +1,376 @@
+@import url(settings.css);
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	Page start												*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+#page{
+	width: 100%;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	Page end												*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	line start												*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+hr, hr.line{
+	width: 100%;
+	height: 1px;
+	border: 0;
+	padding: 0;
+	margin: 0 auto;
+	background: #DEE1B6;
+	overflow: hidden;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	line end												*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	Header start											*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+#header{
+	width: 80px;
+	height: 100%;
+	background: #373B44;
+	position: fixed;
+	z-index: 10;
+}
+#header .line{
+	width: 60px;
+}
+#header .logo{
+	display: block;
+	width: 90%;
+	margin: 3.5px auto 10px;
+	overflow: hidden;
+}
+#header .icon{
+	display: block;
+	width: 40px;
+	height: 40px;
+	float: left;
+	overflow: hidden;
+}
+#header ul{
+	width: 40px;
+	height: auto;
+	margin: 0 auto;
+	text-align: center;
+}
+#header ul:not(.exceptionList){
+	border-radius: 20px;
+	height: 40px;
+	-webkit-transition: width .5s cubic-bezier(0.23, 1, 0.32, 1);
+	-o-transition: width .5s cubic-bezier(0.23, 1, 0.32, 1);
+	transition: width .5s cubic-bezier(0.23, 1, 0.32, 1);
+	background: #373B44;
+	overflow: hidden;
+}
+#header ul li{
+	display: inline-block;
+}
+#header ul:not(.exceptionList) li:first-child{
+	float: left;
+	margin: 0;
+}
+#header ul:not(.exceptionList) li a{
+	text-transform: uppercase;
+	color: #DEE1B6;
+	padding: 0 5px;
+	line-height: 40px;
+	-webkit-transition: color .5s cubic-bezier(0.23, 1, 0.32, 1);
+	-o-transition: color .5s cubic-bezier(0.23, 1, 0.32, 1);
+	transition: color .5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+#header ul:not(.exceptionList):hover{ width: 220px; }
+#header .headBottom{
+	width: 100%;
+	height: auto;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+}
+#header .wrap{
+	width: 40px;
+	height: 40px;
+	margin: 3px auto;
+}
+
+#langs ul li a:hover{ color: #73C8A9; }
+
+#menu{
+	width: 100%;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	margin-top: -20px;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+#menu ul li{
+	display: block;
+	width: 40px;
+	height: 40px;
+	margin: 10px 0;
+	border-radius: 20px;
+	background: #DEE1B6;
+	-webkit-transition: width .5s cubic-bezier(0.23, 1, 0.32, 1);
+	-o-transition: width .5s cubic-bezier(0.23, 1, 0.32, 1);
+	transition: width .5s cubic-bezier(0.23, 1, 0.32, 1);
+	overflow: hidden;
+}
+#menu ul li a{
+	display: block;
+	color: #373B44;
+	line-height: 40px;
+	text-transform: uppercase;
+	overflow: hidden;
+}
+#menu ul li a:before{
+	display: block;
+	width: 40px;
+	height: 40px;
+	float: left;
+	content: "";
+	overflow: hidden;
+}
+#menu ul li:hover{ width: 220px; }
+
+#social ul li,
+#thanks ul li{
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	overflow: hidden;
+}
+#social ul li .social-likes__button,
+#social ul li .social-likes__icon{
+	display: block;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+	overflow: hidden;
+}
+#header #thanks ul,
+#header #thanks ul li{
+	overflow: visible;
+}
+#thanks ul{
+	position: relative;
+}
+#header #thanks ul:hover{
+	width: 300px;
+}
+#thanks ul li:last-child{
+	width: 240px;
+	height: auto;
+	position: absolute;
+	top: 50%;
+	left: 60px;
+	border-radius: 0px 20px 20px 0;
+	-webkit-transform: translateY(-50%) scale(1, 0);
+	-ms-transform: translateY(-50%) scale(1, 0);
+	-o-transform: translateY(-50%) scale(1, 0);
+	transform: translateY(-50%) scale(1, 0);
+	background: #373B44;
+}
+#thanks ul li:last-child p{
+	color: #DEE1B6;
+	padding: 10px;
+	opacity: 0;
+}
+#header #thanks ul:hover li:last-child{
+	-webkit-transition: transform .3s cubic-bezier(0.23, 1, 0.32, 1) .3s;
+	-o-transition: transform .3s cubic-bezier(0.23, 1, 0.32, 1) .3s;
+	transition: transform .3s cubic-bezier(0.23, 1, 0.32, 1) .3s;
+	-webkit-transform: translateY(-50%) scale(1, 1);
+	-ms-transform: translateY(-50%) scale(1, 1);
+	-o-transform: translateY(-50%) scale(1, 1);
+	transform: translateY(-50%) scale(1, 1);
+}
+#header #thanks ul:hover li:last-child p{
+	-webkit-transition: opacity .2s cubic-bezier(0.23, 1, 0.32, 1) .7s;
+	-o-transition: opacity .2s cubic-bezier(0.23, 1, 0.32, 1) .7s;
+	transition: opacity .2s cubic-bezier(0.23, 1, 0.32, 1) .7s;
+	opacity: 1;
+}
+#cheers{
+	width: 40px;
+	height: 40px;
+	margin: 20px auto 5px;
+	overflow: hidden;
+}
+
+#langs ul li:first-child .icon{background: url(../images/icons.png) no-repeat -130px -10px;}
+#langs ul li:first-child .icon:hover{background: url(../images/icons.png) no-repeat -190px -10px;}
+
+#menu ul li:nth-child(1) a:before{background: url(../images/icons.png) no-repeat -130px -70px;}
+#menu ul li:nth-child(2) a:before{background: url(../images/icons.png) no-repeat -130px -130px;}
+#menu ul li:nth-child(3) a:before{background: url(../images/icons.png) no-repeat -130px -190px;}
+#menu ul li:nth-child(4) a:before{background: url(../images/icons.png) no-repeat -130px -250px;}
+#menu ul li:nth-child(1) a:hover:before{background: url(../images/icons.png) no-repeat -190px -70px;}
+#menu ul li:nth-child(2) a:hover:before{background: url(../images/icons.png) no-repeat -190px -130px;}
+#menu ul li:nth-child(3) a:hover:before{background: url(../images/icons.png) no-repeat -189px -190px;}
+#menu ul li:nth-child(4) a:hover:before{background: url(../images/icons.png) no-repeat -190px -250px;}
+
+#social .icon{background: url(../images/icons.png) no-repeat -130px -310px;}
+#social .icon:hover{background: url(../images/icons.png) no-repeat -190px -310px;}
+#social .social-likes__icon_facebook{background: url(../images/icons.png) no-repeat -130px -490px;}
+#social .social-likes__icon_twitter{background: url(../images/icons.png) no-repeat -130px -550px;}
+#social .social-likes__icon_vkontakte{background: url(../images/icons.png) no-repeat -130px -610px;}
+#social .social-likes__icon_facebook:hover{background: url(../images/icons.png) no-repeat -190px -490px;}
+#social .social-likes__icon_twitter:hover{background: url(../images/icons.png) no-repeat -190px -550px;}
+#social .social-likes__icon_vkontakte:hover{background: url(../images/icons.png) no-repeat -190px -610px;}
+
+#thanks .icon{background: url(../images/icons.png) no-repeat -130px -370px;}
+#thanks .icon:hover{background: url(../images/icons.png) no-repeat -190px -370px;}
+#cheers a{background: url(../images/icons.png) no-repeat -130px -430px;}
+#cheers a:hover{background: url(../images/icons.png) no-repeat -190px -430px;}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	Header end											*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	Content start											*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+#content{
+	width: auto;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+}
+#content .section{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 8;
+	float: left;
+	background: rgba(222, 225, 182, 0.75);
+	-webkit-transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+	-o-transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+	transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+	-webkit-transform: translateX(100%);
+	-ms-transform: translateX(100%);
+	-o-transform: translateX(100%);
+	transform: translateX(100%);
+	opacity: 0;
+	overflow: hidden;
+}
+#content .section.active{
+	-webkit-transform: translateX(0%);
+	-ms-transform: translateX(0%);
+	-o-transform: translateX(0%);
+	transform: translateX(0%);
+	opacity: 1;
+}
+.section .inner{
+	width: 100%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	-ms-transform: translateX(-50%) translateY(-50%);
+	-o-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+	margin-left: 40px;
+	overflow: hidden;
+}
+.section h1{font-size: 2.25em; text-transform: uppercase; font-weight: 300;}
+.section h1 span{color: #73C8A9; font-weight: 300;}
+.section h2{font-weight: 300;}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	Content end											*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	Canvas start											*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+#particles{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 1;
+	overflow: hidden;
+}
+#connection{
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	overflow: hidden;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	Canvas end											*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	button start											*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.button{
+	width: 160px;
+	height: 40px;
+	border-radius: 20px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+.button a{
+	display: block;
+	color: #DEE1B6;
+	text-transform: uppercase;
+	text-align: center;
+	line-height: 40px;
+	-webkit-transition: all .5s ease;
+	-o-transition: all .5s ease;
+	transition: all .5s ease;
+	background: #73C8A9;
+	overflow: hidden;
+}
+.button a:hover{
+	background: #DEE1B6;
+	color: #73C8A9;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	button end												*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	footer start												*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+#footer{
+	width: 100%;
+	position: fixed;
+	left: 40px;
+	bottom: 5px;
+	z-index: 10;
+	text-align: center;
+	overflow: hidden;
+}
+#footer small{
+	font-family: 'Lato', sans-serif;
+	font-weight: normal;
+	font-size: 0.75em;
+	color: #373B44;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	footer end												*/
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.mt10{
+	margin-top: 10px;
+}
+.mt20{
+	margin-top: 20px;
+}
+.mb10{
+	margin-bottom: 10px;
+}
+.mb20{
+	margin-bottom: 20px;
+}
+
+
+
