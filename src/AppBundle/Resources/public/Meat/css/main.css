@@ -36,12 +36,12 @@
 	margin: 5px 10px 0px 6px;
 }
 #widget ul li .icon.chrome{background: url(../images/icons.png) no-repeat -60px -60px;}
-#widget ul li .icon.explorer{background: url(../images/icons.png) no-repeat -60px -120px;}
+#widget ul li .icon.internet_explorer{background: url(../images/icons.png) no-repeat -60px -120px;}
 #widget ul li .icon.firefox{background: url(../images/icons.png) no-repeat -60px -180px;}
 #widget ul li .icon.safari{background: url(../images/icons.png) no-repeat -60px -240px;}
 #widget ul li .icon.opera{background: url(../images/icons.png) no-repeat -60px -300px;}
 
-#widget ul li .icon.win{background: url(../images/icons.png) no-repeat -60px -360px;}
+#widget ul li .icon.windows{background: url(../images/icons.png) no-repeat -60px -360px;}
 #widget ul li .icon.mac{background: url(../images/icons.png) no-repeat -60px -420px;}
 #widget ul li .icon.linux{background: url(../images/icons.png) no-repeat -60px -480px;}
 
@@ -181,7 +181,6 @@
 	-ms-transform: scale(1);
 	-o-transform: scale(1);
 	transform: scale(1);
-	overflow: hidden;
 }
 #browsers ul li.browser.dragging{
 	-webkit-transform: scale(1.2);
@@ -193,7 +192,7 @@
 	margin-top: 10px;
 }
 #browsers .browser.chrome .icon{background: url(../images/icons.png) no-repeat 0px -60px;}
-#browsers .browser.explorer .icon{background: url(../images/icons.png) no-repeat 0px -120px;}
+#browsers .browser.internet_explorer .icon{background: url(../images/icons.png) no-repeat 0px -120px;}
 #browsers .browser.firefox .icon{background: url(../images/icons.png) no-repeat 0px -180px;}
 #browsers .browser.safari .icon{background: url(../images/icons.png) no-repeat 0px -240px;}
 #browsers .browser.opera .icon{background: url(../images/icons.png) no-repeat 0px -300px;}
@@ -203,8 +202,8 @@
 
 #browsers .browser.chrome:hover .icon,
 #browsers .browser.chrome.active .icon{background: url(../images/icons.png) no-repeat -60px -60px;}
-#browsers .browser.explorer:hover .icon,
-#browsers .browser.explorer.active .icon{background: url(../images/icons.png) no-repeat -60px -120px;}
+#browsers .browser.internet_explorer:hover .icon,
+#browsers .browser.internet_explorer.active .icon{background: url(../images/icons.png) no-repeat -60px -120px;}
 #browsers .browser.firefox:hover .icon,
 #browsers .browser.firefox.active .icon{background: url(../images/icons.png) no-repeat -60px -180px;}
 #browsers .browser.safari:hover .icon,
@@ -212,7 +211,7 @@
 #browsers .browser.opera:hover .icon,
 #browsers .browser.opera.active .icon{background: url(../images/icons.png) no-repeat -60px -300px;}
 
-#browsers #dropZone{
+#dropZone{
 	width: 320px;
 	height: 320px;
 	border-radius: 50%;
@@ -220,53 +219,57 @@
 	margin: 20px auto;
 	position: relative;
 }
-#browsers #dropZone ul{
+#dropZone ul{
 	height: 100%;
 }
-#browsers #dropZone ul li.browserInfo{
+#dropZone ul li.browserInfo{
 	display: block;
 	width: 100%;
 	height: 100%;
 	border-radius: 50%;
 	background: #373B44;
 	position: absolute;
+	-webkit-transition: all .7s cubic-bezier(0.77, 0, 0.175, 1);
+	-moz-transition: all .7s cubic-bezier(0.77, 0, 0.175, 1);
+	-ms-transition: all .7s cubic-bezier(0.77, 0, 0.175, 1);
+	-o-transition: all .7s cubic-bezier(0.77, 0, 0.175, 1);
+	transition: all .7s cubic-bezier(0.77, 0, 0.175, 1);
 	-webkit-transform: scale(0);
+	-moz-transform: scale(0);
 	-ms-transform: scale(0);
 	-o-transform: scale(0);
 	transform: scale(0);
-	-webkit-transition: transform .7s cubic-bezier(0.77, 0, 0.175, 1);
-	-o-transition: transform .7s cubic-bezier(0.77, 0, 0.175, 1);
-	transition: transform .7s cubic-bezier(0.77, 0, 0.175, 1);
 }
-#browsers #dropZone ul li.browserInfo.active{
+#dropZone ul li.browserInfo.active{
 	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
 	-ms-transform: scale(1);
 	-o-transform: scale(1);
 	transform: scale(1);
 }
-#browsers #dropZone .browserInfo h2{
+#dropZone .browserInfo h2{
 	margin-top: 30px;
 	color: #73C8A9;
 	font-size: 1.5em;
 }
-#browsers #dropZone .browserInfo h3,
-#browsers #dropZone .browserInfo p{
+#dropZone .browserInfo h3,
+#dropZone .browserInfo p{
 	color: #DEE1B6;
 }
-#browsers #dropZone .browserInfo p span{
+#dropZone .browserInfo p span{
 	color: #BD5532;
 }
-#browsers #dropZone .browserInfo p.version{
+#dropZone .browserInfo p.version{
 	margin-top: 10px;
 }
-#browsers #dropZone .browserInfo.default p{
+#dropZone .browserInfo.default p{
 	width: 80%;
 	margin: 110px auto 25px;
 }
-#browsers #dropZone .browserInfo.default .icon{
+#dropZone .browserInfo.default .icon{
 	background: url(../images/icons.png) no-repeat 0 0;
 }
-#browsers #dropZone .browserInfo.default.dragEnter .icon{
+#dropZone .browserInfo.default.dragEnter .icon{
 	-webkit-transition: transform .7s ease;
 	-o-transition: transform .7s ease;
 	transition: transform .7s ease;
@@ -275,7 +278,7 @@
 	-o-transform: rotate(360deg);
 	transform: rotate(360deg);
 }
-#browsers #dropZone .browserInfo ul{
+#dropZone .browserInfo ul{
 	width: 20px;
 	height: auto;
 	position: absolute;
@@ -288,20 +291,20 @@
 	transform: translateY(-50%);
 	overflow: hidden;
 }
-#browsers #dropZone .browserInfo ul li{
+#dropZone .browserInfo ul li{
 	width: 20px;
 	height: 20px;
 	margin: 10px 0;
 	overflow: hidden;
 }
-#browsers #dropZone .browserInfo ul li .win{background: url(../images/icons.png) no-repeat -20px -380px;}
-#browsers #dropZone .browserInfo ul li .mac{background: url(../images/icons.png) no-repeat -20px -440px;}
-#browsers #dropZone .browserInfo ul li .lin{background: url(../images/icons.png) no-repeat -20px -500px;}
+#dropZone .browserInfo ul li .windows{background: url(../images/icons.png) no-repeat -20px -380px;}
+#dropZone .browserInfo ul li .mac{background: url(../images/icons.png) no-repeat -20px -440px;}
+#dropZone .browserInfo ul li .linux{background: url(../images/icons.png) no-repeat -20px -500px;}
 
-#browsers #dropZone .browserInfo .button{
+#dropZone .browserInfo .button{
 	margin: 32px auto 25px;
 }
-#browsers #dropZone .browserInfo .help{
+#dropZone .browserInfo .help{
 	width: 20px;
 	height: 20px;
 	position: absolute;
@@ -313,7 +316,7 @@
 	-o-transform: translateY(-50%);
 	transform: translateY(-50%);
 }
-#browsers #dropZone .browserInfo .help .icon{
+#dropZone .browserInfo .help .icon{
 	display: block;
 	width: 20px;
 	height: 20px;
@@ -321,10 +324,10 @@
 	cursor: pointer;
 	overflow: hidden;
 }
-#browsers #dropZone .browserInfo .help .icon:hover{
+#dropZone .browserInfo .help .icon:hover{
 	background: url(../images/icons.png) no-repeat -80px -560px;
 }
-#browsers #dropZone .browserInfo .help .tooltip{
+#dropZone .browserInfo .help .tooltip{
 	display: none;
 	width: 300px;
 	position: absolute;
@@ -338,40 +341,39 @@
 	transform: translateY(-50%);
 	overflow: hidden;
 }
-#browsers #dropZone .browserInfo .help .tooltip p{
+#dropZone .browserInfo .help .tooltip p{
 	color: #DEE1B6;
 	padding: 10px;
 }
-#browsers #dropZone .browserInfo .help .icon:hover + .tooltip{
+#dropZone .browserInfo .help .icon:hover + .tooltip{
 	display: block;
 }
-#browsers #dropZone .browserInfo p.percent{
+#dropZone .browserInfo p.percent{
 	font-size: 2em;
 	color: #BD5532;
 	font-weight: bold;
 }
-#browsers #dropZone .close{
-	display: block;
-	width: 30px;
-	height: 30px;
+#dropZone .close{
+	width: 40px;
+	height: 40px;
 	position: absolute;
 	top: 10px;
 	right: 10px;
-	background: url(../images/icons.png) no-repeat -15px -735px;
+	background: url(../images/icons.png) no-repeat -10px -730px;
 	cursor: pointer;
-	-webkit-transition: transform .7s cubic-bezier(0.77, 0, 0.175, 1);
-	-o-transition: transform .7s cubic-bezier(0.77, 0, 0.175, 1);
-	transition: transform .7s cubic-bezier(0.77, 0, 0.175, 1);
+	-webkit-transition: transform .5s cubic-bezier(0.77, 0, 0.175, 1);
+	-o-transition: transform .5s cubic-bezier(0.77, 0, 0.175, 1);
+	transition: transform .5s cubic-bezier(0.77, 0, 0.175, 1);
 	-webkit-transform: scale(0);
 	-ms-transform: scale(0);
 	-o-transform: scale(0);
 	transform: scale(0);
 	overflow: hidden;
 }
-#browsers #dropZone .close:hover{
-	background: url(../images/icons.png) no-repeat -75px -735px;
+#dropZone .close:hover{
+	background: url(../images/icons.png) no-repeat -70px -730px;
 }
-#browsers #dropZone .close.active{
+#dropZone .close.active{
 	-webkit-transform: scale(1);
 	-ms-transform: scale(1);
 	-o-transform: scale(1);
@@ -547,10 +549,12 @@
 
 #api .apInfoOverlay code.full ul li span{
 	color: #DEE1B6;
+	font-size: 1em;
 }
 #api .apInfoOverlay .info ul li code p{
 	color: #DEE1B6;
 	padding: 0;
+	font-size: 1em;
 }
 #api .apInfoOverlay code p::selection{
 	color: #73C8A9;
@@ -629,7 +633,6 @@
 	background: #373B44;
 	cursor: move;
 	text-align: center;
-	overflow: hidden;
 }
 #api #apiType .draggerZone .dragger:after{
 	display: inline-block;

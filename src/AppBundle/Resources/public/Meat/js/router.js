@@ -3,10 +3,9 @@ define([
 	"stratum",
 	"library/connection",
 	"social",
-	"switcher",
 	"views/browser",
 	"views/api"
-], function($, Stratum, connection, social, switcher, Browser, Api){
+], function($, Stratum, connection, social, Browser, Api){
 
 	return Stratum.Router.extend({
 		routes: {
@@ -51,7 +50,6 @@ define([
 				particlesCount: 120,
 				minDistance: 75
 			});
-			switcher.initialize(window.location.hash);
 		}
 	});
 });

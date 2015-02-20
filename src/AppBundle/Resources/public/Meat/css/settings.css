@@ -65,6 +65,9 @@ figure > img, img{
 .sSize{
 	font-size: 1em;
 }
+.mSize{
+	font-size: 1.2em;
+}
 .bs{
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;

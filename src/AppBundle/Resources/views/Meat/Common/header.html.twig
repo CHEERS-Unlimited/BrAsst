@@ -1,53 +1,52 @@
 {# src/AppBundle/Resources/views/Meat/Common/header.html.twig #}
-<header id="header">
-    <a href="#!main" class="logo" title="Br.Asst."><img src="{{ asset('bundles/app/Meat/images/logo.jpg') }}" alt="Br.Asst. logo"></a>
-    <div id="langs">
-        <hr class="line">
-        <div class="wrap bs">
-            <ul>
-                <li><span class="icon"></span></li>
-                <li><a href="{{ path('index', { '_locale': 'ua' }) }}" title="{{ 'locale.ua'|trans }}">ua</a></li>
-                <li><a href="{{ path('index', { '_locale': 'en' }) }}" title="{{ 'locale.en'|trans }}">en</a></li>
-                <li><a href="{{ path('index', { '_locale': 'ru' }) }}" title="{{ 'locale.ru'|trans }}">ru</a></li>
+<a href="#!main" class="logo" title="Br.Asst."><img src="{{ asset('bundles/app/Meat/images/logo.jpg') }}" alt="Br.Asst. logo"></a>
+<div id="langs">
+    <hr class="line">
+    <div class="wrap bs">
+        <ul>
+            <li><span class="icon" title="{{ 'locale.title'|trans }}"></span></li>
+            <li><a href="{{ path('index', { '_locale': 'ua' }) }}" title="{{ 'locale.ua'|trans }}">ua</a></li>
+            <li><a href="{{ path('index', { '_locale': 'en' }) }}" title="{{ 'locale.en'|trans }}">en</a></li>
+            <li><a href="{{ path('index', { '_locale': 'ru' }) }}" title="{{ 'locale.ru'|trans }}">ru</a></li>
+        </ul>
+    </div>
+    <hr class="line">
+</div>
+<nav id="menu">
+    <hr class="line">
+    <ul class="exceptionList">
+        <li><a href="#!main">{{ 'state.home'|trans }}</a></li>
+        <li><a href="#!about">{{ 'state.aboutBrasst'|trans }}</a></li>
+        <li><a href="#!browsers">{{ 'state.browsers'|trans }}</a></li>
+        <li><a href="#!api">{{ 'state.brasstApi'|trans }}</a></li>
+    </ul>
+    <hr class="line">
+</nav>
+<div class="headBottom">
+    <hr class="line">
+    <div id="social">
+        <div class="wrap">
+            <ul class="social-likes">
+                <li><span class="icon" title="{{ 'social.title'|trans }}"></span></li>
+                <li class="facebook" title="Facebook"><a href="#" class="icon"></a></li>
+                <li class="vkontakte" title="VKontakte"><a href="#" class="icon"></a></li>
+                <li class="twitter" title="Twitter"><a href="#" class="icon"></a></li>
+                <li class="plusone" title="Google+"><a href="#" class="icon"></a></li>
             </ul>
         </div>
-        <hr class="line">
     </div>
-    <nav id="menu">
-        <hr class="line">
-        <ul class="exceptionList">
-            <li><a href="#!main">{{ 'state.home'|trans }}</a></li>
-            <li><a href="#!about">{{ 'state.aboutBrasst'|trans }}</a></li>
-            <li><a href="#!browsers">{{ 'state.browsers'|trans }}</a></li>
-            <li><a href="#!api">{{ 'state.brasstApi'|trans }}</a></li>
-        </ul>
-        <hr class="line">
-    </nav>
-    <div class="headBottom">
-        <hr class="line">
-        <div id="social">
-            <div class="wrap">
-                <ul class="social-likes">
-                    <li><span class="icon"></span></li>
-                    <li class="facebook" title="Facebook"><a href="#" class="icon"></a></li>
-                    <li class="vkontakte" title="VKontakte"><a href="#" class="icon"></a></li>
-                    <li class="twitter" title="Twitter"><a href="#" class="icon"></a></li>
-                </ul>
-            </div>
-        </div>
-        <div id="thanks">
-            <div class="wrap">
-                <ul>
-                    <li><span class="icon"></span></li>
-                    <li class="bs">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut quas numquam dolor maiores. Voluptates fuga doloribus dolorem ut earum quis, consequatur aperiam ad fugit ab nam neque maxime quaerat, aut.</p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <hr class="line">
-        <div id="cheers">
-            <a href="http://cheersunlimited.com.ua/{{ app.request.locale }}" class="icon" title="CHEERS! Unlimited Web Agency"></a>
+    <div id="thanks">
+        <div class="wrap">
+            <ul>
+                <li><span class="icon" title="{{ 'thanksgiving.title'|trans }}"></span></li>
+                <li class="bs">
+                    <p>{{ 'thanksgiving.text'|trans|raw }}</p>
+                </li>
+            </ul>
         </div>
     </div>
-</header>
+    <hr class="line">
+    <div id="cheers">
+        <a href="http://cheersunlimited.com.ua/{{ app.request.locale }}" class="icon" title="CHEERS! Unlimited Web Agency"></a>
+    </div>
+</div>

@@ -1,126 +1,43 @@
 {# src/AppBundle/Resources/views/Meat/State/browsers.html.twig #}
 <div id="browsers" class="section">
     <section class="inner">
-        <h1>Обнови свой браузер</h1>
+        <h1>{{ 'browser.title'|trans }}</h1>
         <ul>
-            <li class="browser chrome bs" draggable="true">
-                <span class="icon"></span>
-            </li>
-            <li class="browser explorer bs" draggable="true">
-                <span class="icon"></span>
-            </li>
-            <li class="browser firefox bs" draggable="true">
-                <span class="icon"></span>
-            </li>
-            <li class="browser safari bs" draggable="true">
-                <span class="icon"></span>
-            </li>
-            <li class="browser opera bs" draggable="true">
-                <span class="icon"></span>
-            </li>
+            {% for browser in browsers %}
+                <li class="browser {{ browser.name }} bs" draggable="true">
+                    <span class="icon"></span>
+                </li>
+            {% endfor %}
         </ul>
         <div id="dropZone">
             <ul>
-                <li class="browserInfo chrome">
-                    <h2>Chrome</h2>
-                    <h3>Google</h3>
-                    <p class="version">версия: <span class="sSize">39.0.2171.95</span></p>
-                    <div class="center">
-                        <ul>
-                            <li><span class="icon win"></span></li>
-                            <li><span class="icon mac"></span></li>
-                            <li><span class="icon lin"></span></li>
-                        </ul>
-                        <div class="button"><a href="#">скачать</a></div>
-                        <div class="help">
-                            <span class="icon"></span>
-                            <div class="tooltip">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe possimus accusamus tempora soluta obcaecati sint, odit dolore natus cupiditate voluptas maxime et doloremque corporis placeat dignissimos quae, beatae, ut blanditiis!</p>
+                {% for browser in browsers %}
+                    {% set browserVersion = browser.browserVersion[0] %}
+                    <li class="browserInfo {{ browser.name }}">
+                        <h2>{{ browser.getUnpackedVendor }}</h2>
+                        <h3>{{ browser.getUnpackedName }}</h3>
+                        <p class="version">{{ 'browser.stable_release'|trans }}: <span class="sSize">{{ browserVersion.version }}</span></p>
+                        <div class="center">
+                            <ul>
+                                {% for os in browser.getSupportedSystems %}
+                                    <li><span class="icon {{ os|lower }}"></span></li>
+                                {% endfor %}
+                            </ul>
+                            <div class="button"><a href="{{ browser.link }}" target="_blank">{{ 'browser.button_download'|trans }}</a></div>
+                            <div class="help">
+                                <span class="icon"></span>
+                                <div class="tooltip">
+                                    <p>{{ 'tooltip.uninstall_browser'|trans }}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <p>предпочитают</p>
-                    <p class="percent">42%</p>
-                    <p>пользователей</p>
-                </li>
-                <li class="browserInfo explorer">
-                    <h2>Internet Explorer</h2>
-                    <h3>Microsoft</h3>
-                    <p class="version">версия: <span class="sSize">11.0.12</span></p>
-                    <ul>
-                        <li><span class="icon win"></span></li>
-                    </ul>
-                    <div class="button"><a href="#">скачать</a></div>
-                    <div class="help">
-                        <span class="icon"></span>
-                        <div class="tooltip">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe possimus accusamus tempora soluta obcaecati sint, odit dolore natus cupiditate voluptas maxime et doloremque corporis placeat dignissimos quae, beatae, ut blanditiis!</p>
-                        </div>
-                    </div>
-                    <p>предпочитают</p>
-                    <p class="percent">17%</p>
-                    <p>пользователей</p>
-                </li>
-                <li class="browserInfo firefox">
-                    <h2>Firefox</h2>
-                    <h3>Mozilla Foundation</h3>
-                    <p class="version">версия: <span class="sSize">34.0.5</span></p>
-                    <ul>
-                        <li><span class="icon win"></span></li>
-                        <li><span class="icon mac"></span></li>
-                        <li><span class="icon lin"></span></li>
-                    </ul>
-                    <div class="button"><a href="#">скачать</a></div>
-                    <div class="help">
-                        <span class="icon"></span>
-                        <div class="tooltip">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe possimus accusamus tempora soluta obcaecati sint, odit dolore natus cupiditate voluptas maxime et doloremque corporis placeat dignissimos quae, beatae, ut blanditiis!</p>
-                        </div>
-                    </div>
-                    <p>предпочитают</p>
-                    <p class="percent">15%</p>
-                    <p>пользователей</p>
-                </li>
-                <li class="browserInfo safari">
-                    <h2>Safari</h2>
-                    <h3>Apple inc.</h3>
-                    <p class="version">версия: <span class="sSize">8.0</span></p>
-                    <ul>
-                        <li><span class="icon mac"></span></li>
-                    </ul>
-                    <div class="button"><a href="#">скачать</a></div>
-                    <div class="help">
-                        <span class="icon"></span>
-                        <div class="tooltip">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe possimus accusamus tempora soluta obcaecati sint, odit dolore natus cupiditate voluptas maxime et doloremque corporis placeat dignissimos quae, beatae, ut blanditiis!</p>
-                        </div>
-                    </div>
-                    <p>предпочитают</p>
-                    <p class="percent">14%</p>
-                    <p>пользователей</p>
-                </li>
-                <li class="browserInfo opera">
-                    <h2>Opera</h2>
-                    <h3>Opera Software</h3>
-                    <p class="version">версия: <span class="sSize">26.0.1656.60</span></p>
-                    <ul>
-                        <li><span class="icon win"></span></li>
-                        <li><span class="icon mac"></span></li>
-                        <li><span class="icon lin"></span></li>
-                    </ul>
-                    <div class="button"><a href="#">скачать</a></div>
-                    <div class="help">
-                        <span class="icon"></span>
-                        <div class="tooltip">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe possimus accusamus tempora soluta obcaecati sint, odit dolore natus cupiditate voluptas maxime et doloremque corporis placeat dignissimos quae, beatae, ut blanditiis!</p>
-                        </div>
-                    </div>
-                    <p>предпочитают</p>
-                    <p class="percent">3%</p>
-                    <p>пользователей</p>
-                </li>
+                        <p>{{ 'browser.market_share.preffered'|trans }}</p>
+                        <p class="percent">{{ browser.marketShare + 0 }}%</p>
+                        <p>{{ 'browser.market_share.users'|trans }}</p>
+                    </li>
+                {% endfor %}
                 <li class="browserInfo default active">
-                    <p>Кликните по желаемому браузеру, либо перетащите его сюда</p>
+                    <p>{{ 'browser.tooltip'|trans }}</p>
                     <span class="icon"></span>
                 </li>
             </ul>

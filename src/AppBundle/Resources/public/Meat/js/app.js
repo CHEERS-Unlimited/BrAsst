@@ -2,10 +2,12 @@ define([
 	"modernizr",
 	"jquery",
 	"stratum",
-	"router"
+	"router",
+	"switcher"
 ], function(Modernizr, $, stratum, Router){
 
 	$(function(){
 		new Router({pushState: false});
+		switcher.initialize(window.location.hash);
 	});
 });

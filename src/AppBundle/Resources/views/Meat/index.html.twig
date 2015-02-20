@@ -1,13 +1,27 @@
 {# src/AppBundle/Resources/views/Meat/layout.html.twig #}
 {% extends '::base.html.twig' %}
 
+{% block meta %}
+    <title>Br.Asst.</title>
+    {{ parent() }}
+    <meta name="Description" content="Описание необходимых мета-тегов.">
+    <meta property="og:title" content="welcome to Br.Asst.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://localhost/brasst/">
+    <meta property="og:description" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.">
+    <meta property="og:locale" content="en_GB">
+{% endblock %}
+
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('bundles/app/Meat/css/main.css') }}">
 {% endblock %}
 
 {% block body %}
     <div id="page">
-        {% include 'AppBundle:Meat\\Common:header.html.twig' %}
+        <header id="header">
+            {% include 'AppBundle:Meat\\Common:header.html.twig' %}
+        </header>
 
         {% block states %}
             <div id="content">
@@ -15,15 +29,17 @@
                     <canvas id="connection"></canvas>
                 </div>
 
-                {% render controller('AppBundle:Meat\\State:home') %}
+                {% render controller('AppBundle:Meat\\State:home', { 'browsers': browsers }) %}
                 {% render controller('AppBundle:Meat\\State:aboutBrasst') %}
-                {% render controller('AppBundle:Meat\\State:browsers') %}
+                {% render controller('AppBundle:Meat\\State:browsers', { 'browsers': browsers }) %}
                 {% render controller('AppBundle:Meat\\State:brasstApi') %}
 
             </div>
         {% endblock %}
 
-        {% include 'AppBundle:Meat\\Common:footer.html.twig' %}
+        <footer id="footer">
+            {% include 'AppBundle:Meat\\Common:footer.html.twig' %}
+        </footer>
     </div>
 {% endblock %}
 

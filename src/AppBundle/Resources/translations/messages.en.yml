@@ -2,6 +2,7 @@
 developers: CHEERS! Unlimited Web Agency
 
 locale:
+  title: Language versions
   ua: Ukrainian
   en: English
   ru: Russian
@@ -12,60 +13,59 @@ state:
   browsers: Browsers
   brasstApi: Br.Asst. API
 
+social:
+  title: Share
+
+thanksgiving:
+  title: Thanksgiving
+  text: >
+    We express our gratitude to the amazing
+    <a href="http://piwik.org" class="sSize" target="_blank">Piwik Team</a> and their
+    <a href="https://github.com/piwik/device-detector" class="sSize" target="_blank">Device Detector</a> product,
+    participants of <a href="https://github.com/guzzle/guzzle" class="sSize" target="_blank">Guzzle</a> -
+    PHP HTTP client <a href="http://guzzle.readthedocs.org" class="sSize" target="_blank">project</a>,
+    and to the community of <a href="https://www.wikipedia.org" class="sSize" target="_blank">Wikipedia</a> - free
+    encyclopedia, for their selfless service.
+
 copyright: >
-  © CHEERS! Unlimited, 2015. All rights reserved. Usage of the website personal materials without authors' permission is prohibited.
+  © <a href='http://cheersunlimited.com.ua' target="_blank">CHEERS! Unlimited</a>, 2015. All rights reserved.
+  Usage of the website personal materials without authors' permission is prohibited.
+
+adjective:
+  from: from
+  for: for
 
 message:
-  standard: >
-    You are using %browser% browser for %osFamily% operating system.
-    Your browser version is %clientVersionShort% (%clientVersion%)
-  standard_extended: >
-    You are using %browser% from %vendor% for %osFamily% operating system.
-    Your browser version is %clientVersionShort% (%clientVersion%)
   outdated:
     title:
       Oh noes!
     text: >
-      This version is obsolete, which means it's time to update it to the latest %stableVersionShort% (%stableVersion%)!
-      Version that you currently have can dramatically spoil your experience from modern websites
+      You are using an obsolete browser version, which can dramatically spoil your experience from modern websites
   uptodate:
     title:
       Great!
     text: >
-      It is the latest browser version available
+      You are using the latest browser version available
   explorer: >
     Oh... Internet Explorer, though for some reasons really is a popular browser, often cannot deliver to the users
     everything that website developers want them to see. As a rule of thumb, in some cases we recommend installing
     another browser, which could perform better to make your web surfing more comfortable and satisfying.
+  your_version: Your version
+  latest_version: Latest version
 
 tooltip:
-  wrong_browser: >
-    It could be that Br.Asst. is wrong, and you are actually using another browser, or it has another version.
-    We would be very grateful if you'll provide feedback in this case.
   uninstall_browser: >
     We strongly recommend that you remove the old version before installing the new one, but don't forget to save your
     browsing data first (most of the modern browsers do offer such option)
 
 content_slogan:
-  headline: Only fresh browsers with Br.Asst.
+  headline: Only fresh browsers with <span class="sSize">Br.Asst.</span>
   subheadline: >
     A tool to check and update your web browser
 
-browser:
-  market_share:
-    Preferred by %marketShare%% of Internet users
-  stable_release:
-    Current version
-  button_download:
-    Download
-  button_official_page:
-    from an official website
-  os:
-    Operating systems
-
 content_idea:
   title: >
-    Why do you need Br.Asst.?
+    Why do you need <span class="sSize">Br.Asst.</span>?
   text: >
     Despite the fact that browser nowadays learned to update themselves without bothering users, older version of
     such software still in use by many people. As a result, for old browser versions owners websites and systems
@@ -75,32 +75,53 @@ content_idea:
     We, the CHEERS! Unlimited web-agency, developed Br.Asst. to take care of our customers and users. Br.Asst. will
     help you to find out whether your browser is outdated and show you where you can get latest version of today's
     most popular ones.
+  download_browser: Download browser
+
+browser:
+  title: Choose your browser
+  tooltip: >
+    Click on desired browser, all just drag it here
+  market_share:
+    preffered: preferred by
+    users: of Internet users
+  stable_release:
+    Current version
+  button_download:
+    Download
+  button_official_page:
+    from an official website
+  button_new_version:
+    the latest version
 
 content_api:
-  title: You can use Br.Asst. for your websites!
+  title: You can use <span class="sSize">Br.Asst.</span> for your own websites!
   text: >
     We provide free and simple API for developers and webmasters. If you wish your users to be always aware of their
-    browser version and could easily update it to see your project the way they should - join up!
+    browser version and could easily update it to see your project the way they should be - join up!
   guide:
     title: You can get data type you need
     html:
-      title: Out of the box HTML-widget
+      title: Out of the box <span class="sSize">HTML5</span> widget
+      title_short: HTML widget
       text: >
         With provided %jsLink% and simplest integration you will get neutrally styled widget, ready to be embedded
         on any of your website page. If the users browser version is outdated, the widget will show itself to propose
         an update. Don't be afraid to seem intrusive: if user declines once, he will see the widget no longer
       step:
         1: >
-          Insert reserved block for output right after opening <body> tag on page that should display the widget
+          Insert reserved block for output right after opening <code class="sSize">&lt;body&gt;</code> tag
+          on page that should display the widget
         2: >
-          Plug in the script file and initialize it before closing <body> tag on the same page
+          Plug in the script file and initialize it before closing <code class="sSize">&lt;/body&gt;</code> tag
+          on the same page
         3: >
           Specify the last parameter in script initialization link as widget display language, among those which
           are supported by Br.Asst., for example
         final: >
           Done!
     json:
-      title: Required data in JSON format
+      title: Required data in <span class="sSize">JSON</span> format
+      title_short: Data in JSON
       text: >
         You can get only the necessary data to use it as you see fit. Object will contain information gathered from
         client's User-Agent, as well as the client browser version and boolean value that shows whether it's outdated
@@ -109,25 +130,27 @@ content_api:
       step:
         1: >
           In order to get the response from Br.Asst. in JSON format you'll have to make a CORS GET request at
-          https://brasst.com/api/{locale} with additional GET parameter 'type=json'. The link's last parameter {locale}
-          specifies your preferred language for errors and warnings output which is supported by Br.Asst., for example:
+          <code class="sSize">https://brasst.com/api/{locale}</code> with additional GET parameter
+          <code class="sSize">'type=json'</code>. The link's last parameter {locale} specifies your preferred language
+          for errors and warnings output which is supported by Br.Asst., for example:
         2: >
           Received object will look similar to this:
     additional: >
       If you're experiencing difficulties with HTML-widget embedding or cross-origin request for JSON,
       please, refer to the detailed parameters description and examples on our GitHub repository
-  github: Examples on GitHub
 
 user_error_is_bot: >
   Unfortunately it was not possible to detect your browser, because it looks like you're a robot
 user_error_is_mobile: >
-  Unfortunately it was not possible to detect your browser, because we're not yet supporting mobile devices
+  Unfortunately it was not possible to detect your browser, because Br.Asst. is not yet supporting mobile devices
 user_error_not_browser: >
   Unfortunately it was not possible to detect your browser, because it looks like your client is not a web browser
 
+nevermind_the_user_error: despite that, we hope that you can still find here something interesting
+
 user_warning_unsupported_browser: >
-  Unfortunately we're supporting only major browsers for now, and we can't tell anything about latest version of yours,
-  or offer an update
+  Unfortunately Br.Asst. is supporting only major browsers for now,
+  and it can't tell anything about latest version of yours, or offer an update
 user_warning_unsupported_os: >
-  The browser you're using is not officially supported by your operating system. Why do you need a program which is
-  abandoned by it's own developers? It's time to download and install another browser!
+  The browser you're using is not officially supported by your operating system.
+  Why do you need a program which is abandoned by it's own developers? It's time to download and install another browser!

@@ -1,24 +1,19 @@
 {# src/AppBundle/Resources/views/Meat/State/home.html.twig #}
 <div id="main" class="section active">
     <section class="inner">
-        <h1>ТОЛЬКО СВЕЖИЕ БРАУЗЕРЫ С <span class="sSize">BR.ASST.</span></h1>
-        <h2>инструмент проверки и обновления вашего браузера</h2>
-        <section id="widget">
-            <span class="icon updated"></span>
-            <h2>Вы используете последнюю версию браузера</h2>
-            <h3>Google Chrome</h3>
-            <ul>
-                <li><span class="icon chrome"></span></li>
-                <li><p>для</p></li>
-                <li><span class="icon mac"></span></li>
-            </ul>
-            <p class="last">версия: <span class="sSize">40.0.2214.94</span></p>
-        </section>
+        <h1>{{ 'content_slogan.headline'|trans|raw }}</h1>
+        <h2>{{ 'content_slogan.subheadline'|trans }}</h2>
+
+        {% include 'AppBundle:Meat\\Common:widget.html.twig' with {
+            'userError': userError,
+            'browserDetected': browserDetected
+        } only %}
+
         <div id="benefits">
             <ul>
-                <li><a href="#!about"><span class="sSize">о Br.Asst.</span></a></li>
-                <li><a href="#!browsers"><span class="sSize">Браузеры</span></a></li>
-                <li><a href="#!api"><span class="sSize">Api</span></a></li>
+                <li><a href="#!about"><span class="sSize">{{ 'state.aboutBrasst'|trans }}</span></a></li>
+                <li><a href="#!browsers"><span class="sSize">{{ 'state.browsers'|trans }}</span></a></li>
+                <li><a href="#!api"><span class="sSize">{{ 'state.brasstApi'|trans }}</span></a></li>
             </ul>
         </div>
     </section>

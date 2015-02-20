@@ -1,0 +1,62 @@
+{# src/AppBundle/Resources/views/Meat/Common/widget.html.twig #}
+<section id="widget">
+    {% if browserDetected %}
+        {% set clientVersionShort = browserDetected.clientVersion|split('.')[0] %}
+        {% set stableVersionShort = browserDetected.stableVersion|split('.')[0] %}
+
+        {% if browserDetected.userWarning %}
+            <span class="icon detected"></span>
+            <h2>{{ browserDetected.userWarning|trans }}</h2>
+        {% elseif browserDetected.isOutdated %}
+            <span class="icon outdated"></span>
+            <h2>{{ 'message.outdated.title'|trans }} {{ 'message.outdated.text'|trans }}</h2>
+        {% else %}
+            <span class="icon updated"></span>
+            <h2>{{ 'message.uptodate.title'|trans }} {{ 'message.uptodate.text'|trans }}</h2>
+        {% endif %}
+
+        <h3>
+            {{ browserDetected.browser }}
+            {% if browserDetected.vendor %}
+                {{ 'adjective.from'|trans }} {{ browserDetected.vendor }}
+            {% endif %}
+        </h3>
+        <ul>
+            {% if browserDetected.isOutdated %}
+                <li>
+                    <span class="sSize">{{ 'message.your_version'|trans }}:</span>
+                    <p class="old"><span class="mSize">{{ clientVersionShort }}</span> <small>({{ browserDetected.clientVersion }})</small></p>
+                </li>
+            {% endif %}
+            {% if browserDetected.vendor %}
+                <li><span class="icon {{ browserDetected.browser|lower|replace({' ': "_"}) }}"></span></li>
+                <li><p>{{ 'adjective.for'|trans }}</p></li>
+            {% endif %}
+
+            <li><span class="icon {{ browserDetected.osFamily|lower }}"></span></li>
+
+            {% if browserDetected.isOutdated %}
+                <li>
+                    <span class="sSize">{{ 'message.latest_version'|trans }}:</span>
+                    <p class="last"><span class="mSize">{{ stableVersionShort }}</span> <small>({{ browserDetected.stableVersion }})</small></p>
+                </li>
+            {% endif %}
+        </ul>
+        {% if browserDetected.isOutdated %}
+            <div class="button">
+                <a href="{{ browserDetected.stableVersionLink }}">
+                    {{ 'browser.button_download'|trans }} {{ 'browser.button_new_version'|trans }}
+                </a>
+            </div>
+        {% else %}
+            <p class="last">{{ 'message.your_version'|trans|lower }}: <span class="mSize">{{ clientVersionShort }}</span> <small>({{ browserDetected.clientVersion }})</small></p>
+        {% endif %}
+        {% if browserDetected.browser == "Internet Explorer" %}
+            <small>{{ 'message.explorer'|trans }}</small>
+        {% endif %}
+    {% else %}
+        <span class="icon detected"></span>
+        <h2>{{ userError|trans }}</h2>
+        <h3>{{ 'nevermind_the_user_error'|trans }}</h3>
+    {% endif %}
+</section>

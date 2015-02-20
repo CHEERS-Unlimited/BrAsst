@@ -80,7 +80,6 @@ hr, hr.line{
 	text-transform: uppercase;
 	color: #DEE1B6;
 	padding: 0 5px;
-	line-height: 40px;
 	-webkit-transition: color .5s cubic-bezier(0.23, 1, 0.32, 1);
 	-o-transition: color .5s cubic-bezier(0.23, 1, 0.32, 1);
 	transition: color .5s cubic-bezier(0.23, 1, 0.32, 1);
@@ -99,7 +98,8 @@ hr, hr.line{
 	margin: 3px auto;
 }
 
-#langs ul li a:hover{ color: #73C8A9; }
+#langs ul li a{ line-height: 40px; }
+#langs ul li a:hover{color: #73C8A9; }
 
 #menu{
 	width: 100%;
@@ -156,6 +156,27 @@ hr, hr.line{
 	cursor: pointer;
 	overflow: hidden;
 }
+#social ul li{
+	-webkit-transform: scale(0);
+	-ms-transform: scale(0);
+	-o-transform: scale(0);
+	transform: scale(0);
+}
+#social ul li:first-child{
+	-webkit-transform: scale(1);
+	-ms-transform: scale(1);
+	-o-transform: scale(1);
+	transform: scale(1);
+}
+#social ul:hover li{
+	-webkit-transition: all .5s ease .2s;
+	-o-transition: all .5s ease .2s;
+	transition: all .5s ease .2s;
+	-webkit-transform: scale(1);
+	-ms-transform: scale(1);
+	-o-transform: scale(1);
+	transform: scale(1);
+}
 #header #thanks ul,
 #header #thanks ul li{
 	overflow: visible;
@@ -183,6 +204,14 @@ hr, hr.line{
 	color: #DEE1B6;
 	padding: 10px;
 	opacity: 0;
+}
+#header #thanks ul li a{
+	text-transform: none;
+	color: #73C8A9;
+	padding: 0;
+}
+#header #thanks ul li a:hover{
+	color: #BD5532;
 }
 #header #thanks ul:hover li:last-child{
 	-webkit-transition: transform .3s cubic-bezier(0.23, 1, 0.32, 1) .3s;
@@ -213,19 +242,25 @@ hr, hr.line{
 #menu ul li:nth-child(2) a:before{background: url(../images/icons.png) no-repeat -130px -130px;}
 #menu ul li:nth-child(3) a:before{background: url(../images/icons.png) no-repeat -130px -190px;}
 #menu ul li:nth-child(4) a:before{background: url(../images/icons.png) no-repeat -130px -250px;}
-#menu ul li:nth-child(1) a:hover:before{background: url(../images/icons.png) no-repeat -190px -70px;}
-#menu ul li:nth-child(2) a:hover:before{background: url(../images/icons.png) no-repeat -190px -130px;}
-#menu ul li:nth-child(3) a:hover:before{background: url(../images/icons.png) no-repeat -189px -190px;}
-#menu ul li:nth-child(4) a:hover:before{background: url(../images/icons.png) no-repeat -190px -250px;}
+#menu ul li:nth-child(1) a:hover:before,
+#menu ul li:nth-child(1).active a:before{background: url(../images/icons.png) no-repeat -190px -70px;}
+#menu ul li:nth-child(2) a:hover:before,
+#menu ul li:nth-child(2).active a:before{background: url(../images/icons.png) no-repeat -190px -130px;}
+#menu ul li:nth-child(3) a:hover:before,
+#menu ul li:nth-child(3).active a:before{background: url(../images/icons.png) no-repeat -189px -190px;}
+#menu ul li:nth-child(4) a:hover:before,
+#menu ul li:nth-child(4).active a:before{background: url(../images/icons.png) no-repeat -190px -250px;}
 
 #social .icon{background: url(../images/icons.png) no-repeat -130px -310px;}
 #social .icon:hover{background: url(../images/icons.png) no-repeat -190px -310px;}
 #social .social-likes__icon_facebook{background: url(../images/icons.png) no-repeat -130px -490px;}
 #social .social-likes__icon_twitter{background: url(../images/icons.png) no-repeat -130px -550px;}
 #social .social-likes__icon_vkontakte{background: url(../images/icons.png) no-repeat -130px -610px;}
+#social .social-likes__icon_plusone{background: url(../images/icons.png) no-repeat -130px -910px;}
 #social .social-likes__icon_facebook:hover{background: url(../images/icons.png) no-repeat -190px -490px;}
 #social .social-likes__icon_twitter:hover{background: url(../images/icons.png) no-repeat -190px -550px;}
 #social .social-likes__icon_vkontakte:hover{background: url(../images/icons.png) no-repeat -190px -610px;}
+#social .social-likes__icon_plusone:hover{background: url(../images/icons.png) no-repeat -190px -910px;}
 
 #thanks .icon{background: url(../images/icons.png) no-repeat -130px -370px;}
 #thanks .icon:hover{background: url(../images/icons.png) no-repeat -190px -370px;}
@@ -311,7 +346,7 @@ hr, hr.line{
 /*	button start											*/
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 .button{
-	width: 160px;
+	width: 200px;
 	height: 40px;
 	border-radius: 20px;
 	margin: 0 auto;
@@ -345,7 +380,7 @@ hr, hr.line{
 	position: fixed;
 	left: 40px;
 	bottom: 5px;
-	z-index: 10;
+	z-index: 9;
 	text-align: center;
 	overflow: hidden;
 }
@@ -354,6 +389,12 @@ hr, hr.line{
 	font-weight: normal;
 	font-size: 0.75em;
 	color: #373B44;
+}
+#footer small a{
+	color: #BD5532;
+}
+#footer small a:hover{
+	color: #73C8A9;
 }
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /*	footer end												*/

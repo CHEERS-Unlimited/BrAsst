@@ -3,17 +3,16 @@
 namespace AppBundle\Controller\Meat;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller,
-    Symfony\Component\HttpFoundation\Response,
-    Symfony\Component\HttpFoundation\JsonResponse,
-    Symfony\Component\HttpFoundation\Request;
+    Symfony\Component\HttpFoundation\Request,
+    Symfony\Component\HttpFoundation\Response;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
     Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
+use AppBundle\Model\Meat\BrowserDetected;
+
 class StateController extends Controller
 {
-    protected $browsers = [];
-
     /**
      * @Method({"GET"})
      * @Route(
@@ -31,15 +30,31 @@ class StateController extends Controller
      */
     public function indexAction()
     {
-        $this->browsers = $this->getDoctrine()->getManager()
+        $browsers = $this->getDoctrine()->getManager()
             ->getRepository('AppBundle:Meat\Browser')->findAll();
 
-        return $this->render('AppBundle:Meat:index.html.twig');
+        return $this->render('AppBundle:Meat:index.html.twig', [
+            'browsers' => $browsers
+        ]);
     }
 
-    public function homeAction()
+    public function homeAction(Request $request, $browsers)
     {
-        return $this->render('AppBundle:Meat\State:home.html.twig');
+        if ( ($httpUserAgent = $request->server->get('HTTP_USER_AGENT')) == NULL ) {
+            return new Response('ERROR: Server index HTTP_USER_AGENT is empty', 500);
+        }
+
+        $userError = NULL;
+
+        $_detector = $this->get('detector');
+
+        if( !(($browserDetected = $_detector->getDetectedBrowser($httpUserAgent, $browsers)) instanceof BrowserDetected) )
+            $userError = $_detector->getUserError();
+
+        return $this->render('AppBundle:Meat\State:home.html.twig', [
+            'userError'       => $userError,
+            'browserDetected' => $browserDetected
+        ]);
     }
 
     public function aboutBrasstAction()
@@ -47,9 +62,11 @@ class StateController extends Controller
         return $this->render('AppBundle:Meat\State:about_brasst.html.twig');
     }
 
-    public function browsersAction()
+    public function browsersAction($browsers)
     {
-        return $this->render('AppBundle:Meat\State:browsers.html.twig');
+        return $this->render('AppBundle:Meat\State:browsers.html.twig', [
+            'browsers' => $browsers
+        ]);
     }
 
     public function brasstApiAction()
@@ -57,33 +74,5 @@ class StateController extends Controller
         return $this->render('AppBundle:Meat\State:brasst_api.html.twig');
     }
 
-    /**
-     * @Method({"GET"})
-     * @Route(
-     *      "/api/{_locale}",
-     *      name="api",
-     *      defaults={"_locale" = "%locale%"},
-     *      requirements={"_locale" = "%locale%|en|ru"}
-     * )
-     */
-    public function apiAction(Request $request)
-    {
-        if( ($httpOrigin = $request->server->get('HTTP_ORIGIN')) == NULL ) {
-            throw $this->createNotFoundException();
-        } else {
-            $response_type = $request->query->get('type');
 
-            $browsers = $this->getDoctrine()->getManager()
-                ->getRepository('AppBundle:Meat\Browser')->findAll();
-
-            $response = $this->forward('AppBundle:Meat\Api:widget', [
-                'response_type' => $response_type,
-                'browsers'      => $browsers
-            ]);
-
-            $response->headers->set("Access-Control-Allow-Origin", $httpOrigin);
-
-            return $response;
-        }
-    }
 }

@@ -3,28 +3,34 @@ define([
 ], function($){
 
 	return switcher = {
-		initialize: function(hash){
+		initialize: function(href){
 
-			var id;
-			this.$menu = $("#menu");
-			this.$sections = $(".section");
+			var menu = $("#menu"),
+				id = "";
 
-			this.$menu.on("click", "a", $.proxy(function(e){
-				
+			this.items = menu.find("li");
+			this.sections = $(".section");
+
+			menu.on("click", "a", $.proxy(function(e){
 				id = this.getID($(e.target).attr("href"));
+
 				this.switchClasses(id);
 			}, this));
 
-			if(!hash) return;
-			
-			id = this.getID(hash);
+			if(href) id = this.getID(href);
 			this.switchClasses(id);
 		},
-		getID: function(hash){
-			return hash.replace(/\!/, "");
+		getID: function(href){
+			return href.replace(/\!/, "");
 		},
 		switchClasses: function(id){
-			this.$sections.removeClass("active").filter($(id)).addClass("active");
+			var	num = id ? $(id).index() - 1 : 0;
+			id = id || "#main";
+
+			this.sections.removeClass("active").filter(id).addClass("active");
+			if(num >= 0){
+				this.items.removeClass("active").eq(num).addClass("active");
+			}
 		}
 	}
 });

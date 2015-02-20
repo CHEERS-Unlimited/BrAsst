@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 class BrowserVersion
 {
     const SYSTEM_WINDOWS = "Windows";
-    const SYSTEM_LINUX   = "GNU/Linux";
+    const SYSTEM_LINUX   = "Linux";
     const SYSTEM_MAC     = "Mac";
 
     /**

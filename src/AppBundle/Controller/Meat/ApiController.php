@@ -11,6 +11,9 @@ use Symfony\Component\HttpFoundation\Request,
     Symfony\Component\Serializer\Encoder\JsonEncoder,
     Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
+    Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+
 use AppBundle\Model\Meat\BrowserDetected;
 
 class ApiController extends Controller
@@ -18,8 +21,25 @@ class ApiController extends Controller
     const RESPONSE_TYPE_HTML = 'html';
     const RESPONSE_TYPE_JSON = 'json';
 
-    public function widgetAction(Request $request, $browsers, $response_type = self::RESPONSE_TYPE_HTML)
+    /**
+     * @Method({"GET"})
+     * @Route(
+     *      "/api/{_locale}",
+     *      name="api",
+     *      defaults={"_locale" = "%locale%"},
+     *      requirements={"_locale" = "%locale%|en|ru"}
+     * )
+     */
+    public function apiAction(Request $request)
     {
+        if( ($httpOrigin = $request->server->get('HTTP_ORIGIN')) == NULL )
+            throw $this->createNotFoundException();
+
+        $response_type = ( $request->query->has('type') ) ? $request->query->get('type') : self::RESPONSE_TYPE_HTML;
+
+        $browsers = $this->getDoctrine()->getManager()
+            ->getRepository('AppBundle:Meat\Browser')->findAll();
+
         if ( ($httpUserAgent = $request->server->get('HTTP_USER_AGENT')) == NULL ) {
             return new Response('ERROR: Server index HTTP_USER_AGENT is empty', 500);
         }
@@ -34,17 +54,21 @@ class ApiController extends Controller
         switch ($response_type)
         {
             case self::RESPONSE_TYPE_HTML:
-                return $this->responseHtml($userError, $browserDetected);
+                $response = $this->responseHtml($userError, $browserDetected);
             break;
 
             case self::RESPONSE_TYPE_JSON:
-                return $this->responseJson($userError, $browserDetected);
+                $response = $this->responseJson($userError, $browserDetected);
             break;
 
             default:
-                return new Response('ERROR: Unknown response type', 500);
+                $response = new Response('ERROR: Unknown response type', 500);
             break;
         }
+
+        $response->headers->set("Access-Control-Allow-Origin", $httpOrigin);
+
+        return $response;
     }
 
     private function responseHtml($userError, $browserDetected)

@@ -29,7 +29,7 @@ define([
 		},
 		createDragIcon: function(){
 			this.dragIcon = new Image();
-			this.dragIcon.src = "bundles/app/Meat/images/dragIcon.png";
+			this.dragIcon.src = "/web/bundles/app/Meat/images/dragIcon.png";
 		},
 		handleBrowser: function(e){
 			this.currentBrowser = $(e.target).hasClass("browser") ? $(e.target) : $(e.target).closest(".browser");
@@ -45,7 +45,6 @@ define([
 			this.closeButton.removeClass("active");
 		},
 		startBrowserDrag: function(e){
-			
 			this.currentBrowser = $(e.target);
 			this.setCurrentBrowserName(this.currentBrowser.attr("class"));
 
@@ -82,7 +81,7 @@ define([
 			this.browsersInfo.filter(".default").removeClass("dragEnter");
 		},
 		setCurrentBrowserName: function(classNames){
-			var match = classNames.match(/(chrome|explorer|firefox|safari|opera)/gi);
+			var match = classNames.match(/(chrome|internet_explorer|firefox|safari|opera)/gi);
 			if(match) this.currentBrowserName = match[0];
 		},
 		activateBrowser: function(){
