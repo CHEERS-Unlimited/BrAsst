@@ -4,33 +4,30 @@ define([
 
 	return switcher = {
 		initialize: function(href){
+			var page = $("#page"),
+				menu = $("#menu"),
+				target;
 
-			var menu = $("#menu"),
-				id = "";
-
-			this.items = menu.find("li");
 			this.sections = $(".section");
 
-			menu.on("click", "a", $.proxy(function(e){
-				id = this.getID($(e.target).attr("href"));
+			page.on("click", "a.toPage", $.proxy(this.clickHandler, this));
 
-				this.switchClasses(id);
-			}, this));
+			if(!href) href="#!main";
+			page.find("[href='"+ href +"']").parent().addClass("active");
+			this.switchPage(this.getID(href));
+		},
+		clickHandler: function(e){
+			target = $(e.target);
 
-			if(href) id = this.getID(href);
-			this.switchClasses(id);
+			$(menu).find("[href='"+ target.attr("href") +"']").parent().addClass("active").siblings("li").removeClass("active");
+			this.switchPage(this.getID(target.attr("href")));
 		},
 		getID: function(href){
 			return href.replace(/\!/, "");
 		},
-		switchClasses: function(id){
-			var	num = id ? $(id).index() - 1 : 0;
-			id = id || "#main";
-
+		switchPage: function(id){
+			if(!id) return;
 			this.sections.removeClass("active").filter(id).addClass("active");
-			if(num >= 0){
-				this.items.removeClass("active").eq(num).addClass("active");
-			}
 		}
 	}
 });

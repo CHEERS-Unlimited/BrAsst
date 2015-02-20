@@ -28,7 +28,7 @@ thanksgiving:
     encyclopedia, for their selfless service.
 
 copyright: >
-  © <a href='http://cheersunlimited.com.ua' target="_blank">CHEERS! Unlimited</a>, 2015. All rights reserved.
+  © <a href='http://cheersunlimited.com.ua/%locale%' target="_blank">CHEERS! Unlimited</a>, 2015. All rights reserved.
   Usage of the website personal materials without authors' permission is prohibited.
 
 adjective:
@@ -47,7 +47,7 @@ message:
     text: >
       You are using the latest browser version available
   explorer: >
-    Oh... Internet Explorer, though for some reasons really is a popular browser, often cannot deliver to the users
+    <span>Oh...</span> Internet Explorer, though for some reasons really is a popular browser, often cannot deliver to the users
     everything that website developers want them to see. As a rule of thumb, in some cases we recommend installing
     another browser, which could perform better to make your web surfing more comfortable and satisfying.
   your_version: Your version
@@ -57,6 +57,9 @@ tooltip:
   uninstall_browser: >
     We strongly recommend that you remove the old version before installing the new one, but don't forget to save your
     browsing data first (most of the modern browsers do offer such option)
+  api_drag: >
+    Choose desired <span class="sSize">API</span> type by <span class="sSize">dragging the slider</span> in its
+    direction
 
 content_slogan:
   headline: Only fresh browsers with <span class="sSize">Br.Asst.</span>
@@ -67,15 +70,17 @@ content_idea:
   title: >
     Why do you need <span class="sSize">Br.Asst.</span>?
   text: >
-    Despite the fact that browser nowadays learned to update themselves without bothering users, older version of
-    such software still in use by many people. As a result, for old browser versions owners websites and systems
-    may perform and look differently then it was intended by it's developers. Do not spoil your impression - just
-    always use the latest browsers versions
+    Despite the fact that browser nowadays learned to update themselves without bothering users,
+    %accent_opening%older%accent_closing% version of such software still in use by many people. As a result, for
+    %accent_opening%old browser versions owners%accent_closing% websites and systems may perform and look
+    %accent_opening%differently%accent_closing% then it was %accent_opening%intended%accent_closing% by it's developers.
+    Do not spoil your impression - just always use the %accent_opening%latest%accent_closing% browsers versions
   about: >
-    We, the CHEERS! Unlimited web-agency, developed Br.Asst. to take care of our customers and users. Br.Asst. will
-    help you to find out whether your browser is outdated and show you where you can get latest version of today's
-    most popular ones.
-  download_browser: Download browser
+    We, the <a href="http://cheersunlimited.com.ua/%locale%" target="_blank">CHEERS! Unlimited</a> web-agency,
+    developed %accent_opening%Br.Asst.%accent_closing% to take care of our customers and users. Br.Asst. will
+    %accent_opening%help you%accent_closing% to find out whether your browser is outdated and show you where you can
+    %accent_opening%get latest%accent_closing% version of today's most popular ones.
+  download_browser: Download browsers
 
 browser:
   title: Choose your browser
@@ -88,16 +93,15 @@ browser:
     Current version
   button_download:
     Download
-  button_official_page:
-    from an official website
-  button_new_version:
-    the latest version
+  button_update:
+    Update
 
 content_api:
   title: You can use <span class="sSize">Br.Asst.</span> for your own websites!
   text: >
     We provide free and simple API for developers and webmasters. If you wish your users to be always aware of their
     browser version and could easily update it to see your project the way they should be - join up!
+  tooltip: Right or left?
   guide:
     title: You can get data type you need
     html:
@@ -135,9 +139,12 @@ content_api:
           for errors and warnings output which is supported by Br.Asst., for example:
         2: >
           Received object will look similar to this:
+        final: >
+          You can work with the data now!
     additional: >
       If you're experiencing difficulties with HTML-widget embedding or cross-origin request for JSON,
       please, refer to the detailed parameters description and examples on our GitHub repository
+  github: Examples on GitHub
 
 user_error_is_bot: >
   Unfortunately it was not possible to detect your browser, because it looks like you're a robot

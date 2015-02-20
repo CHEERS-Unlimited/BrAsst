@@ -25,9 +25,16 @@ class Detector
 
     private $_deviceDetector = NULL;
 
+    private $browserDetected = NULL;
+
     public function __construct()
     {
         DeviceParserAbstract::setVersionTruncation(DeviceParserAbstract::VERSION_TRUNCATION_NONE);
+    }
+
+    public function getDetectedBrowser()
+    {
+        return $this->browserDetected;
     }
 
     public function getUserError()
@@ -141,33 +148,37 @@ class Detector
         return FALSE;
     }
 
-    public function getDetectedBrowser($httpUserAgent, $browsers)
+    public function setDetectedBrowser($httpUserAgent, $browsers)
     {
         $this->setDeviceDetector($httpUserAgent);
 
         $browserDetected = new BrowserDetected;
 
-        if( !($detectedDevice = $this->getDetectedDevice()) )
+        if (!($detectedDevice = $this->getDetectedDevice()))
             return FALSE;
 
         $browserDetected->setBrowser($detectedDevice['client']['name']);
         $browserDetected->setOsFamily($detectedDevice['os']['family']);
         $browserDetected->setClientVersion($detectedDevice['client']['version']);
 
-        if( !(($result = $this->getClientBrowser($browsers, $browserDetected)) instanceof Browser) )
+        if (!(($result = $this->getClientBrowser($browsers, $browserDetected)) instanceof Browser)) {
             //@return BrowserDetected
-            return $result;
-        else
+            $this->browserDetected = $result;
+            return TRUE;
+        } else {
             $clientBrowser = $result;
+        }
 
         $browserDetected->setVendor($clientBrowser->getUnpackedVendor());
         $browserDetected->setStableVersionLink($clientBrowser->getLink());
 
-        if( !(($result = $this->getClientBrowserVersion($clientBrowser, $browserDetected)) instanceof BrowserVersion) )
+        if (!(($result = $this->getClientBrowserVersion($clientBrowser, $browserDetected)) instanceof BrowserVersion)) {
             //@return BrowserDetected
-            return $result;
-        else
+            $this->browserDetected = $result;
+            return TRUE;
+        } else {
             $clientBrowserVersion = $result;
+        }
 
         $browserDetected->setStableVersion($clientBrowserVersion->getVersion());
 
@@ -175,6 +186,20 @@ class Detector
 
         $browserDetected->setIsOutdated($isOutdated);
 
-        return $browserDetected;
+        $this->browserDetected = $browserDetected;
+        return TRUE;
+    }
+
+    public function banishLesserIE($browser, $clientVersion)
+    {
+        if( $browser !== 'Internet Explorer' )
+            return FALSE;
+
+        $clientVersion = explode('.', $clientVersion)[0];
+
+        if( $clientVersion >= 9 )
+            return FALSE;
+
+        return TRUE;
     }
 }

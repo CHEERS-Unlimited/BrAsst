@@ -23,7 +23,7 @@
         </h3>
         <ul>
             {% if browserDetected.isOutdated %}
-                <li>
+                <li class="outside">
                     <span class="sSize">{{ 'message.your_version'|trans }}:</span>
                     <p class="old"><span class="mSize">{{ clientVersionShort }}</span> <small>({{ browserDetected.clientVersion }})</small></p>
                 </li>
@@ -36,7 +36,7 @@
             <li><span class="icon {{ browserDetected.osFamily|lower }}"></span></li>
 
             {% if browserDetected.isOutdated %}
-                <li>
+                <li class="outside">
                     <span class="sSize">{{ 'message.latest_version'|trans }}:</span>
                     <p class="last"><span class="mSize">{{ stableVersionShort }}</span> <small>({{ browserDetected.stableVersion }})</small></p>
                 </li>
@@ -45,14 +45,14 @@
         {% if browserDetected.isOutdated %}
             <div class="button">
                 <a href="{{ browserDetected.stableVersionLink }}">
-                    {{ 'browser.button_download'|trans }} {{ 'browser.button_new_version'|trans }}
+                    {{ 'browser.button_update'|trans }}
                 </a>
             </div>
         {% else %}
             <p class="last">{{ 'message.your_version'|trans|lower }}: <span class="mSize">{{ clientVersionShort }}</span> <small>({{ browserDetected.clientVersion }})</small></p>
         {% endif %}
         {% if browserDetected.browser == "Internet Explorer" %}
-            <small>{{ 'message.explorer'|trans }}</small>
+            <p class="ieMessage">{{ 'message.explorer'|trans|raw }}</p>
         {% endif %}
     {% else %}
         <span class="icon detected"></span>

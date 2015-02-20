@@ -3,9 +3,9 @@
     <section class="inner">
         <h1>{{ 'content_idea.title'|trans|raw }}</h1>
         <hr>
-        <p>{{ 'content_idea.text'|trans }}</p>
+        <p>{{ 'content_idea.text'|trans({ '%accent_opening%': "<span>", '%accent_closing%': "</span>" })|raw }}</p>
         <hr class="pen">
-        <p>{{ 'content_idea.about'|trans }}</p>
-        <div class="button"><a href="#!browsers">{{ 'content_idea.download_browser'|trans }}</a></div>
+        <p>{{ 'content_idea.about'|trans({ '%accent_opening%': "<span>", '%accent_closing%': "</span>", '%locale%': app.request.locale })|raw }}</p>
+        <div class="button"><a href="#!browsers" class="toPage">{{ 'content_idea.download_browser'|trans }}</a></div>
     </section>
 </div>

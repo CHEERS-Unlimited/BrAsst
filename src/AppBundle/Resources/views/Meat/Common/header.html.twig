@@ -1,5 +1,5 @@
 {# src/AppBundle/Resources/views/Meat/Common/header.html.twig #}
-<a href="#!main" class="logo" title="Br.Asst."><img src="{{ asset('bundles/app/Meat/images/logo.jpg') }}" alt="Br.Asst. logo"></a>
+<a href="{{ path('index') }}" class="logo" title="Br.Asst."><img src="{{ asset('bundles/app/Meat/images/logo.jpg') }}" alt="Br.Asst. logo"></a>
 <div id="langs">
     <hr class="line">
     <div class="wrap bs">
@@ -15,10 +15,10 @@
 <nav id="menu">
     <hr class="line">
     <ul class="exceptionList">
-        <li><a href="#!main">{{ 'state.home'|trans }}</a></li>
-        <li><a href="#!about">{{ 'state.aboutBrasst'|trans }}</a></li>
-        <li><a href="#!browsers">{{ 'state.browsers'|trans }}</a></li>
-        <li><a href="#!api">{{ 'state.brasstApi'|trans }}</a></li>
+        <li><a href="#!main" class="toPage">{{ 'state.home'|trans }}</a></li>
+        <li><a href="#!about" class="toPage">{{ 'state.aboutBrasst'|trans }}</a></li>
+        <li><a href="#!browsers" class="toPage">{{ 'state.browsers'|trans }}</a></li>
+        <li><a href="#!api" class="toPage">{{ 'state.brasstApi'|trans }}</a></li>
     </ul>
     <hr class="line">
 </nav>
@@ -47,6 +47,6 @@
     </div>
     <hr class="line">
     <div id="cheers">
-        <a href="http://cheersunlimited.com.ua/{{ app.request.locale }}" class="icon" title="CHEERS! Unlimited Web Agency"></a>
+        <a href="http://cheersunlimited.com.ua/{{ app.request.locale }}" class="icon" title="CHEERS! Unlimited Web Agency" target="_blank"></a>
     </div>
 </div>

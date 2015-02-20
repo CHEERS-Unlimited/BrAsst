@@ -9,16 +9,17 @@
                 <p>{{ 'content_api.guide.html.title_short'|trans }}</p>
             </div>
             <div class="draggerZone bs">
-                <span class="dragger"></span>
+                <span class="dragger" title="{{ 'content_api.tooltip'|trans }}"></span>
             </div>
             <div class="circle json">
                 <span class="icon"></span>
                 <p>{{ 'content_api.guide.json.title_short'|trans }}</p>
             </div>
+            <p class="tooltip">{{ 'tooltip.api_drag'|trans|raw }}</p>
         </div>
         <div class="help">
             <p>{{ 'content_api.guide.additional'|trans }}:</p>
-            <a href="https://github.com/CheersUnlimited/BrAsst/apiExamples" class="icon" target="_blank"></a>
+            <a href="https://github.com/CheersUnlimited/BrAsst/apiExamples" class="icon" title="{{ 'content_api.github'|trans }}" target="_blank"></a>
         </div>
     </section>
     <div class="apInfoOverlay widget bs">
@@ -74,19 +75,20 @@
                         <code class="full">
                             <ul>
                                 <li><span>{</span></li>
-                                <li><span>"browser":           "Some browser",</span></li>
-                                <li><span>"vendor":            "Some vendor",</span></li>
-                                <li><span>"osFamily":          "Some system",</span></li>
-                                <li><span>"stableVersion":     "42.0",</span></li>
-                                <li><span>"clientVersion":     "24.0",</span></li>
-                                <li><span>"isOutdated":        true,</span></li>
-                                <li><span>"stableVersionLink": "https:\/\/www.somevendor.org\/somebrowser",</span></li>
-                                <li><span>"userWarning":       null</span></li>
+                                <li><span>"browser":</span>           <span>"Some browser",</span></li>
+                                <li><span>"vendor":</span>            <span>"Some vendor",</span></li>
+                                <li><span>"osFamily":</span>          <span>"Some system",</span></li>
+                                <li><span>"stableVersion":</span>     <span>"42.0",</span></li>
+                                <li><span>"clientVersion":</span>     <span>"24.0",</span></li>
+                                <li><span>"isOutdated":</span>        <span>true,</span></li>
+                                <li><span>"stableVersionLink":</span> <span>"https:\/\/www.somevendor.org\/somebrowser",</span></li>
+                                <li><span>"userWarning":</span>       <span>null</span></li>
                                 <li><span>}</span></li>
                             </ul>
                         </code>
                     </li>
                 </ul>
+                <p class="done">{{ 'content_api.guide.json.step.final'|trans }}</p>
             </section>
         </div>
     </div>

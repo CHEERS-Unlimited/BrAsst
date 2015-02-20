@@ -9,7 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller,
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
     Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
-use AppBundle\Model\Meat\BrowserDetected;
+use AppBundle\Entity\Meat\Browser,
+    AppBundle\Model\Meat\BrowserDetected;
 
 class StateController extends Controller
 {
@@ -28,27 +29,49 @@ class StateController extends Controller
      *      defaults={"_locale" = "%locale%"}
      * )
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+        if ( ($httpUserAgent = $request->server->get('HTTP_USER_AGENT')) == NULL ) {
+            return new Response('ERROR: Server index HTTP_USER_AGENT is empty', 500);
+        }
+
         $browsers = $this->getDoctrine()->getManager()
             ->getRepository('AppBundle:Meat\Browser')->findAll();
+
+        $_detector = $this->get('detector');
+
+        $_detector->setDetectedBrowser($httpUserAgent, $browsers);
+
+        $browserDetected = $_detector->getDetectedBrowser();
+
+        if( $browserDetected instanceof BrowserDetected &&
+            $_detector->banishLesserIE($browserDetected->getBrowser(), $browserDetected->getClientVersion()) )
+            return $this->forward('AppBundle:Meat\State:banishLesserIE', [
+                'browserDetected' => $browserDetected
+            ]);
 
         return $this->render('AppBundle:Meat:index.html.twig', [
             'browsers' => $browsers
         ]);
     }
 
-    public function homeAction(Request $request, $browsers)
+    public function banishLesserIEAction($browserDetected)
     {
-        if ( ($httpUserAgent = $request->server->get('HTTP_USER_AGENT')) == NULL ) {
-            return new Response('ERROR: Server index HTTP_USER_AGENT is empty', 500);
-        }
+        $ieLink = Browser::LINK_EXPLORER;
+
+        return $this->render('AppBundle:Meat:banishLesserIE.html.twig', [
+            'browserDetected' => $browserDetected,
+            'ieLink'          => $ieLink
+        ]);
+    }
+
+    public function homeAction()
+    {
+        $_detector = $this->get('detector');
 
         $userError = NULL;
 
-        $_detector = $this->get('detector');
-
-        if( !(($browserDetected = $_detector->getDetectedBrowser($httpUserAgent, $browsers)) instanceof BrowserDetected) )
+        if( !(($browserDetected = $_detector->getDetectedBrowser()) instanceof BrowserDetected) )
             $userError = $_detector->getUserError();
 
         return $this->render('AppBundle:Meat\State:home.html.twig', [
@@ -73,6 +96,4 @@ class StateController extends Controller
     {
         return $this->render('AppBundle:Meat\State:brasst_api.html.twig');
     }
-
-
 }

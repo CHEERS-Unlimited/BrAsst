@@ -3,6 +3,8 @@ define([
 	"stratum"
 ], function($, Stratum){
 
+	var ESC_CODE = 27;
+
 	return Stratum.View.extend({
 		el: $("#api"),
 		events: {
@@ -19,10 +21,14 @@ define([
 			}, this));
 
 			//external events which doesnt binding to this.el
-			$(document).on("keyup", $.proxy(this.handleClose, this));
+			$(document).on("keyup", $.proxy(this.escClose, this));
 		},
 		handleClose: function(e){
-			if(!this._which && e.which !== 27) return;
+			if(!this._which) return;
+			this.deactivateInfo();
+		},
+		escClose: function(e){
+			if(e.which !== ESC_CODE || !this._which) return;
 			this.deactivateInfo();
 		},
 		setWhich: function(which){
