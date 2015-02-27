@@ -113,14 +113,11 @@ content_api:
         an update. Don't be afraid to seem intrusive: if user declines once, he will see the widget no longer
       step:
         1: >
-          Insert reserved block for output right after opening <code class="sSize">&lt;body&gt;</code> tag
-          on page that should display the widget
+          Plug in the script file before closing <code class="sSize">&lt;/body&gt;</code> tag on page that should
+          display the widget:
         2: >
-          Plug in the script file and initialize it before closing <code class="sSize">&lt;/body&gt;</code> tag
-          on the same page
-        3: >
-          Specify the last parameter in script initialization link as widget display language, among those which
-          are supported by Br.Asst., for example
+          Initialize the script right after inclusion. Additionally you can specify the widget display language, which
+          is supported by Br.Asst., by passing an object with 'locale' parameter into the constructor function:
         final: >
           Done!
     json:
@@ -134,9 +131,8 @@ content_api:
       step:
         1: >
           In order to get the response from Br.Asst. in JSON format you'll have to make a CORS GET request at
-          <code class="sSize">https://brasst.com/api/{locale}</code> with additional GET parameter
-          <code class="sSize">'type=json'</code>. The link's last parameter {locale} specifies your preferred language
-          for errors and warnings output which is supported by Br.Asst., for example:
+          <code class="sSize">https://brasst.net.ua/api</code> with additional GET parameter
+          <code class="sSize">'type=json'</code>:
         2: >
           Received object will look similar to this:
         final: >
@@ -145,6 +141,22 @@ content_api:
       If you're experiencing difficulties with HTML-widget embedding or cross-origin request for JSON,
       please, refer to the detailed parameters description and examples on our GitHub repository
   github: Examples on GitHub
+
+widget:
+  version: version
+  message:
+    outdated: >
+      New version of your browser is available
+    deprecated: >
+      This browser is not supported on your operating system
+  button:
+    outdated: >
+      update
+    deprecated: >
+      find out more
+  forget: >
+    If you do not want to see this notification anymore, %opening_tag%click here%closing_tag%
+  close: Close
 
 user_error_is_bot: >
   Unfortunately it was not possible to detect your browser, because it looks like you're a robot

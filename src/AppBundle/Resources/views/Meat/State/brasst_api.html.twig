@@ -29,27 +29,22 @@
                 <h2>{{ 'content_api.guide.html.title'|trans|raw }}</h2>
                 <p>
                     {{ 'content_api.guide.html.text'|trans({
-                        '%jsLink%': '<a href="cheers_brasst_api.js">JavaScript</a>'})|raw
+                        '%jsLink%': '<a href="' ~ asset('bundles/app/Meat/js/api/brasst_api.min.js', absolute=true) ~ '">JavaScript</a>'})|raw
                     }}
                 </p>
                 <ul>
                     <li data-number="1">
                         <p>{{ 'content_api.guide.html.step.1'|trans|raw }}</p>
                         <code class="full">
-                            <p>{{ '<div id="brasst_widget"></div>'|escape }}</p>
+                            <p>{{ '<script src="brasst_api.js"></script>'|escape }}</p>
                         </code>
                     </li>
                     <li data-number="2">
-                        <p>{{ 'content_api.guide.html.step.2'|trans|raw }}:</p>
+                        <p>{{ 'content_api.guide.html.step.2'|trans|raw }}</p>
                         <code class="full">
-                            <p>{{ '<script src="brasst_api.js"></script>'|escape }}</p>
-                            <p>{{ ('<script>var brasst = new Brasst({url: "https://brasst.com.ua/api/' ~ app.request.getLocale() ~ '"});</script>')|escape }}</p>
-                        </code>
-                    </li>
-                    <li data-number="3">
-                        <p>{{ 'content_api.guide.html.step.3'|trans }}:</p>
-                        <code class="full">
-                            <p>{{ ('var brasst = new Brasst({url: "https://brasst.com.ua/api/' ~ app.request.getLocale() ~ '"});')|escape }}</p>
+                            <p>{{ '<script>'|escape }}</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;{{ ('var brasst = new Brasst({ locale: "' ~ app.request.getLocale() ~ '" });')|escape }}</p>
+                            <p>{{ '</script>'|escape }}</p>
                         </code>
                     </li>
                 </ul>
@@ -67,7 +62,7 @@
                     <li data-number="1">
                         <p>{{ 'content_api.guide.json.step.1'|trans|raw }}:</p>
                         <code class="full">
-                            <p>{{ 'https://brasst.com.ua/api/' ~ app.request.getLocale() ~ '?type=json' }}</p>
+                            <p>{{ 'https://brasst.net.ua/api?type=json' }}</p>
                         </code>
                     </li>
                     <li data-number="2">

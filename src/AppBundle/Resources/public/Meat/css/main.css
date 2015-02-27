@@ -6,7 +6,6 @@
 	width: 100%;
 	margin-top: 40px;
 	text-align: center;
-	overflow: hidden;
 }
 #widget .icon{
 	display: inline-block;
@@ -162,13 +161,6 @@
 }
 #about .inner .button{
 	margin: 30px auto 20px;
-}
-#about .inner .button a{
-	background: #373B44;
-}
-#about .inner .button a:hover{
-	background: #73C8A9;
-	color: #373B44;
 }
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /*	about end												*/

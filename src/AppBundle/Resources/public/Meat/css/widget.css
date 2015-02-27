@@ -1,0 +1,251 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600&subset=latin,cyrillic);
+
+#brasstWidget h2,
+#brasstWidget h3,
+#brasstWidget p,
+#brasstWidget a{
+	font-family: "Open Sans", sans-serif;
+	font-weight: 600;
+	font-size: 1.5em;
+	color: #73c8a9;
+	text-align: center;
+	margin: 0;
+}
+#brasstWidget h3{
+	font-weight: 400;
+	font-size: 1em;
+	color: #e7e6c9;
+}
+#brasstWidget p,
+#brasstWidget a{
+	font-weight: 400;
+	font-size: 0.874em;
+	color: #e7e6c9;
+}
+#brasstWidget a{
+	text-decoration: none;
+}
+
+#brasstWidget ul{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+#brasstWidget img{
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+	overflow: hidden;
+}
+#brasstWidget .icon{
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	overflow: hidden;
+}
+
+#brasstWidget{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 999999;
+	background: rgba(0, 0, 0, 0.4);
+	overflow: hidden;
+}
+#brasstWidget > .inner{
+	width: 350px;
+	height: 350px;
+	padding: 20px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -175px 0 0 -175px;
+	border-radius: 20px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	border: 1px solid #373b44;
+	overflow: hidden;
+}
+#brasstWidget > .inner.chrome{ background: #373b44 url(http://brasst.com/web/bundles/app/Meat/images/widget/chrome.png) no-repeat -50px 120px; }
+#brasstWidget > .inner.internet_explorer{ background: #373b44 url(http://brasst.com/web/bundles/app/Meat/images/widget/explorer.png) no-repeat -50px 120px; }
+#brasstWidget > .inner.firefox{ background: #373b44 url(http://brasst.com/web/bundles/app/Meat/images/widget/firefox.png) no-repeat -50px 120px; }
+#brasstWidget > .inner.safari{ background: #373b44 url(http://brasst.com/web/bundles/app/Meat/images/widget/safari.png) no-repeat -50px 120px; }
+#brasstWidget > .inner.opera{ background: #373b44 url(http://brasst.com/web/bundles/app/Meat/images/widget/opera.png) no-repeat -50px 120px; }
+
+#brasstWidget > .inner .innerBrowserInfo{
+	margin-top: 10px;
+	text-align: center;
+}
+#brasstWidget > .inner .innerBrowserInfo li{
+	display: inline-block;
+	vertical-align: middle;
+	width: 30px;
+	margin: 0 10px;
+}
+#brasstWidget > .inner .innerBrowserInfo li:first-child,
+#brasstWidget > .inner .innerBrowserInfo li:last-child{
+	width: 120px;
+	margin: 0;
+}
+#brasstWidget > .inner .innerBrowserInfo li:first-child p{ text-align: right; }
+#brasstWidget > .inner .innerBrowserInfo li:last-child p{ text-align: left; }
+
+#brasstWidget > .inner .innerBrowserInfo li .icon.windows{ background: url(http://brasst.com/web/bundles/app/Meat/images/widget/icons.png) no-repeat 0 2px; }
+#brasstWidget > .inner .innerBrowserInfo li .icon.mac{ background: url(http://brasst.com/web/bundles/app/Meat/images/widget/icons.png) no-repeat -31px 1px; }
+#brasstWidget > .inner .innerBrowserInfo li .icon.linux{ background: url(http://brasst.com/web/bundles/app/Meat/images/widget/icons.png) no-repeat -60px 2px; }
+
+#brasstWidget p.update{
+	max-width: 80%;
+	margin: 25px auto 15px;
+}
+#brasstWidget > .inner .updateButton{
+	display: block;
+	width: 160px;
+	height: 40px;
+	margin: 0 auto;
+	border-radius: 20px;
+	background: #73c8a9;
+	line-height: 40px;
+	position: relative;
+	-webkit-transition: all .5s ease;
+	-moz-transition: all .5s ease;
+	-ms-transition: all .5s ease;
+	-o-transition: all .5s ease;
+	transition: all .5s ease;
+	overflow: visible;
+}
+#brasstWidget > .inner .updateButton:before{
+	display: block;
+	width: 168px;
+	height: 48px;
+	content: "";
+	position: absolute;
+	top: -4px;
+	left: -4px;
+	background: transparent;
+	border: 1px solid #73c8a9;
+	border-radius: 24px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition: all .5s ease;
+	-moz-transition: all .5s ease;
+	-ms-transition: all .5s ease;
+	-o-transition: all .5s ease;
+	transition: all .5s ease;
+}
+#brasstWidget > .inner .updateButton:hover{
+	background: #e7e6c9;
+	color: #73c8a9;
+}
+#brasstWidget > .inner .updateButton:hover:before{
+	-webkit-animation: tremor .5s linear .2s 1;
+	-moz-animation: tremor .5s linear .2s 1;
+	-ms-animation: tremor .5s linear .2s 1;
+	-o-animation: tremor .5s linear .2s 1;
+	animation: tremor .5s linear .2s 1;
+}
+@-webkit-keyframes tremor{
+	0% { -webkit-transform: scale(1); }
+	10% { -webkit-transform: scale(1.02); }
+	20% { -webkit-transform: scale(1); }
+	30% { -webkit-transform: scale(0.98); }
+	40% { -webkit-transform: scale(1); }
+	50% { -webkit-transform: scale(1.02); }
+	60% { -webkit-transform: scale(1); }
+	70% { -webkit-transform: scale(0.98); }
+	80% { -webkit-transform: scale(1); }
+	90% { -webkit-transform: scale(1.02); }
+	100% { -webkit-transform: scale(1); }
+}
+@-moz-keyframes tremor{
+	0% { -moz-transform: scale(1); }
+	10% { -moz-transform: scale(1.02); }
+	20% { -moz-transform: scale(1); }
+	30% { -moz-transform: scale(0.98); }
+	40% { -moz-transform: scale(1); }
+	50% { -moz-transform: scale(1.02); }
+	60% { -moz-transform: scale(1); }
+	70% { -moz-transform: scale(0.98); }
+	80% { -moz-transform: scale(1); }
+	90% { -moz-transform: scale(1.02); }
+	100% { -moz-transform: scale(1); }
+}
+@-ms-keyframes tremor{
+	0% { -ms-transform: scale(1); }
+	10% { -ms-transform: scale(1.02); }
+	20% { -ms-transform: scale(1); }
+	30% { -ms-transform: scale(0.98); }
+	40% { -ms-transform: scale(1); }
+	50% { -ms-transform: scale(1.02); }
+	60% { -ms-transform: scale(1); }
+	70% { -ms-transform: scale(0.98); }
+	80% { -ms-transform: scale(1); }
+	90% { -ms-transform: scale(1.02); }
+	100% { -ms-transform: scale(1); }
+}
+@-o-keyframes tremor{
+	0% { -o-transform: scale(1); }
+	10% { -o-transform: scale(1.02); }
+	20% { -o-transform: scale(1); }
+	30% { -o-transform: scale(0.98); }
+	40% { -o-transform: scale(1); }
+	50% { -o-transform: scale(1.02); }
+	60% { -o-transform: scale(1); }
+	70% { -o-transform: scale(0.98); }
+	80% { -o-transform: scale(1); }
+	90% { -o-transform: scale(1.02); }
+	100% { -o-transform: scale(1); }
+}
+@keyframes tremor{
+	0% { transform: scale(1); }
+	10% { transform: scale(1.02); }
+	20% { transform: scale(1); }
+	30% { transform: scale(0.98); }
+	40% { transform: scale(1); }
+	50% { transform: scale(1.02); }
+	60% { transform: scale(1); }
+	70% { transform: scale(0.98); }
+	80% { transform: scale(1); }
+	90% { transform: scale(1.02); }
+	100% { transform: scale(1); }
+}
+
+#brasstWidget > .inner .forget{
+	max-width: 90%;
+	margin: 55px auto;
+	font-weight: 300;
+	font-size: 0.8125em;
+}
+#brasstWidget > .inner .forget span{
+	color: #a65036;
+	cursor: pointer;
+}
+#brasstWidget > .inner .forget span:hover{
+	text-decoration: underline;
+}
+
+#brasstWidget > .inner #closeBrasstWidget{
+	position: absolute;
+	top: 1px;
+	right: 1px;
+	-webkit-transition: transform .5s ease;
+	-moz-transition: transform .5s ease;
+	-ms-transition: transform .5s ease;
+	-o-transition: transform .5s ease;
+	transition: transform .5s ease;
+	background: transparent url(http://brasst.com/web/bundles/app/Meat/images/widget/icons.png) no-repeat -90px 0;
+	cursor: pointer;
+}
+#brasstWidget > .inner #closeBrasstWidget:hover{
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transform: rotate(180deg);
+	background: transparent url(http://brasst.com/web/bundles/app/Meat/images/widget/icons.png) no-repeat -120px 0;
+}
+

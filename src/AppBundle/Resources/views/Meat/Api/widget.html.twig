@@ -1,62 +1,35 @@
 {# src/AppBundle/Resources/views/Meat/Api/widget.html.twig #}
-{% if detectedBrowser %}
-    {% set clientVersionShort = detectedBrowser.clientVersion|split('.')[0] %}
-    {% set stableVersionShort = detectedBrowser.stableVersion|split('.')[0] %}
+{% if browserDetected %}
+    {% set clientVersionShort = browserDetected.clientVersion|split('.')[0] %}
 
-    <h3>
-        {% if detectedBrowser.userWarning or detectedBrowser.isOutdated %}
-            {{ 'message.outdated.title'|trans }}
-        {% else %}
-            {{ 'message.uptodate.title'|trans }}
-        {% endif %}
-    </h3>
-
-    {% if detectedBrowser.vendor %}
-        {{ 'message.standard_extended'|trans({
-            '%browser%':            detectedBrowser.browser,
-            '%vendor%':             detectedBrowser.vendor,
-            '%osFamily%':           detectedBrowser.osFamily,
-            '%clientVersion%':      detectedBrowser.clientVersion,
-            '%clientVersionShort%': clientVersionShort})
-        }}
-    {% else %}
-        {{ 'message.standard'|trans({
-            '%browser%':            detectedBrowser.browser,
-            '%osFamily%':           detectedBrowser.osFamily,
-            '%clientVersion%':      detectedBrowser.clientVersion,
-            '%clientVersionShort%': clientVersionShort})
-        }}
-    {% endif %}
-
-    <small title="{{ 'tooltip.wrong_browser'|trans }}">[скорее всего...]</small>
-
-    <br>
-
-    {% if detectedBrowser.userWarning %}
-        {{ detectedBrowser.userWarning|trans }}
-        <br>
-    {% else %}
-        {% if detectedBrowser.isOutdated %}
-            {{ 'message.outdated.text'|trans({
-                '%stableVersionShort%': stableVersionShort,
-                '%stableVersion%': detectedBrowser.stableVersion})
-            }}
-
-            <br>
-
-            <a href="{{ detectedBrowser.stableVersionLink }}">{{ 'browser.button_download'|trans }} {{ 'browser.button_official_page'|trans }}</a>
-
-            <small title="{{ 'tooltip.uninstall_browser'|trans }}">[!]</small>
-        {% else %}
-            {{ 'message.uptodate.text'|trans }}
-        {% endif %}
-        <br>
-        {% if detectedBrowser.browser == "Internet Explorer" %}
-            {{ 'message.explorer'|trans }}
-            <br>
-        {% endif %}
-    {% endif %}
-{% else %}
-    {{ userError|trans }}
-    <br>
+    <section class="inner {{ browserDetected.browser|lower|replace({ ' ': "_" }) }}">
+        <h2>{{ browserDetected.browser }}</h2>
+        <h3>{{ browserDetected.vendor }}</h3>
+        <ul class="innerBrowserInfo">
+            <li><p>{{ 'widget.version'|trans }}: {{ clientVersionShort }}</p></li>
+            <li><span class="icon {{ browserDetected.osFamily|lower|replace({ ' ': "_" }) }}"></span></li>
+            <li><p>{{ browserDetected.osFamily }}</p></li>
+        </ul>
+        <p class="update">
+            {% if isOutdated %}
+                {{ 'widget.message.outdated'|trans }}
+            {% elseif deprecated %}
+                {{ 'widget.message.deprecated'|trans }}
+            {% endif %}
+        </p>
+        <a href="{{ url('index') }}" class="updateButton" target="_blank">
+            {% if isOutdated %}
+                {{ 'widget.button.outdated'|trans }}
+            {% elseif deprecated %}
+                {{ 'widget.button.deprecated'|trans }}
+            {% endif %}
+        </a>
+        <p class="forget">
+            {{ 'widget.forget'|trans({
+                '%opening_tag%': '<span id="forgetBrasstWidget">',
+                '%closing_tag%': '</span>'
+            })|raw }}
+        </p>
+        <span id="closeBrasstWidget" class="icon" title="{{ 'widget.close'|trans }}"></span>
+    </section>
 {% endif %}

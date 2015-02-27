@@ -14,7 +14,8 @@ use Symfony\Component\HttpFoundation\Request,
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
     Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
-use AppBundle\Model\Meat\BrowserDetected;
+use AppBundle\Service\Meat\Detector,
+    AppBundle\Model\Meat\BrowserDetected;
 
 class ApiController extends Controller
 {
@@ -35,20 +36,21 @@ class ApiController extends Controller
         if( ($httpOrigin = $request->server->get('HTTP_ORIGIN')) == NULL )
             throw $this->createNotFoundException();
 
+        if ( ($httpUserAgent = $request->server->get('HTTP_USER_AGENT')) == NULL )
+            return new Response('ERROR: Server index HTTP_USER_AGENT is empty', 500);
+
         $response_type = ( $request->query->has('type') ) ? $request->query->get('type') : self::RESPONSE_TYPE_HTML;
 
         $browsers = $this->getDoctrine()->getManager()
             ->getRepository('AppBundle:Meat\Browser')->findAll();
 
-        if ( ($httpUserAgent = $request->server->get('HTTP_USER_AGENT')) == NULL ) {
-            return new Response('ERROR: Server index HTTP_USER_AGENT is empty', 500);
-        }
-
         $userError = NULL;
 
         $_detector = $this->get('detector');
 
-        if( !(($browserDetected = $_detector->getDetectedBrowser($httpUserAgent, $browsers)) instanceof BrowserDetected) )
+        $_detector->setDetectedBrowser($httpUserAgent, $browsers);
+
+        if( !(($browserDetected = $_detector->getDetectedBrowser()) instanceof BrowserDetected) )
             $userError = $_detector->getUserError();
 
         switch ($response_type)
@@ -73,9 +75,17 @@ class ApiController extends Controller
 
     private function responseHtml($userError, $browserDetected)
     {
+        $isOutdated = ($browserDetected->getIsOutdated() === TRUE);
+        $deprecated = ($browserDetected->getUserWarning() === Detector::USER_WARNING_UNSUPPORTED_OS);
+
+        if( !$isOutdated && !$deprecated )
+            return new Response(NULL, 200);
+
         return $this->render('AppBundle:Meat\Api:widget.html.twig', [
             'userError'       => $userError,
-            'detectedBrowser' => $browserDetected
+            'isOutdated'      => $isOutdated,
+            'deprecated'      => $deprecated,
+            'browserDetected' => $browserDetected
         ]);
     }
 

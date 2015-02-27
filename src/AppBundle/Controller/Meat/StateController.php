@@ -31,9 +31,8 @@ class StateController extends Controller
      */
     public function indexAction(Request $request)
     {
-        if ( ($httpUserAgent = $request->server->get('HTTP_USER_AGENT')) == NULL ) {
+        if ( ($httpUserAgent = $request->server->get('HTTP_USER_AGENT')) == NULL )
             return new Response('ERROR: Server index HTTP_USER_AGENT is empty', 500);
-        }
 
         $browsers = $this->getDoctrine()->getManager()
             ->getRepository('AppBundle:Meat\Browser')->findAll();
