@@ -5,7 +5,6 @@ namespace AppBundle\Command;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand,
     Symfony\Component\Console\Input\InputArgument,
     Symfony\Component\Console\Input\InputInterface,
-    Symfony\Component\Console\Input\InputOption,
     Symfony\Component\Console\Output\OutputInterface;
 
 class CollectorCommand extends ContainerAwareCommand
@@ -18,7 +17,11 @@ class CollectorCommand extends ContainerAwareCommand
         $this
             ->setName('brasst:collect')
             ->setDescription('Update system with important collected web data')
-            ->addArgument('task', InputArgument::REQUIRED, 'What update task to execute?')
+            ->addArgument(
+                'task',
+                InputArgument::REQUIRED,
+                'What update task to execute?'
+            )
         ;
     }
 
@@ -26,7 +29,7 @@ class CollectorCommand extends ContainerAwareCommand
     {
         $task = $input->getArgument('task');
 
-        switch($task)
+        switch( $task )
         {
             case self::TASK_UPDATE_STABLE_RELEASE:
                 $this->updateStableRelease();

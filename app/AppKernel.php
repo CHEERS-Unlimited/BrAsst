@@ -34,4 +34,10 @@ class AppKernel extends Kernel
     {
         $loader->load(__DIR__.'/config/'.$this->getEnvironment().'/config.yml');
     }
+
+    public function init()
+    {
+        date_default_timezone_set( 'Europe/Kiev' );
+        parent::init();
+    }
 }

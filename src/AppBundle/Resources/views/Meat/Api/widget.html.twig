@@ -17,7 +17,7 @@
                 {{ 'widget.message.deprecated'|trans }}
             {% endif %}
         </p>
-        <a href="{{ url('index') }}" class="updateButton" target="_blank">
+        <a href="{{ url('index', {}, true) }}" class="updateButton" target="_blank">
             {% if isOutdated %}
                 {{ 'widget.button.outdated'|trans }}
             {% elseif deprecated %}

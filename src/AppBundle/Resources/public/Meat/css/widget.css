@@ -69,11 +69,11 @@
 	border: 1px solid #373b44;
 	overflow: hidden;
 }
-#brasstWidget > .inner.chrome{ background: #373b44 url(http://brasst.com/web/bundles/app/Meat/images/widget/chrome.png) no-repeat -50px 120px; }
-#brasstWidget > .inner.internet_explorer{ background: #373b44 url(http://brasst.com/web/bundles/app/Meat/images/widget/explorer.png) no-repeat -50px 120px; }
-#brasstWidget > .inner.firefox{ background: #373b44 url(http://brasst.com/web/bundles/app/Meat/images/widget/firefox.png) no-repeat -50px 120px; }
-#brasstWidget > .inner.safari{ background: #373b44 url(http://brasst.com/web/bundles/app/Meat/images/widget/safari.png) no-repeat -50px 120px; }
-#brasstWidget > .inner.opera{ background: #373b44 url(http://brasst.com/web/bundles/app/Meat/images/widget/opera.png) no-repeat -50px 120px; }
+#brasstWidget > .inner.chrome{ background: #373b44 url(http://brasst.net.ua/bundles/app/Meat/images/widget/chrome.png) no-repeat -50px 120px; }
+#brasstWidget > .inner.internet_explorer{ background: #373b44 url(http://brasst.net.ua/bundles/app/Meat/images/widget/explorer.png) no-repeat -50px 120px; }
+#brasstWidget > .inner.firefox{ background: #373b44 url(http://brasst.net.ua/bundles/app/Meat/images/widget/firefox.png) no-repeat -50px 120px; }
+#brasstWidget > .inner.safari{ background: #373b44 url(http://brasst.net.ua/bundles/app/Meat/images/widget/safari.png) no-repeat -50px 120px; }
+#brasstWidget > .inner.opera{ background: #373b44 url(http://brasst.net.ua/bundles/app/Meat/images/widget/opera.png) no-repeat -50px 120px; }
 
 #brasstWidget > .inner .innerBrowserInfo{
 	margin-top: 10px;
@@ -93,9 +93,9 @@
 #brasstWidget > .inner .innerBrowserInfo li:first-child p{ text-align: right; }
 #brasstWidget > .inner .innerBrowserInfo li:last-child p{ text-align: left; }
 
-#brasstWidget > .inner .innerBrowserInfo li .icon.windows{ background: url(http://brasst.com/web/bundles/app/Meat/images/widget/icons.png) no-repeat 0 2px; }
-#brasstWidget > .inner .innerBrowserInfo li .icon.mac{ background: url(http://brasst.com/web/bundles/app/Meat/images/widget/icons.png) no-repeat -31px 1px; }
-#brasstWidget > .inner .innerBrowserInfo li .icon.linux{ background: url(http://brasst.com/web/bundles/app/Meat/images/widget/icons.png) no-repeat -60px 2px; }
+#brasstWidget > .inner .innerBrowserInfo li .icon.windows{ background: url(http://brasst.net.ua/bundles/app/Meat/images/widget/icons.png) no-repeat 0 2px; }
+#brasstWidget > .inner .innerBrowserInfo li .icon.mac{ background: url(http://brasst.net.ua/bundles/app/Meat/images/widget/icons.png) no-repeat -31px 1px; }
+#brasstWidget > .inner .innerBrowserInfo li .icon.linux{ background: url(http://brasst.net.ua/bundles/app/Meat/images/widget/icons.png) no-repeat -60px 2px; }
 
 #brasstWidget p.update{
 	max-width: 80%;
@@ -237,7 +237,7 @@
 	-ms-transition: transform .5s ease;
 	-o-transition: transform .5s ease;
 	transition: transform .5s ease;
-	background: transparent url(http://brasst.com/web/bundles/app/Meat/images/widget/icons.png) no-repeat -90px 0;
+	background: transparent url(http://brasst.net.ua/bundles/app/Meat/images/widget/icons.png) no-repeat -90px 0;
 	cursor: pointer;
 }
 #brasstWidget > .inner #closeBrasstWidget:hover{
@@ -246,6 +246,6 @@
 	-ms-transform: rotate(180deg);
 	-o-transform: rotate(180deg);
 	transform: rotate(180deg);
-	background: transparent url(http://brasst.com/web/bundles/app/Meat/images/widget/icons.png) no-repeat -120px 0;
+	background: transparent url(http://brasst.net.ua/bundles/app/Meat/images/widget/icons.png) no-repeat -120px 0;
 }
 
