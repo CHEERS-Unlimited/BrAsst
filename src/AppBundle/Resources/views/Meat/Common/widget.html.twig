@@ -33,7 +33,7 @@
                 <li><p>{{ 'adjective.for'|trans }}</p></li>
             {% endif %}
 
-            <li><span class="icon {{ browserDetected.osFamily|lower }}"></span></li>
+            <li><span class="icon {{ browserDetected.osFamily|lower|replace({ '/': "_" }) }}"></span></li>
 
             {% if browserDetected.isOutdated %}
                 <li class="outside">

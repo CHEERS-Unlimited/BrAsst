@@ -102,7 +102,7 @@
 
 #brasstWidget > .inner .innerBrowserInfo li .icon.windows{ background: url(http://brasst.net.ua/bundles/app/Meat/images/widget/icons.png) no-repeat 0 2px; }
 #brasstWidget > .inner .innerBrowserInfo li .icon.mac{ background: url(http://brasst.net.ua/bundles/app/Meat/images/widget/icons.png) no-repeat -31px 1px; }
-#brasstWidget > .inner .innerBrowserInfo li .icon.linux{ background: url(http://brasst.net.ua/bundles/app/Meat/images/widget/icons.png) no-repeat -60px 2px; }
+#brasstWidget > .inner .innerBrowserInfo li .icon.gnu_linux{ background: url(http://brasst.net.ua/bundles/app/Meat/images/widget/icons.png) no-repeat -60px 2px; }
 
 #brasstWidget p.update{
 	max-width: 80%;

@@ -20,7 +20,7 @@
                         <div class="center">
                             <ul>
                                 {% for os in browser.getSupportedSystems %}
-                                    <li><span class="icon {{ os|lower }}" title="{{ os }}"></span></li>
+                                    <li><span class="icon {{ os|lower|replace({ '/': "_" }) }}" title="{{ os }}"></span></li>
                                 {% endfor %}
                             </ul>
                             <div class="button"><a href="{{ browser.link }}" target="_blank">{{ 'browser.button_download'|trans }}</a></div>

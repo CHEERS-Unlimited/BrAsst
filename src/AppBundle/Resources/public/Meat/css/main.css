@@ -53,7 +53,7 @@
 
 #widget ul li .icon.windows{background: url(../images/icons.png) no-repeat -60px -360px;}
 #widget ul li .icon.mac{background: url(../images/icons.png) no-repeat -60px -420px;}
-#widget ul li .icon.linux{background: url(../images/icons.png) no-repeat -60px -480px;}
+#widget ul li .icon.gnu_linux{background: url(../images/icons.png) no-repeat -60px -480px;}
 
 #widget .old span{ color: #BD5532; }
 #widget .last span{ color: #73C8A9; }
@@ -311,7 +311,7 @@
 }
 #dropZone .browserInfo ul li .windows{background: url(../images/icons.png) no-repeat -20px -380px;}
 #dropZone .browserInfo ul li .mac{background: url(../images/icons.png) no-repeat -20px -440px;}
-#dropZone .browserInfo ul li .linux{background: url(../images/icons.png) no-repeat -20px -500px;}
+#dropZone .browserInfo ul li .gnu_linux{background: url(../images/icons.png) no-repeat -20px -500px;}
 
 #dropZone .browserInfo .button{
 	margin: 32px auto 25px;

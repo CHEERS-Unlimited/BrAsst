@@ -7,7 +7,7 @@
         <h3>{{ browserDetected.vendor }}</h3>
         <ul class="innerBrowserInfo">
             <li><p>{{ 'widget.version'|trans }}: {{ clientVersionShort }}</p></li>
-            <li><span class="icon {{ browserDetected.osFamily|lower|replace({ ' ': "_" }) }}"></span></li>
+            <li><span class="icon {{ browserDetected.osFamily|lower|replace({ '/': "_" }) }}"></span></li>
             <li><p>{{ browserDetected.osFamily }}</p></li>
         </ul>
         <p class="update">
