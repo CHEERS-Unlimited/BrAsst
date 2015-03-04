@@ -25,8 +25,10 @@ class StateController extends Controller
      * )
      * @Route(
      *      "/",
-     *      name="homepage_default",
-     *      defaults={"_locale" = "%locale%"}
+     *      name="index_default",
+     *      host="{domain}",
+     *      defaults={"_locale" = "%locale%", "domain" = "%domain%"},
+     *      requirements={"domain" = "%domain%"}
      * )
      */
     public function indexAction(Request $request)

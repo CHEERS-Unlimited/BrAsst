@@ -85,15 +85,16 @@ content_idea:
     завжди використовувати %accent_opening%останні%accent_closing% версії браузерів!
   about: >
     Ми, веб-агентство <a href="http://cheersunlimited.com.ua/%locale%" target="_blank">CHEERS! Unlimited</a>,
-    розробили %accent_opening%Br.Asst.%accent_closing% з метою турботи про наших клієнтів і користувачів. Br.Asst.
-    %accent_opening%допоможе вам%accent_closing% дізнатися, чи не застарів ваш браузер, а також
-    %accent_opening%завантажити%accent_closing% останню версію будь-якого з найбільш популярних на сьогоднішній день.
+    розробили %accent_opening%Br.Asst.%accent_closing% - %accent_opening%Browser Assistant%accent_closing% з метою
+    турботи про наших клієнтів і користувачів. Br.Asst. %accent_opening%допоможе вам%accent_closing% дізнатися, чи не
+    застарів ваш браузер, а також %accent_opening%завантажити%accent_closing% останню версію будь-якого з найбільш
+    популярних на сьогоднішній день.
   download_browser: Скачати браузери
 
 browser:
   title: Оберіть свій браузер
   tooltip: >
-    Клацніть по бажаному браузеру, або перетягніть його сюди
+    Клацніть по бажаному браузеру або перетягніть його сюди
   market_share:
     preffered: віддають перевагу
     users: користувачів мережі
@@ -155,7 +156,7 @@ widget:
   version: версія
   message:
     outdated: >
-      Доступна нова версія вашого браузеру
+      О ні! Ви використовуєте стару версію браузеру
     deprecated: >
       Цей браузер не підтримується на вашій операційній системі
   button:

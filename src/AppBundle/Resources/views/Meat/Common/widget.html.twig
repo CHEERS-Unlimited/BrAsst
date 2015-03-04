@@ -44,7 +44,7 @@
         </ul>
         {% if browserDetected.isOutdated %}
             <div class="button">
-                <a href="{{ browserDetected.stableVersionLink }}" target="_blank">
+                <a href="{{ browserDetected.stableVersionLink }}" target="_blank" onClick="_gaq.push(['_trackEvent', 'Обновить', 'Нажатие']);">
                     {{ 'browser.button_update'|trans }}
                 </a>
             </div>

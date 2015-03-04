@@ -1,0 +1,40 @@
+{# app/Resources/TwigBundle/views/Exception/error404.html.twig #}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Error 404 - Br.Asst.</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="icon" type="image/jpg" href="{{ asset('bundles/app/Meat/images/favicon.jpg') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/app/Meat/css/compiled/compiled.css') }}" />
+</head>
+<body>
+<div id="page" class="notFound">
+    <div id="content">
+        <div id="particles">
+            <canvas id="connection"></canvas>
+        </div>
+        <div class="section active">
+            <section class="inner">
+                <h1>
+                    <span class="sSize">4</span>
+                    <span class="icon"></span>
+                    <span class="sSize">4</span>
+                </h1>
+                <h2>The requested URL was not found on Br.Asst.</h2>
+                <div class="button">
+                    <a href="{{ path('index_default') }}">back to life</a>
+                </div>
+            </section>
+        </div>
+    </div>
+    <footer id="footer">
+        <small>
+            © <a href='http://cheersunlimited.com.ua/%locale%' target="_blank">CHEERS! Unlimited</a>, 2015.
+            All rights reserved. Usage of the website personal materials without author's permission is prohibited.
+        </small>
+    </footer>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.15/require.min.js" data-main="{{ asset('bundles/app/Meat/js/boot.js') }}"></script>
+</body>
+</html>

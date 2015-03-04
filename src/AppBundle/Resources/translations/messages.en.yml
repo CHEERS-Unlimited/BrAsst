@@ -84,15 +84,15 @@ content_idea:
     Do not spoil your impression - simply always use the %accent_opening%latest%accent_closing% browser version!
   about: >
     We, the <a href="http://cheersunlimited.com.ua/%locale%" target="_blank">CHEERS! Unlimited</a> web-agency,
-    developed %accent_opening%Br.Asst.%accent_closing% to take care of our customers and users. Br.Asst. will
-    %accent_opening%help you%accent_closing% to find out whether your browser is outdated and show you where to
-    get the %accent_opening%latest%accent_closing% version of today's most popular ones.
+    developed %accent_opening%Br.Asst.%accent_closing% - %accent_opening%Browser Assistant%accent_closing% to take care
+    of our customers and users. Br.Asst. will %accent_opening%help you%accent_closing% to find out whether your browser
+    is outdated and show you where to get the %accent_opening%latest%accent_closing% version of today's most popular ones.
   download_browser: Download browsers
 
 browser:
   title: Choose your browser
   tooltip: >
-    Click on desired browser, all just drag it here
+    Click on desired browser or just drag it here
   market_share:
     preffered: preferred by
     users: of Internet users
@@ -152,9 +152,9 @@ widget:
   version: version
   message:
     outdated: >
-      New version of your browser is available
+      Oh noes! You are using an obsolete browser version
     deprecated: >
-      This browser is not supported on your operating system
+      Your browser is outdated - new version is already available
   button:
     outdated: >
       update
