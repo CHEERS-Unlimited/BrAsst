@@ -1,2 +1,2 @@
 {# src/AppBundle/Resources/views/Meat/Common/footer.html.twig #}
-<small>{{ 'copyright'|trans({ '%locale%': app.request.locale })|raw }}</small>
+<small>{{ 'copyright'|trans({ '%locale%': app.request.locale, '%current_year%': "now"|date('Y') })|raw }}</small>

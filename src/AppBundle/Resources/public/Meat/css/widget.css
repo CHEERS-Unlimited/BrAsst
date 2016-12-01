@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600&subset=latin,cyrillic);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600&subset=latin,cyrillic);
 
 #brasstWidget h2,
 #brasstWidget h3,
@@ -256,4 +256,3 @@
 	transform: rotate(180deg);
 	background: transparent url(http://brasst.net.ua/bundles/app/Meat/images/widget/icons.png) no-repeat -120px 0;
 }
-

@@ -88,7 +88,8 @@ class Collector
 
         for($i = 1; $i <= $wikiBlocks->count(); $i++)
         {
-            $blockExists = ($wikiBlocks->eq($i)->filter('th')->count()) && ($wikiBlocks->eq($i)->filter('th')->text() == "Stable release");
+            $blockExists = ($wikiBlocks->eq($i)->filter('th')->count()) &&
+                           ($wikiBlocks->eq($i)->filter('th')->text() == "Stable release");
 
             if( $blockExists )
                 return ( $wikiBlocks->eq($i)->filter('td')->text() ) ?: FALSE;
